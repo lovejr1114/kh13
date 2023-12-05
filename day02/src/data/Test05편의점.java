@@ -11,22 +11,20 @@ public class Test05편의점 {
 	//구해서 출력해보자.
 	
 	public static void main(String[] args) {
-		//삼각김밥 가격
-		int triangularKimbap = 1200;
+		//입력 - 김밥 가격, 개수
+		int price = 1200;
+		int count = 7;
 		
-		//삼각김밥 구매 개수
-		int triangularKimbapCount = 7;
+		//계산 - 무료든 유료든 한 쪽 개수를 구해야함
+		int free = count / 2; // 개수 / 2
+		//System.out.println(free);
+		int pay = count - free; //개수 - 무료개수
+		//System.out.println(pay);
+		int total = pay * price;
+		//System.out.println(total);
 		
-		//1+1 행사 적용 후 계산
-		//삼각김밥 행사 = (삼각김밥 구매개수/2) 몫 + (삼각김밥구매개수%2) 나누기
-		int triangularKimbapEvent =( triangularKimbapCount / 2) + (triangularKimbapCount % 2);
-		//삼각김밥 무료 = 삼각김밥구매개수/2
-		int triangularKimbapFree = triangularKimbapCount / 2;
-		//결과 = 삼김 행사 * 삼김가격
-		int total = triangularKimbapEvent * triangularKimbap;
-		
-		System.out.println(triangularKimbapCount);
-		System.out.println(triangularKimbapFree);
+		//출력
+		System.out.println(free);
 		System.out.println(total);
 	}
 
