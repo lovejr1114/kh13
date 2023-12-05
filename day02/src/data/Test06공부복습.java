@@ -41,6 +41,7 @@ public class Test06공부복습 {
 		int hour = finish / 60;
 		int minute = finish % 60;
 		//출력에서 계산하기 보다는 계산에서 변수를 더 만들어라.
+		//finish라고 적은 이유는 위에 total이 이미 있기 때문에 다른 언어 적은거임..
 		
 		//출력
 		System.out.println(hour);
