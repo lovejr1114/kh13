@@ -12,20 +12,41 @@ public class Test05편의점 {
 	
 	public static void main(String[] args) {
 		//입력 - 김밥 가격, 개수
-		int price = 1200;
-		int count = 7;
+		//int price = 1200;
+	//	int count = 7;
 		
 		//계산 - 무료든 유료든 한 쪽 개수를 구해야함
-		int free = count / 2; // 개수 / 2 -> 응용으로 2+1 하면 나누기 3이 됨
+		//int free = count / 2; // 개수 / 2 -> 응용으로 2+1 하면 나누기 3이 됨
 		//System.out.println(free);
-		int pay = count - free; //개수 - 무료개수
+		//int pay = count - free; //개수 - 무료개수
 		//System.out.println(pay);
-		int total = pay * price;
+		//int total = pay * price;
 		//System.out.println(total);
 		
 		//출력
+		//System.out.println(free);
+		//System.out.println(total);
+		
+		
+		
+		
+		//편의점 음료 개당 2200원 3+1 행사, 9개사면 몇 개가 공짜? 얼마?
+		//입력
+		int drink = 2200;
+		int count = 7;
+		
+		//계산
+		int free = count / 3;
+		//System.out.println(free);
+		int buy = count - free;
+		//System.out.println(buy);
+		int pay = drink * buy;
+		//System.out.println(pay);
+		
+		//출력
 		System.out.println(free);
-		System.out.println(total);
+		System.out.println(buy);
+		System.out.println(pay);
 	}
 
 
