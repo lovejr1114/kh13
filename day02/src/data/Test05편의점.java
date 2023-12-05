@@ -16,7 +16,7 @@ public class Test05편의점 {
 		int count = 7;
 		
 		//계산 - 무료든 유료든 한 쪽 개수를 구해야함
-		int free = count / 2; // 개수 / 2
+		int free = count / 2; // 개수 / 2 -> 응용으로 2+1 하면 나누기 3이 됨
 		//System.out.println(free);
 		int pay = count - free; //개수 - 무료개수
 		//System.out.println(pay);
