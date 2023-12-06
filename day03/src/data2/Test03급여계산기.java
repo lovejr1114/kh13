@@ -11,21 +11,22 @@ public class Test03급여계산기 {
 //고용보험료 : 급여액의 0.9%
 		
 		//입력
-		double salary = 3000000;
+		int salary = 3000000;
 		
 		//계산
-		double annuity = salary * 4.5 /100; 
-		double health = salary * 7.09 /100; 
-		double con = health * 12.81 /100; 
-		double employ = salary * 0.9 /100; 
-		double money = salary - annuity - health - con - employ;
+		double pension = salary * 0.045;//국민연금
+		double health = salary * 0.0709;//건보료
+		double care = health * 0.1281;//장기요양
+		double emp = salary * 0.009;//고용보험
+		double actual = salary - pension - health - care - emp;
+
 		
 		//출력
-		System.out.println(money); //실수령액
-		System.out.println(annuity);
+		System.out.println(actual); //실수령액
+		System.out.println(pension);
 		System.out.println(health);
-		System.out.println(con);
-		System.out.println(employ);
+		System.out.println(care);
+		System.out.println(emp);
 
 	}
 
