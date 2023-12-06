@@ -31,7 +31,7 @@ public class Test05PC방계산기 {
 		double minutePrice = (double)unitPrice / 60;
 		
 		int result = (int)(time * minutePrice);
-		
+		result = result / 10 * 10;
 		
 		
 		//출력
