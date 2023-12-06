@@ -2,32 +2,31 @@ package data2;
 
 public class Test05PC방계산기 {
 	public static void main(String[] args) {
-		//KH PC방은 다음과 같이 운영하고 있습니다.
-
-//요금은 1시간당 1000원
-//분단위로 요금 부과
-//단, 10원단위까지만 돈을 받는다
-
-//예를 들어서 4분동안 게임을 했다면 66.6666원이 실제 요금이 되지만 60원만 받습니다.
-//고객이 12시 20분부터 15시 30분까지 게임을 했을 때 예상 요금을 구하여 출력하세요.
+		//1차로 이용시간 구하기
 		
 		//입력
-		int price = 1000;
-		int startHour = 12, startMinute = 20;
-		int finishHour = 15, finishMinute = 30;
+		//int inHour = 12, inMinute =20;
+		int in = 1220;
+		int out = 1530;
 		
 		
 		//계산
-		int sTime = startHour * 60 + startMinute;
-		int fTime = finishHour * 60 + finishMinute;
-		//System.out.println(sTime);
-		//System.out.println(fTime);
-		int use = fTime - sTime;
-		int hour = use / 60; //3시간
-		int minute = use % 60; //10분
+		int inHour = in /100; //들어온 시각
+		int inMinute = in % 100; //들어온 분
+		int outHour = out / 100; //나간 시각
+		int outMinute = out % 100; //나간 분
 		
-
-		//System.out.println(b);
+		int inTime =  inHour * 60 + inMinute; //들어온 시간 변환 값
+		int outTime = outHour * 60 + outMinute; //나간 시간 변환 값
+		int time = outTime - inTime; //이용시간(분)
+		//System.out.println(time);
+		int hour = time / 60;
+		int minute = time % 60;
+		
+		
+		//출력
+		System.out.println(hour);
+		System.out.println(minute);
 		
 		
 		
