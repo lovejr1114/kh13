@@ -13,7 +13,8 @@ public class Test02비만계산기 {
 		//계산
 		double m = cm / 100;
 		double bmi = kg / (m * m); 
-		//double bmi = kg / m / m; 도 가능 **kg / m * m 으로 적으면 틀림. 
+		//double bmi = kg / m / m; 도 가능
+		//kg / m * m 으로 적으면 공식으로 kg*m / m으로 됨. 
 		
 		//출력
 		System.out.println(bmi);
