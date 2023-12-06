@@ -13,13 +13,19 @@ public class Test03급여계산기 {
 		//입력
 		int salary = 3000000;
 		
+		double pensionRate = 4.5;
+		double healthRate = 7.09;
+		double careRate = 12.81;
+		double empRate = 0.9;
+
+		
 		//계산
 		//-변환 연산을 사용하여 double을 int로 바꿔서 저장 (당연히 소수점은 날라간다)
-		int pension = (int) (salary * 0.045);//국민연금, 괄호 안 기능은 오른쪽 역할 바꿔줌
+		int pension = (int) (salary * pensionRate /100);//국민연금, 괄호 안 기능은 오른쪽 역할 바꿔줌
 		//int pension = salary * 45 / 1000; //이렇게 하면 변환이 필요 없다.
-		int health = (int) (salary * 0.0709);//건보료
-		int care = (int) (health * 0.1281);//장기요양
-		int emp = (int) (salary * 0.009);//고용보험
+		int health = (int) (salary * healthRate / 100);//건보료
+		int care = (int) (health * careRate /100); //요양보험
+		int emp = (int) (salary * empRate / 100);//고용보험
 		int actual = salary - pension - health - care - emp;
 
 		
