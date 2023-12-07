@@ -29,6 +29,7 @@ public class Test05PC방계산기 {
 		//double minutePrice = unitPrice / 60.0;
 		//double minutePrice = unitPrice / 60d;
 		double minutePrice = (double)unitPrice / 60;
+		System.out.println(minutePrice);
 		
 		int result = (int)(time * minutePrice);
 		result = result / 10 * 10;
