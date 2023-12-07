@@ -6,11 +6,11 @@ public class Test04평균계산기 {
 	public static void main(String[] args) {
 		//입력
 		Scanner sc = new Scanner(System.in); //스캐너는 하나만 사용해도 된다.
-		System.out.println("국어 점수를 입력하세요.");
+		System.out.print("국어 점수 : ");
 		int korean = sc.nextInt();
-		System.out.println("영어 점수를 입력하세요.");
+		System.out.print("영어 점수 : ");
 		int english = sc.nextInt();
-		System.out.println("수학 점수를 입력하세요.");
+		System.out.print("수학 점수 : ");
 		int math = sc.nextInt();
 		
 		//계산
