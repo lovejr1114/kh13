@@ -4,7 +4,7 @@ public class Test03논리연산 {
 	public static void main(String[] args) {
 		//논리 연산
 		//- 논리끼리 계산 할 때 사용
-		//- &&(and), ||(or)을 이용하여 조합
+		//- &&(and)논리곱, ||(or)논리합을 이용하여 조합
 		
 		//예) 19살은 청소년인가요?
 		//- 청소년은 14살부터 19살까지 입니다.
