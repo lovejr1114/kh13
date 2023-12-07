@@ -7,14 +7,14 @@ public class Test04평균계산기 {
 		//입력
 		Scanner sc = new Scanner(System.in); //스캐너는 하나만 사용해도 된다.
 		System.out.print("국어 점수 : ");
-		int korean = sc.nextInt();
+		double korean = sc.nextDouble();
 		System.out.print("영어 점수 : ");
-		int english = sc.nextInt();
+		double english = sc.nextDouble();
 		System.out.print("수학 점수 : ");
-		int math = sc.nextInt();
+		double math = sc.nextDouble();
 		
 		//계산
-		int result = korean + english + math;
+		double result = korean + english + math;
 		//int average = result / 3;
 		double average = result / 3.0; //-> 평균은 소수점이 나와야하기 때문에 더블로 입력해준다.
 		//double average = result / 3d;
