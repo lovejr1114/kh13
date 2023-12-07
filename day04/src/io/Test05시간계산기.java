@@ -27,6 +27,7 @@ public class Test05시간계산기 {
 		
 		
 		//출력
+		System.out.println(); //아무것도 치지 않으면 엔터 효과
 		System.out.println("수업에 참여한 시간은 총 " + stuH + "시간 " + stuM + "분입니다.");
 	}
 
