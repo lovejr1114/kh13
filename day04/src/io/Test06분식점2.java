@@ -12,11 +12,11 @@ public class Test06분식점2 {
 		int rate = 10;
 		
 		Scanner sc = new Scanner(System.in);
-		System.out.print("주문 할 떡볶이 수량 : ");
+		System.out.print("떡볶이(" + ddeok + "원) : ");
 		int ddeokCount = sc.nextInt();
-		System.out.print("주문 할 튀김 수량 : ");
+		System.out.print("튀김(" + fried + "원) : ");
 		int friedCount = sc.nextInt();
-		System.out.print("주문 할 순대 수량 : ");
+		System.out.print("순대(" + sundae + "원) : ");
 		int sundaeCount = sc.nextInt();
 		
 		//계산
