@@ -13,7 +13,7 @@ public class Test01조건4 {
 		boolean odd = number % 2 != 0; 
 		
 		//출력
-		if(odd) {
+		if(odd) { //계산식에 변수 대신 odd에 변수 값을 넣어도 상관 없다
 			System.out.println("홀수입니다.");  //odd가 true일 때 나옴.
 		}
 				
