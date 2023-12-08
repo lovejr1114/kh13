@@ -27,6 +27,7 @@ public class Test06건강검진 {
 		boolean second = current % 2 == 0 && birth % 2 == 0;
 	//	boolean third = 올해가 홀수 && 출생년도 홀수;
 		boolean third = current % 2 != 0 && birth % 2 != 0;
+		//boolean third = current % 2 == 1 && birth % 2 == 1;   // -> 2로 나눌 때 1이 남으면 홀수니까 이렇게 판별해도 됨!
 		
 		boolean result = (first && second) || (first && third);
 		
