@@ -20,13 +20,13 @@ public class Test06분식점 {
 		int ordersun = sc.nextInt();
 		
 		//계산
-		int ddbkkE = ddbkk - ddbkk /event;
-		int friedE = fried - fried / event;
-		int sundaeE = sundae - sundae / event;
-		int pay = (ddbkkE * orderdd) + (friedE * orderfri) + (sundaeE * ordersun);
+		//int ddbkkE = ddbkk - ddbkk /event;
+		//int friedE = fried - fried / event;
+	//	int sundaeE = sundae - sundae / event;
+		//int pay = (ddbkkE * orderdd) + (friedE * orderfri) + (sundaeE * ordersun);
 		
-		//int price = (ddbkk * orderdd) + (fried * orderfri) + (sundae * ordersun);
-		//int pay = price - price /10;
+		int price = (ddbkk * orderdd) + (fried * orderfri) + (sundae * ordersun);
+		int pay = price - price /event;
 		
 		//출력
 		System.out.println();
