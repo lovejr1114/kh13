@@ -13,8 +13,8 @@ public class Test04숫자판정 {
 		//- 7이 들어있는 숫자는 무엇인가?
 		//- 10의 자리가 7 또는 1의 자리가 7
 		//- 70부터 79사이 또난 1의 자리가 7
-		// boolean ten = number / 10 == 7;  ->첫 번 째 방법
-		boolean ten = number >= 70 && number < 80; //<- 두 번 째 방법
+		boolean ten = number / 10 == 7;  //->첫 번 째 방법
+		//boolean ten = number >= 70 && number < 80; //<- 두 번 째 방법
 		boolean one = number % 10 ==7;
 		//boolean seven = ten && one; //둘 다 7 (1개)
 		boolean seven = ten || one; //둘 중 하나가 7 (19개)
