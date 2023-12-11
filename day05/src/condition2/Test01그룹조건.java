@@ -10,7 +10,7 @@ public class Test01그룹조건 {
 		//우선순위 정하기
 		//(1) 버스 (2) 지하철 (3) 택시 (4) 죄송...
 		
-		int minute = 140;
+		int minute = 90;
 		
 		boolean bus = minute >= 120;
 		

@@ -46,11 +46,12 @@ public class Test03여행사프로모션 {
 			discount = 5;
 		}
 		
-		int pay = people * day * price; //원래 금액
+		int pay = people * day * price; //총 금액
 		int event = pay * discount / 100; //할인 금액
 		int result = pay - event; //총 금액
 		
 		System.out.println("여행 총 비용은 " + pay + "원입니다.");
+		System.out.println("할인율은 " + discount + "% 입니다.");
 		System.out.println("할인 금액은 " + event + "원입니다.");
 		System.out.println("할인 된 여행 비용은 " + result + "원입니다.");
 		
