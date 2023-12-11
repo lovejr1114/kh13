@@ -27,16 +27,16 @@ public class Test05시간출력2 {
 			time = second;
 			write = time + "초 전";
 		}
-		else if(second < 3600) {
+		else if(second < 60 * 60) {
 			time = second / 60;
 			write = time + "분 전";
 		}
-		else if(second < 86400) {
+		else if(second < 24 * 60 * 60) {
 			time = second / 60 / 60;
 			write = time + "시간 전";
 		}
 		else {
-			time = second / 60 / 60 / 24;
+			time = second / 24 /60 / 60;
 			write = time + "일 전";
 		}
 		
