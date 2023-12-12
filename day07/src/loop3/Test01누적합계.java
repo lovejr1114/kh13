@@ -5,7 +5,7 @@ public class Test01누적합계 {
 		//(Q) 1부터 10까지 더해보세요
 		
 		int total = 0; //선언
-		for(int i=1; i<=10; i++) { //조건
+		for(int i=1; i<=100; i++) { //조건
 			total += i; //증감
 		}
 		System.out.println(total);
