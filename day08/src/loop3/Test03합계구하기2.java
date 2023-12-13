@@ -15,8 +15,8 @@ public class Test03합계구하기2 {
 			double user = sc.nextDouble();
 			
 			if(user == 0) {
-				break;
-			}
+				break; 
+			}    
 			else {
 				count++; //위치 매우 중요함				
 				total += user; //위치
@@ -25,7 +25,7 @@ public class Test03합계구하기2 {
 		//count와 total이 확정된 뒤 평균을 계산
 		double div = (double)(total/count); //위치
 		System.out.println("입력 횟수 : "+count);
-		System.out.println("입력한 수의 총 합은 " + total + ", 평균 값은 "+ div);
+		System.out.println("입력한 수의 총 합은 " + total + ", 평균 값은 "+ div + "입니다");
 	}
 
 }
