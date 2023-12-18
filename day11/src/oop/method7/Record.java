@@ -7,7 +7,6 @@ public class Record {
 	int korean;
 	int english;
 	int math;
-	boolean pass;
 	
 	
 	void data(int grade, int group, String name, int korean, int english, int math) {
