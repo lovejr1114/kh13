@@ -85,9 +85,12 @@ public class Sellphone {
 		System.out.println("통신사 : " + this.getTelecom());
 		System.out.println("가격 : " +getResult() + "원");
 		if(this.getContactStatus()) {
+			System.out.println("약정기간 : " + this.getContact()+"개월");
 			System.out.println("(월 "+this.getMonthPrice()+"원)");
 		}
-		System.out.println("약정기간 : " + this.getContact()+"개월");
+		else {
+			System.out.println("약정 기간 없음");
+		}
 		System.out.println();
 	}
 	
