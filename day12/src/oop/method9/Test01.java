@@ -7,9 +7,9 @@ public class Test01 {
 		Account b = new Account();
 		Account c = new Account();
 		
-		a.data("유재석", 2.20, 1, 500000, 2);
-		b.data("강호동", 2.5, 1, 500000, 2);
-		c.data("신동엽", 2.35, 1.5, 600000, 3);
+		a.data("유재석", 2.2f, 1f, 500000, 2);
+		b.data("강호동", 2.5f, 1f, 500000, 2);
+		c.data("신동엽", 2.35f, 1.5f, 600000, 3);
 		
 		a.information();
 		b.information();

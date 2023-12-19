@@ -3,13 +3,13 @@ package oop.method9;
 public class Account {
 	//멤버 변수(멤버 필드) - 데이터
 	String name;
-	double basicRate;
-	double preRate;
+	float basicRate;
+	float preRate;
 	int monthly;
 	int year;
 	
 	//멤버 메소드 - 코드
-	void data(String name, double basicRate, double preRate, int monthly, int year) {
+	void data(String name, float basicRate, float preRate, int monthly, int year) {
 		this.name = name;
 		this.basicRate = basicRate;
 		this.preRate = preRate;
@@ -20,32 +20,42 @@ public class Account {
 	int getMonthly() {
 		return this.monthly * 12;
 	}
-	int interest() {
-		return (int) (getMonthly() * (this.basicRate+this.preRate)/100);
+	int getTotal() {
+		return this.getMonthly() * this.year;
 	}
-	int balance() {
-		return interest() + this.monthly * 12;
+	int getInterest() {
+		return (int) (getTotal() * getTotalRate() / 100);
 	}
-	int exp() {
-		return balance() * this.year;
+	int getBalance() {
+		return getInterest() + this.monthly * 12;
+	}
+	int getExp() {
+		return getBalance() * this.year;
 	}
 	boolean tax() {
 		return this.year <= 3;
 	}
-	
+	//총 적용 이율을 구하는 메소드
+	float getTotalRate() {
+		return this.basicRate + this.preRate;
+	}
+	String getName() {
+		return this.name;
+	}
 	
 	
 	void information() {
 		System.out.println("<적금 통장 정보>");
-		System.out.println("예금주 : " + this.name);
-		System.out.println("기본 이율 : " +this.basicRate+ "%");
-		System.out.println("우대 이율 : "+this.preRate + "%");
-		System.out.println("월부금 : "+this.monthly);
-		System.out.println("예치기간(년) : "+this.year);
-		
-		System.out.println("예상 이자 : " + interest()+"원");
-		System.out.println("1년간 예금할 금액 : " + getMonthly()+"원");
-		System.out.println("만기 시 예상 금액 : " + exp()+"원");
+		System.out.println("예금주 : " + getName());
+		System.out.println("예치기간(년) : "+this.year+"년");		
+		System.out.print("적용이율 : 기본(" +this.basicRate+ "%) +");
+		System.out.print(" 우대("+this.preRate + "%) = ");
+		System.out.println("총 ("+getTotalRate()+"%)");
+		System.out.println("월 입금액 : "+this.monthly);
+		System.out.println("연 입금액 : " + this.getMonthly()+"원");
+		System.out.println("총 입금액 : " + this.getTotal() +"원");
+		System.out.println("총 이자 : " + this.getInterest()+"원");		
+		System.out.println("만기 시 예상 금액 : " + getExp()+"원");
 		
 		if(tax()) {
 			System.out.println("과세상품입니다.");
