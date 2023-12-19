@@ -25,9 +25,8 @@ public class Record {
 		System.out.println("국어 점수 : " + this.korean + "점");
 		System.out.println("영어 점수 : " + this.english + "점");
 		System.out.println("수학 점수 : " + this.math + "점");
-		int total = this.korean + this.english + this.math;
-		System.out.println("총점 : " + total +"점");
-		double average = total / 3d;
+		System.out.println("총점 : " + (this.korean + this.english + this.math) +"점");
+		double average = (double)(this.korean + this.english + this.math) / 3;
 		System.out.println("평균 : " + average + "점");
 		if(this.korean >= 40 && this.english >= 40 && this.math >= 40 && average >= 60) {
 			System.out.println("통과입니다.");
