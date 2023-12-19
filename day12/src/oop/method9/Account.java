@@ -46,7 +46,7 @@ public class Account {
 	
 	void information() {
 		System.out.println("<적금 통장 정보>");
-		System.out.println("예금주 : " + getName());
+		System.out.println("예금주 : " + this.getName());
 		System.out.println("예치기간(년) : "+this.year+"년");		
 		System.out.print("적용이율 : 기본(" +this.basicRate+ "%) +");
 		System.out.print(" 우대("+this.preRate + "%) = ");
@@ -55,7 +55,7 @@ public class Account {
 		System.out.println("연 입금액 : " + this.getMonthly()+"원");
 		System.out.println("총 입금액 : " + this.getTotal() +"원");
 		System.out.println("총 이자 : " + this.getInterest()+"원");		
-		System.out.println("만기 시 예상 금액 : " + getExp()+"원");
+		System.out.println("만기 시 예상 금액 : " + this.getExp()+"원");
 		
 		if(tax()) {
 			System.out.println("과세상품입니다.");
