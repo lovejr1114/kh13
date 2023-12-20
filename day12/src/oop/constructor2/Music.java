@@ -3,31 +3,31 @@ package oop.constructor2;
 public class Music {
 	private String title;
 	private String singer;
-	private int play;
+	private long play;
 	private int good;
 	
 	String getTitle() {
-		return title;
+		return this.title;
 	}
 	void setTitle(String title) {
 		this.title = title;
 	}
 	String getSinger() {
-		return singer;
+		return this.singer;
 	}
 	void setSinger(String singer) {
 		this.singer = singer;
 	}
-	int getPlay() {		
-			return play;
+	long getPlay() {		
+			return this.play;
 	}
-	void setPlay(int play) {
-		if(play >= 0) {
+	void setPlay(long play) {
+		if(play >= 0L) {
 		this.play = play;
 		}
 	}
 	int getGood() {
-		return good;
+		return this.good;
 	}
 	void setGood(int good) {
 		if(play >= 0) {
@@ -37,29 +37,31 @@ public class Music {
 	
 	
 	//
-	boolean getPlayBest() {
-		if(play >= 100000) {
-			return true;
+	String getPlayBest() {
+		if(play >= 100000L) {
+			return "(베스트)";
 		}
-		else {
-			return false;
-		}
+			return "";
 	}
-	boolean getGoodBest() {
+	String getGoodBest() {
 		if(good >= 100000) {
-			return true;
+			return "(인기곡)";
 		}
 		else {
-			return false;
+			return "";
 		}
 	}
-	int getRanking() {
+	long getRanking() {
 		return getPlay() * 2 + getGood() / 2;
 	}
 	
 	
 	//생성자
-	Music(String title, String singer, int play, int good){
+	Music(String title, String singer){
+		this(title, singer, 0, 0);	
+	}
+	
+	Music(String title, String singer, long play, int good){
 		this.setTitle(title);
 		this.setSinger(singer);
 		this.setPlay(play);
@@ -68,21 +70,10 @@ public class Music {
 
 	
 	void information() {
-		if(this.getPlayBest() && this.getGoodBest()) {
-			System.out.println("노래제목 : " + this.title +" (베스트) (인기곡)");
-		}
-		else if(this.getPlayBest()) {
-			System.out.println("노래제목 : " + this.title +" (베스트)");
-		}
-		else if(this.getGoodBest()) {
-			System.out.println("노래제목 : " + this.title +" (인기곡)");
-		}
-		else {			
-			System.out.println("노래제목 : " + this.title);
-		}
+		System.out.println("노래제목 : " + this.title + this.getPlayBest()+ this.getGoodBest());
 		System.out.println("가수 : " + this.singer);
-		System.out.println("재생 수 : " + this.play);
-		System.out.println("좋아요 수 : " + this.good);
+		System.out.println("재생 수 : " + this.play +"회");
+		System.out.println("좋아요 수 : " + this.good +"개");
 		System.out.println("랭킹포인트 : " +this.getRanking()+"점");
 		System.out.println();
 	}
