@@ -35,6 +35,8 @@ for(int i=0; i<10; i++){
 
 > 사느냐 죽느냐 그것이 문제로다 - 셰익스피어
 
+( >쓰고 띄어쓰기 한 칸 하기)
+
 # 이미지
 
 이미지는 이미지의 주소만 알 수 있다면 문서 내에 표시가 가능하다.
@@ -55,3 +57,14 @@ for(int i=0; i<10; i++){
 ```
 
 [구글에서 자바 검색한 결과 보러가기](https://www.google.co.kr/search?q=%EC%9E%90%EB%B0%94&sca_esv=593031284&source=hp&ei=vESFZeO4Mprn2roP2vu--A8&iflsig=AO6bgOgAAAAAZYVSzNKiRELnTdvrtH2ER5eV2IxakcGA&oq=wkqk&gs_lp=Egdnd3Mtd2l6IgR3a3FrKgIIADIIEAAYgAQYsQMyCxAAGIAEGLEDGIMBMggQABiABBixAzILEAAYgAQYsQMYgwEyCBAAGIAEGLEDMgUQABiABDILEAAYgAQYsQMYgwEyBRAAGIAEMgUQABiABDIFEAAYgARIhxFQwAVYqQdwAXgAkAEAmAHoAaABsAaqAQUwLjIuMrgBA8gBAPgBAagCCsICChAAGAMYjwEY6gLCAgoQLhgDGI8BGOoCwgIEEAAYA8ICCxAuGIAEGLEDGIMBwgIREC4YgAQYsQMYgwEYxwEY0QPCAgsQLhiABBjHARivAcICBxAAGIAEGArCAgkQABiABBgKGCrCAg0QLhiABBjHARjRAxgKwgIEEC4YA8ICBxAuGIAEGArCAggQLhiABBixAw&sclient=gws-wiz)
+
+
+# 목록 표시
+
+목록은 크게 두가지로 나눠진다.  
+
+- 순서가 없는 목록 (unorder list)
+- 순서가 있는 목록 (ordet list)
+
+( - 뒤에 띄어쓰기 꼭 하기)
+
