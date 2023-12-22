@@ -34,3 +34,13 @@ for(int i=0; i<10; i++){
 다른 사람이 했던 말 또는 글귀를 옮겨 적을 때 사용
 
 > 사느냐 죽느냐 그것이 문제로다 - 셰익스피어
+
+# 이미지
+
+이미지는 이미지의 주소만 알 수 있다면 문서 내에 표시가 가능하다.
+
+```
+![설명](주소)
+```
+
+![GOOGLE 로고](https://image.rocketpunch.com/company/105846/khjeongbogyoyugweon_logo_1572925088.png?s=400x400&t=inside)
