@@ -44,3 +44,14 @@ for(int i=0; i<10; i++){
 ```
 
 ![GOOGLE 로고](https://image.rocketpunch.com/company/105846/khjeongbogyoyugweon_logo_1572925088.png?s=400x400&t=inside)
+
+
+# 링크 삽입
+
+이 페이지가 아닌 외부로의 연결고리를 하이퍼링크(hyperlink) 라고 부른다
+
+```
+[보여줄글자](주소)
+```
+
+[구글에서 자바 검색한 결과 보러가기](https://www.google.co.kr/search?q=%EC%9E%90%EB%B0%94&sca_esv=593031284&source=hp&ei=vESFZeO4Mprn2roP2vu--A8&iflsig=AO6bgOgAAAAAZYVSzNKiRELnTdvrtH2ER5eV2IxakcGA&oq=wkqk&gs_lp=Egdnd3Mtd2l6IgR3a3FrKgIIADIIEAAYgAQYsQMyCxAAGIAEGLEDGIMBMggQABiABBixAzILEAAYgAQYsQMYgwEyCBAAGIAEGLEDMgUQABiABDILEAAYgAQYsQMYgwEyBRAAGIAEMgUQABiABDIFEAAYgARIhxFQwAVYqQdwAXgAkAEAmAHoAaABsAaqAQUwLjIuMrgBA8gBAPgBAagCCsICChAAGAMYjwEY6gLCAgoQLhgDGI8BGOoCwgIEEAAYA8ICCxAuGIAEGLEDGIMBwgIREC4YgAQYsQMYgwEYxwEY0QPCAgsQLhiABBjHARivAcICBxAAGIAEGArCAgkQABiABBgKGCrCAg0QLhiABBjHARjRAxgKwgIEEC4YA8ICBxAuGIAEGArCAggQLhiABBixAw&sclient=gws-wiz)
