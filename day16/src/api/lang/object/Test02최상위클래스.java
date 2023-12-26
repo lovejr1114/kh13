@@ -17,6 +17,7 @@ public class Test02최상위클래스 {
 		Object f = new int[5]; // int[] -> Object (업캐스팅)
 		
 		//결론 : Object가 최상위 클래스이며 "아무거나" 보관이 가능하다
+		Object g = new Student(); // Student -> Object (업캐스팅)
 		
 		System.out.println(a instanceof String); //a의 데이터가 String 형태 인가요?
 		System.out.println(b instanceof String); //b의 데이터가 String 형태 인가요?
