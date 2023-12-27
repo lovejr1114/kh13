@@ -16,10 +16,9 @@ public class Test06공포의쿵쿵따 {
 			System.out.print("단어 입력 : ");
 			String user = sc.next();
 			
-			char ch = user.charAt(0);
 			char lastChar = first.charAt(2);
 			char firstChar = user.charAt(0);
-			if(user.length() != 3 || !user.matches("[가-힣]+")) {
+			if(user.length() != 3 || '가' >= firstChar&&firstChar<='힣') {
 				System.out.println("게임 오버! 라운드 진행 횟수는 " + count +"회");
 				break;
 			}
