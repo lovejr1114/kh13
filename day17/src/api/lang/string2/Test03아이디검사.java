@@ -10,7 +10,8 @@ public class Test03아이디검사 {
 		String id = sc.nextLine();
 		
 		String regex = "^[a-z0-9][a-z0-9-_]{4,19}$";
-//		String regex = "^[a-z0-9]{1}[a-z0-9-_]{4,19}$"; //써도되지만 권장하지는 않는다. 하지만 헷갈리면 적어도됨.
+//		String regex = "^[a-z0-9]{1}[a-z0-9-_]{4,19}$";
+		//{1} 써도되지만 권장하지는 않는다. 하지만 헷갈리면 적어도됨. 근데 {0}은 안됨
 		 
 		if(id.matches(regex)) {
 			System.out.println("멋진 아이디입니다!");
