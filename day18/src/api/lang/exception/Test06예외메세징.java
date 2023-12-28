@@ -36,7 +36,7 @@ public class Test06예외메세징 {
 //			System.out.println(e.getMessage()); //예외 메세지만 추출
 			
 			if(e.getMessage() == null) { //예외 메세지가 없다면
-				System.out.println("잘못된 입력입니다.");
+				System.err.println("잘못된 입력입니다.");
 			}
 			else {
 				System.err.println(e.getMessage());
