@@ -1,3 +1,4 @@
+package api.lang.exception;
 import java.util.Scanner;
 
 public class Test04생년월일2 {
