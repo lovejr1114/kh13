@@ -24,6 +24,7 @@ public class Test03Runtime클래스 {
 		}
 		else if(os.startsWith("Mac")) { //맥
 			rt.exec("open-a TextEdit.app");
+			//macOS에서는 "open -a"를 사용하여 애플리케이션을 열 수 있습니다. 
 		}
 	}
 }
