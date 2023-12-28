@@ -1,6 +1,6 @@
 package api.lang.etc;
 
-public class Test01시스템클래스 {
+public class Test01System클래스 {
 	public static void main(String[] args) {
 		//System클래스
 		//-생성자가 없는 클래스
