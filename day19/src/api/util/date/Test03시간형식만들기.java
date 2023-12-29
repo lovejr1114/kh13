@@ -13,13 +13,16 @@ public class Test03시간형식만들기 {
 		
 		Date a = new Date();		
 		
-		SimpleDateFormat fmt1 = new SimpleDateFormat("y년 M월 d일");		
+		SimpleDateFormat fmt1 = new SimpleDateFormat("y년 M월 d일");	
+		//자릿수를 맞추지 않아서 Letter 하나만 사용해도된다.
 		System.out.println(fmt1.format(a));
 		
 		SimpleDateFormat fmt2 = new SimpleDateFormat("a h시 m분");
+		//a는 오전/오후 h는 1~12
 		System.out.println(fmt2.format(a));
 		
 		SimpleDateFormat fmt3 = new SimpleDateFormat("HH:mm:ss");
+		//H는 0~23
 		System.out.println(fmt3.format(a));
 		
 		SimpleDateFormat fmt4 = new SimpleDateFormat("yyyy-MM-dd E HH:mm:ss");
