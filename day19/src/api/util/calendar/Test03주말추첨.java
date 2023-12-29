@@ -11,8 +11,6 @@ public class Test03주말추첨 {
 //		
 //		2024년 6월 8일 토요일
 		
-		//근데 돌리면 24년만 나오는게 아님 .. 질문해볼것
-		
 		Random r = new Random();
 		
 		Calendar c = Calendar.getInstance();	
