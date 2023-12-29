@@ -17,7 +17,7 @@ public class Tesr03출력형식지정 {
 		
 		
 		String str = "2024년 1월 1일 월요일";
-		LocalDate a = LocalDate.parse(str, fmt); //str을 fmt로 해석하겠다
+		LocalDate a = LocalDate.parse(str, fmt); //str을 fmt 기반으로 해석하겠다
 		System.out.println(a);
 	}
 }
