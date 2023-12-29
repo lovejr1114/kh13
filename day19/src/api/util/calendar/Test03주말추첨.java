@@ -16,12 +16,13 @@ public class Test03주말추첨 {
 		Random r = new Random();
 		
 		Calendar c = Calendar.getInstance();	
-		c.set(Calendar.YEAR, 2024);
-		c.set(Calendar.MONTH, 0);
 		
 		while(true) {
 			//날짜 설정	
 			int day = r.nextInt(365);
+			c.set(Calendar.YEAR, 2024);
+			c.set(Calendar.MONTH, 0);
+			
 			c.set(Calendar.DATE, 1+day); //1일+365일
 			
 			int week = c.get(Calendar.DAY_OF_WEEK);
