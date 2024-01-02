@@ -22,7 +22,7 @@ public class Test06끝말잇기 {
 			String given = concluding.get(concluding.size()-1); //저장소에 있는 마지막 단어
 			System.out.println("[제시어] " + given);
 			System.out.print("입력 : ");
-			String user = sc.next();
+			String user = sc.nextLine();
 
 			//판정 = 한글 2~6글자 + 처음 입력한 단어 + 이어지는 단어
 			boolean isKoreanWord = user.matches("^[가-힣]{2,6}$");
