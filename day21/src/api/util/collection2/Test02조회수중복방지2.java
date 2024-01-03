@@ -32,7 +32,7 @@ public class Test02조회수중복방지2 {
 			System.out.print("영상 제목 : ");
 			String user = sc.nextLine(); //sc.next()는 띄어쓰기가 안됨
 		
-			//종료
+			//종료 -> else if로 하기엔 if와 연관이 없으므로 먼저 if로 해준다.
 			if(user.equals("종료")) {
 				break;
 			}
