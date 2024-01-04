@@ -22,3 +22,23 @@ INSERT INTO menu(menu_name,menu_type,menu_price,menu_event)
 values('아메리카노','음료',2500,'Y');
 
 SELECT*FROM menu;
+
+
+--학원 강좌 정보 테이블 생성 및 출력
+CREATE TABLE class(
+class_course varchar2(60) NOT NULL unique,
+class_time number NOT NULL CHECK(class_time >= 0 and MOD(class_time, 30) = 0),
+class_price NUMBER NOT NULL CHECK(class_price >= 0),
+class_type varchar(12) NOT NULL check(class_type IN ('온라인','오프라인','혼합'))
+);
+
+DROP table class;
+
+INSERT INTO class(class_course,class_time,class_price,class_type)
+	values('자바 마스터과정',90,1000000,'온라인');
+INSERT INTO class(class_course,class_time,class_price,class_type)
+	values('파이썬 기초',60,600000,'온라인');
+INSERT INTO class(class_course,class_time,class_price,class_type)
+	values('웹 개발자 단기완성',120,1200000,'오프라인');
+
+SELECT * FROM class;
