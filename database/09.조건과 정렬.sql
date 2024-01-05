@@ -124,3 +124,39 @@ SELECT * FROM product WHERE made BETWEEN SYSDATE-5 * 365 AND sysdate;
 
 --5분
 SELECT * FROM product WHERE made BETWEEN SYSDATE-5 /24/60 AND sysdate;
+
+
+
+
+
+-- 정렬(order by)
+-- 조건으로 데이터까지 다 골라냈다면 원하는 기준에 맞게 정렬할 수 있다
+-- 조회 구문의 마지막에 'order by 항목 asc/desc'를 적는다
+-- (중요) 조건보다 뒤에 작성되어야 한다
+
+SELECT * FROM book;
+SELECT * FROM product;
+
+SELECT *FROM book ORDER BY book_id ASC; --오름차순
+SELECT * FROM book ORDER BY book_id DESC; --내림차순
+
+-- (Q) 상품을 최근 제조한 순으로 조회 (최신순)
+SELECT * FROM product ORDER BY made DESC;
+-- 같은것이 나올 수도 있으니까 명확하게.
+SELECT * FROM product ORDER BY made DESC, NO asc;
+
+-- (Q) 상품을 이름순으로 출력 (가나다 순)
+SELECT * FROM product ORDER BY name ASC;
+-- 이름 같은 상품이 나올 수 있으니 조금 더 안전한 코드를 사용 (예측이 가능한)
+SELECT * FROM product ORDER BY name ASC, NO asc;
+
+-- (Q) 상품을 종류별로 가격이 비싼 순으로 출력
+SELECT * FROM product ORDER BY price DESC;
+-- 종류별로 추가코드와 안전한 프라이머리키 코드
+SELECT * FROM product ORDER BY TYPE  ASC, price DESC, NO asc;
+
+-- (Q) 유통기한이 가장 짧은 상품부터 출력
+SELECT * FROM product ORDER BY expire ASC;
+-- 제조와 유통 사이
+SELECT * FROM product ORDER BY expire - made ASC;
+SELECT product.*, expire-made 유통기한 FROM product ORDER BY 유통기한 ASC, NO asc;
