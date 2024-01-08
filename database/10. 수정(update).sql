@@ -34,3 +34,4 @@ UPDATE product SET price = price+(price*10/100) WHERE TYPE = '아이스크림';
 -- price*110/100 또는 price*1.1 로 식 쓴다.
 
 SELECT * FROM product;
+rollback;
