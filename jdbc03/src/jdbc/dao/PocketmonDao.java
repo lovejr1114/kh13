@@ -1,8 +1,11 @@
 package jdbc.dao;
 
+import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import jdbc.dto.PocketmonDto;
+import jdbc.mapper.PocketmonMapper;
 import jdbc.util.jdbcHelper;
 
 //DAO(Data Access Object)
@@ -57,6 +60,34 @@ public class PocketmonDao {
 	}
 	
 	//목록 메소드
-	//검색 메소드
+	//여러개 : selectList()  한개 : selectOne()
+	public List<PocketmonDto> selectList(){
+		JdbcTemplate jdbcTemplate = jdbcHelper.getJdbcTemplate();
+		String sql = "select * from pocketmon order by pocketmon_no asc";
+		//Object[] data = {};
+		PocketmonMapper mapper = new PocketmonMapper();
+//		List<PocketmonDto> list = jdbcTemplate.query(sql, mapper);
+//		return list; //list를 가져가라. 밑에가 줄인 코드
+		return jdbcTemplate.query(sql, mapper);
+	}
+	
+	//상세 메소드 - 기본키를 조건으로 설정하여 결과가 하나만 나오도록 구현
+	public PocketmonDto selectOne(int pocketmonNo) {
+		JdbcTemplate jdbcTemplate = jdbcHelper.getJdbcTemplate();
+		String sql = "select * from pocketmon where pocketmon_no=?";
+		//홀더키가 있기 때문에 매개변수가 int로 하나 있어야한다. 그래서 매개변수에 int로 넣어줌(75번줄)
+		Object[] data = {pocketmonNo};
+		PocketmonMapper mapper = new PocketmonMapper(); //메소드끼리 공유하지않음. 새로 만들기.
+		List<PocketmonDto> list = jdbcTemplate.query(sql, mapper, data);
+		// list에는 데이터가 없거나 1개 있거나 둘 중 하나의 상태
+//		if(list.isEmpty()) {
+//			return null;
+//		}
+//		else {
+//			return list.get(0); //list 안 위치가 0인  데이터를 가져와라
+//		} //줄여서 밑에 코드처럼.
+		return list.isEmpty() ? null : list.get(0); //if문이 1개밖에 없을 때 이렇게 쓸 수 있음
+		
+	}
 	
 }

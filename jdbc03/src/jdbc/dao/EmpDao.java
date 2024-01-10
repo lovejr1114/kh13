@@ -1,8 +1,11 @@
 package jdbc.dao;
 
+import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import jdbc.dto.EmpDto;
+import jdbc.mapper.EmpMapper;
 import jdbc.util.jdbcHelper;
 
 //emp 테이블에 대한 CRUD 작업을 수행하는 클래스
@@ -38,7 +41,27 @@ public class EmpDao {
 	}
 	
 	//목록
-	//검색
+	public List<EmpDto> selectList(){
+		JdbcTemplate jdbcTemplate = jdbcHelper.getJdbcTemplate();
+		String sql = "select * from emp order by emp_no asc";
+		//Object[] data = {};
+		EmpMapper mapper = new EmpMapper();
+		return jdbcTemplate.query(sql, mapper);
+	}
+	
 	//상세
-	//...
+	public EmpDto selectOne(int empNo) {
+		JdbcTemplate jdbcTemplate = jdbcHelper.getJdbcTemplate();
+		String sql = "select * from emp where emp_no=?";
+		Object[] data = {empNo};
+		EmpMapper mapper =  new EmpMapper();
+		List<EmpDto> list = jdbcTemplate.query(sql, mapper, data);
+//		if(list.isEmpty()) {
+//			return null;
+//		}
+//		else {
+//			return list.get(0);
+//		}
+		return list.isEmpty() ? null : list.get(0);
+	}
 }
