@@ -34,7 +34,16 @@ public class MenuDao {
 		
 		return jdbcTemplate.update(sql, data) > 0;
 	}
+	
 	//삭제
+	public boolean delete(int menuNo) {
+		JdbcTemplate jdbcTemplate = jdbcHelper.getJdbcTemplate();
+		String sql = "delete menu where menu_no=?";
+		Object[] data = {menuNo};
+		return jdbcTemplate.update(sql, data) > 0; //실행 결과가 0보다 큰지
+	}
+	
+	
 	//목록
 	//검색
 	//상세
