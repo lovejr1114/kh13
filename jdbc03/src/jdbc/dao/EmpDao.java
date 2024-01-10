@@ -16,7 +16,19 @@ public class EmpDao {
 		
 		jdbcTemplate.update(sql, data);
 	}
+	
 	//수정
+	public boolean update(EmpDto dto) {
+		JdbcTemplate jdbcTemplate = jdbcHelper.getJdbcTemplate();
+		String sql = "update emp "
+				+ "set emp_name=?, emp_dept=?, emp_date=?, emp_sal=? "
+				+ "where emp_no=?";
+		Object[] data = {dto.getEmpName(), dto.getEmpDept(), 
+				dto.getEmpDate(), dto.getEmpSal(), dto.getEmpNo()};
+		
+		return jdbcTemplate.update(sql, data) > 0;		
+	}
+	
 	//삭제
 	//목록
 	//검색
