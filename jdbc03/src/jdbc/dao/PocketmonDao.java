@@ -22,6 +22,27 @@ public class PocketmonDao {
 	}
 	
 	//수정 메소드
+	public boolean update(PocketmonDto dto) {
+		JdbcTemplate jdbcTemplate = jdbcHelper.getJdbcTemplate();
+		String sql = "update pocketmon "
+				+ "set pocketmon_name=?, pocketmon_type=? "
+				+ "where pocketmon_no=?";
+		Object[] data = {
+				dto.getPocketmonName(), 
+				dto.getPocketmonType(), 
+				dto.getPocketmonNo()
+				};
+//		int result = jdbcTemplate.update(sql, data);
+//		if(result > 0) {
+//			return true;
+//		}
+//		else {
+//		return false;
+//		}
+		//식이 길어서 밑에처럼 줄여 쓴다.
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+	
 	//삭제 메소드
 	//목록 메소드
 	//검색 메소드
