@@ -87,7 +87,16 @@ public class PocketmonDao {
 //			return list.get(0); //list 안 위치가 0인  데이터를 가져와라
 //		} //줄여서 밑에 코드처럼.
 		return list.isEmpty() ? null : list.get(0); //if문이 1개밖에 없을 때 이렇게 쓸 수 있음
+	}
 		
+		
+		//항목-키워드 검색
+		public List<PocketmonDto> selectList(String column, String keyword) {
+			JdbcTemplate jdbcTemplate = jdbcHelper.getJdbcTemplate();
+			String sql = "select * from pocketmon where instr("+column+",?) > 0";
+			Object[] data = {keyword};
+			PocketmonMapper mapper = new PocketmonMapper();
+			return jdbcTemplate.query(sql, mapper, data);
 	}
 	
 }
