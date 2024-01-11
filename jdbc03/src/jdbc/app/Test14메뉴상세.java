@@ -5,7 +5,7 @@ import java.text.DecimalFormat;
 import jdbc.dao.MenuDao;
 import jdbc.dto.MenuDto;
 
-public class Test13메뉴상세 {
+public class Test14메뉴상세 {
 	public static void main(String[] args) {
 //		MenuDao에 메소드를 만들고 메뉴번호로 메뉴를 조회한 결과를 출력하도록 구현
 		
