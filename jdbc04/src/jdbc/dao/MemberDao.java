@@ -68,14 +68,14 @@ public class MemberDao {
 	}
 	
 	
-	//검색(항목, 키워드)
+	//항목, 키워드 검색 - 조회 (Read)
 	public List<MemberDto> selectList(String column, String keyword) {
 		JdbcTemplate jdbcTemplate = jdbcHelper.getJdbcTemplate();
 		String sql = "select * from member where instr("+column+", ?) > 0 "
-				+ "order by member_nick asc";
+				+ "order by "+column+" asc";
 		Object[] data = {keyword};
 		MemberMapper mapper = new MemberMapper();
-		return jdbcTemplate.query(sql, mapper, data);
+		return jdbcTemplate.query(sql, mapper, data); //구문을 제일 먼저, data를 제일 마지막에
 	}
 	
 }
