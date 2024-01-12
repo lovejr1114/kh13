@@ -40,10 +40,10 @@ public class MemberDao {
 	
 	
 	//삭제 (Delete)
-	public boolean delete(MemberDto dto) {
+	public boolean delete(String memberId) {
 		JdbcTemplate jdbcTemplate = jdbcHelper.getJdbcTemplate();
-		String sql = "delete member where member_id=? and member_pw=?";
-		Object[] data = {dto.getMemberId(), dto.getMemberPw()};
+		String sql = "delete member where member_id=?";
+		Object[] data = {memberId};
 		return jdbcTemplate.update(sql, data) > 0;
 	}
 	
