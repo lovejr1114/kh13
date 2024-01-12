@@ -30,11 +30,11 @@ public class MemberDao {
 	}
 	
 	
-	//수정 (Update)
-	public boolean update(MemberDto dto, String pw) {
+	//비밀번호 변경 - 수정 (Update)
+	public boolean updateMemberPw(MemberDto dto) {
 		JdbcTemplate jdbcTemplate = jdbcHelper.getJdbcTemplate();
-		String sql = "update member set member_pw=? where member_id=? and member_pw=?";
-		Object[] data = {pw, dto.getMemberId(), dto.getMemberPw()};
+		String sql = "update member set member_pw=? where member_id=?";
+		Object[] data = {dto.getMemberPw(), dto.getMemberId()};
 		return jdbcTemplate.update(sql, data) > 0;
 	}
 	
@@ -57,14 +57,14 @@ public class MemberDao {
 		return jdbcTemplate.query(sql, mapper);
 	}
 	
-	//상세 조회 (Read)
-	public MemberDto selectOne(String memberId) {
+	//상세 - 조회 (Read)
+	public MemberDto selectOne(String memberId) { //하나만 찾으려면 Primary key(기본키)
 		JdbcTemplate jdbcTemplate = jdbcHelper.getJdbcTemplate();
 		String sql = "select * from member where member_id = ?";
 		Object[] data = {memberId};
 		MemberMapper mapper = new MemberMapper();
 		List<MemberDto> list = jdbcTemplate.query(sql, mapper, data);
-		return list.isEmpty() ? null : list.get(0);
+		return list.isEmpty() ? null : list.get(0); //없으면 null 있으면 끄집어내라
 	}
 	
 	
