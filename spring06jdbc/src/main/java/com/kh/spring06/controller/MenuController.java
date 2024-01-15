@@ -20,4 +20,15 @@ public class MenuController {
 		dao.insert(dto);
 		return "메뉴 등록 완료";
 	}
+	
+	@RequestMapping("/change")
+	public String change(@ModelAttribute MenuDto dto) {
+		boolean result = dao.update(dto);
+		if(result) {
+			return "메뉴 수정 완료";
+		}
+		else {
+			return "없는 메뉴 번호입니다";
+		}
+	}
 }
