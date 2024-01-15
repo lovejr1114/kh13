@@ -15,4 +15,5 @@ public class ParameterController {
 		int result = a+b;
 		return "덧셈결과 : "+ result;
 	}
+
 }
