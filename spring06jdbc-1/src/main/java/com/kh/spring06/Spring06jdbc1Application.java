@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Spring06jdbcApplication {
+public class Spring06jdbc1Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Spring06jdbcApplication.class, args);
+		SpringApplication.run(Spring06jdbc1Application.class, args);
 	}
 
 }
