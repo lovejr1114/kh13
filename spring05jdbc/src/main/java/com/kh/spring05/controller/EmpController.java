@@ -120,4 +120,25 @@ public class EmpController {
 		}
 		return buffer.toString();
 	}
+	
+	//상세
+	@RequestMapping("/detail")
+	public String detail(@RequestParam int empNo) {
+		EmpDto dto = dao.selectOne(empNo);
+		if(dto != null) {
+			StringBuffer buffer = new StringBuffer();
+			buffer.append(dto.getEmpName());
+			buffer.append(" | ");
+			buffer.append(dto.getEmpDept());
+			buffer.append(" | ");
+			buffer.append(dto.getEmpDate());
+			buffer.append(" | ");
+			buffer.append(dto.getEmpSal()+"원");
+			
+			return buffer.toString();
+		}
+		else {
+			return "없는 사원정보 입니다";
+		}
+	}
 }

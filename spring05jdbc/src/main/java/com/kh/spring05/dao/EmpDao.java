@@ -48,4 +48,11 @@ public class EmpDao {
 		Object[] data = {keyword};
 		return jdbcTemplate.query(sql, mapper, data);
 	}
+	
+	public EmpDto selectOne(int empNo) {
+		String sql = "select * from emp where emp_no=?";
+		Object[] data = {empNo};
+		List<EmpDto> list = jdbcTemplate.query(sql, mapper, data);
+		return list.isEmpty() ? null : list.get(0);
+	}
 }
