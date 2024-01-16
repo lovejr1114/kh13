@@ -79,6 +79,7 @@ public class PocketmonController {
 		}
 	}
 	
+	//단순 목록
 	@RequestMapping("/list")
 	public String list() {
 		List<PocketmonDto> list = dao.selectList();
@@ -91,6 +92,7 @@ public class PocketmonController {
 			buffer.append(dto.getPocketmonName());
 			buffer.append(",");
 			buffer.append(dto.getPocketmonType());
+//			buffer.append("\n"); //일반 텍스트의 엔터
 			buffer.append("<br>"); //HTML의 엔터
 		}		
 		return list.toString();
