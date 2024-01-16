@@ -90,16 +90,21 @@ public class EmpController {
 	//항목,목록 검색
 	@RequestMapping("/list3")
 	public String list3(
-			@RequestParam(required = false) String column,
-			@RequestParam(required = false) String keyword) {
-		boolean isSearch = column != null && keyword != null;
-		List<EmpDto> list;
-		if(isSearch) {
-			list = dao.selectList(column, keyword);
-		}
-		else {
-			list = dao.selectList();
-		}
+//			@RequestParam(required = false) String column,
+//			@RequestParam(required = false) String keyword) {
+//		boolean isSearch = column != null && keyword != null;
+			@RequestParam(required = false, defaultValue = "") String column,
+			@RequestParam(required = false, defaultValue = "") String keyword) {
+			boolean isSearch = !column.equals("") && !keyword.equals("");
+//		List<EmpDto> list;
+//		if(isSearch) {
+//			list = dao.selectList(column, keyword);
+//		}
+//		else {
+//			list = dao.selectList();
+//		}
+		List<EmpDto> list = isSearch ? dao.selectList(column, keyword) : dao.selectList();
+		
 		StringBuffer buffer = new StringBuffer();
 		for(EmpDto dto : list) {
 			buffer.append(dto.getEmpNo());
