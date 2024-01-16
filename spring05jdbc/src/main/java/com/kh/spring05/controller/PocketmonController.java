@@ -142,6 +142,6 @@ public class PocketmonController {
 			buffer.append(dto.getPocketmonType());
 			buffer.append("<br>"); //HTML의 엔터
 		}		
-		return list.toString();
+		return buffer.toString();
 	}
 }
