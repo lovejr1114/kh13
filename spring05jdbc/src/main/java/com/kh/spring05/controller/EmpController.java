@@ -1,5 +1,7 @@
 package com.kh.spring05.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,5 +43,76 @@ public class EmpController {
 		else {
 			return "없는 사번입니다";
 		}
+	}
+	
+	//단순 목록
+	@RequestMapping("/list")
+	public String list() {
+		List<EmpDto> list = dao.selectList();
+		StringBuffer buffer = new StringBuffer();
+		for(EmpDto dto : list) {
+			buffer.append(dto.getEmpNo());
+			buffer.append(",");
+			buffer.append(dto.getEmpName());
+			buffer.append(",");
+			buffer.append(dto.getEmpDept());
+			buffer.append(",");
+			buffer.append(dto.getEmpDate());
+			buffer.append(",");
+			buffer.append(dto.getEmpSal());
+			buffer.append("<br>");
+		}
+		return buffer.toString();
+	}
+	
+	//항목 키워드 검색
+	@RequestMapping("/list2")
+	public String list2(
+			@RequestParam String column,
+			@RequestParam String keyword) {
+		List<EmpDto> list = dao.selectList(column, keyword);
+		StringBuffer buffer = new StringBuffer();
+		for(EmpDto dto : list) {
+			buffer.append(dto.getEmpNo());
+			buffer.append(",");
+			buffer.append(dto.getEmpName());
+			buffer.append(",");
+			buffer.append(dto.getEmpDept());
+			buffer.append(",");
+			buffer.append(dto.getEmpDate());
+			buffer.append(",");
+			buffer.append(dto.getEmpSal());
+			buffer.append("<br>");
+		}
+		return buffer.toString();
+	}
+	
+	//항목,목록 검색
+	@RequestMapping("/list3")
+	public String list3(
+			@RequestParam(required = false) String column,
+			@RequestParam(required = false) String keyword) {
+		boolean isSearch = column != null && keyword != null;
+		List<EmpDto> list;
+		if(isSearch) {
+			list = dao.selectList(column, keyword);
+		}
+		else {
+			list = dao.selectList();
+		}
+		StringBuffer buffer = new StringBuffer();
+		for(EmpDto dto : list) {
+			buffer.append(dto.getEmpNo());
+			buffer.append(",");
+			buffer.append(dto.getEmpName());
+			buffer.append(",");
+			buffer.append(dto.getEmpDept());
+			buffer.append(",");
+			buffer.append(dto.getEmpDate());
+			buffer.append(",");
+			buffer.append(dto.getEmpSal());
+			buffer.append("<br>");
+		}
+		return buffer.toString();
 	}
 }
