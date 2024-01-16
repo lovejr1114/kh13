@@ -95,7 +95,7 @@ public class PocketmonController {
 //			buffer.append("\n"); //일반 텍스트의 엔터
 			buffer.append("<br>"); //HTML의 엔터
 		}		
-		return list.toString();
+		return buffer.toString();
 	}
 	
 	//검색
@@ -114,7 +114,7 @@ public class PocketmonController {
 			buffer.append(dto.getPocketmonType());
 			buffer.append("<br>"); //HTML의 엔터
 		}		
-		return list.toString();
+		return buffer.toString();
 	}
 	
 	//목록+검색(최종)
