@@ -116,4 +116,25 @@ public class MenuController {
 		}
 		return buffer.toString();
 	}
+	
+	//상세
+	@RequestMapping("/detail")
+	public String detail(@RequestParam int menuNo) {
+		MenuDto dto = dao.selectOne(menuNo);
+		if(dto != null) {
+			StringBuffer buffer = new StringBuffer();
+			buffer.append(dto.getMenuNameKor());
+			buffer.append(" (");
+			buffer.append(dto.getMenuNameEng());
+			buffer.append(") | ");
+			buffer.append(dto.getMenuType());
+			buffer.append(" | ");
+			buffer.append(dto.getMenuPrice() + "원");
+			
+			return buffer.toString();
+		}
+		else {
+			return "없는 메뉴 입니다.";
+		}
+	}
 }
