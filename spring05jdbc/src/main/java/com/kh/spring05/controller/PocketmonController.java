@@ -144,4 +144,20 @@ public class PocketmonController {
 		}		
 		return buffer.toString();
 	}
+	
+	//상세
+	@RequestMapping("/detail")
+	public String detail(@RequestParam int pocketmonNo) {
+		PocketmonDto dto = dao.selectOne(pocketmonNo);
+		if(dto != null) {//있는 번호인 경우
+			StringBuffer buffer = new StringBuffer(); // 데이터가 하나라서 반복문 사용 X
+			buffer.append(dto.getPocketmonName());
+			buffer.append(" , ");
+			buffer.append(dto.getPocketmonType());
+			return buffer.toString();
+		}
+		else {//없는 번호인 경우
+			return "존재하지 않는 포켓몬 번호입니다";
+		}
+	}
 }

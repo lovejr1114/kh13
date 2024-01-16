@@ -52,4 +52,12 @@ public class PocketmonDao {
 		Object[] data = {keyword};
 		return jdbcTemplate.query(sql, mapper, data);
 	}
+	
+	//상세
+	public PocketmonDto selectOne(int pocketmonNo){
+		String sql = "select * from pocketmon where pocketmon_no=?";
+		Object[] data = {pocketmonNo};
+		List<PocketmonDto> list = jdbcTemplate.query(sql, mapper, data);
+		return list.isEmpty() ? null : list.get(0);
+	}
 }
