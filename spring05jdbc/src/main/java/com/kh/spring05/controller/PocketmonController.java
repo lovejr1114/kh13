@@ -66,4 +66,14 @@ public class PocketmonController {
 			return "존재하지 않는 포켓몬 번호";
 		}
 	}
+	
+	@RequestMapping("/delete")
+	public String delete(@RequestParam int pocketmonNo) {
+		if(dao.delete(pocketmonNo)) {
+			return "포켓몬 삭제 완료";
+		}
+		else {
+			return "존재하지 않는 포켓몬";
+		}
+	}
 }
