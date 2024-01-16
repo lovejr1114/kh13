@@ -3,6 +3,7 @@ package com.kh.spring06.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kh.spring06.dao.MenuDao;
@@ -29,6 +30,16 @@ public class MenuController {
 		}
 		else {
 			return "없는 메뉴 번호입니다";
+		}
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(@RequestParam int menuNo) {
+		if(dao.delete(menuNo)) {
+			return "메뉴 삭제 완료";
+		}
+		else {
+			return "없는 메뉴 입니다";
 		}
 	}
 }

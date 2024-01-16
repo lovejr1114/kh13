@@ -31,4 +31,10 @@ public class MenuDao {
 		Object[] data = {dto.getMenuNameKor(), dto.getMenuNameEng(), dto.getMenuType(), dto.getMenuPrice(), dto.getMenuNo()};
 		return jdbcTemplate.update(sql, data) > 0;
 	}
+	
+	public boolean delete(int menuNo) {
+		String sql = "delete menu where menu_no=?";
+		Object[] data = {menuNo};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
 }
