@@ -1,5 +1,7 @@
 package com.kh.spring06.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,5 +43,77 @@ public class MenuController {
 		else {
 			return "없는 메뉴 입니다";
 		}
+	}
+	
+	//목록
+	@RequestMapping("/list")
+	public String list() {
+		List<MenuDto> list = dao.selectList();
+		
+		StringBuffer buffer = new StringBuffer();
+		for(MenuDto dto : list) {
+			buffer.append(dto.getMenuNo());
+			buffer.append(",");
+			buffer.append(dto.getMenuNameKor());
+			buffer.append(",");
+			buffer.append(dto.getMenuNameEng());
+			buffer.append(",");
+			buffer.append(dto.getMenuType());
+			buffer.append(",");
+			buffer.append(dto.getMenuPrice());
+			buffer.append("<br>");
+		}
+		return buffer.toString();
+	}
+	
+	//항목 키워드
+	@RequestMapping("/list2")
+	public String list2(String column, String keyword) {
+		List<MenuDto> list = dao.selectList(column,keyword);
+		
+		StringBuffer buffer = new StringBuffer();
+		for(MenuDto dto : list) {
+			buffer.append(dto.getMenuNo());
+			buffer.append(",");
+			buffer.append(dto.getMenuNameKor());
+			buffer.append(",");
+			buffer.append(dto.getMenuNameEng());
+			buffer.append(",");
+			buffer.append(dto.getMenuType());
+			buffer.append(",");
+			buffer.append(dto.getMenuPrice());
+			buffer.append("<br>");
+		}
+		return buffer.toString();
+	}
+	
+	//최종검색
+	@RequestMapping("/list3")
+	public String list3(
+			@RequestParam(required = false) String column,
+			@RequestParam(required = false) String keyword) {
+		boolean isSearch = column != null && keyword != null;
+		List<MenuDto> list;
+		if(isSearch) {
+			list = dao.selectList(column, keyword);
+		}
+		else {
+			list = dao.selectList();
+		}
+		
+		StringBuffer buffer = new StringBuffer();
+		for(MenuDto dto : list) {
+			buffer.append(dto.getMenuNo());
+			buffer.append(" , ");
+			buffer.append(dto.getMenuNameKor());
+			buffer.append(" , ");
+			buffer.append(dto.getMenuNameEng());
+			buffer.append(" , ");
+			buffer.append(dto.getMenuType());
+			buffer.append(" , ");
+			buffer.append(dto.getMenuPrice());
+			buffer.append("<br>");
+		}
+		return buffer.toString();
 	}
 }
