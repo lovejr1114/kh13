@@ -1,5 +1,6 @@
 package com.kh.spring07.controller;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,8 +70,8 @@ public class StudentController {
 			buffer.append("국어 점수 : "+dto.getStudentKoreanScore()+"점<br>");
 			buffer.append("수학 점수 : "+dto.getStudentMathScore()+"점<br>");
 			buffer.append("영어 점수 : "+dto.getStudentEnglishScore()+"점<br>");
-			buffer.append("합계 : ?? 점<br>");
-			buffer.append("평균 : ?? 점<br>");
+			buffer.append("합계 : "+dto.getTotal()+"점<br>");
+			buffer.append("평균 : "+dto.getAverage()+"점<br>");
 			buffer.append("--------------------------<br>");
 		}
 		return buffer.toString();
@@ -80,14 +81,15 @@ public class StudentController {
 	@RequestMapping("/detail")
 	public String detail(@RequestParam int studentId) {
 		StudentDto dto = dao.selectOne(studentId);
+		DecimalFormat fmt = new DecimalFormat("#,##0.00");
 		if(dto != null) {
 			StringBuffer buffer = new StringBuffer();
 			buffer.append("이름 : "+dto.getStudentName()+"<br>");
 			buffer.append("국어점수 : " +dto.getStudentKoreanScore()+"점 <br>");
 			buffer.append("수학점수 : "+dto.getStudentMathScore()+"점 <br>");
 			buffer.append("영어점수 : "+dto.getStudentEnglishScore()+"점 <br>");
-			buffer.append("합계 : ?? 점<br>");
-			buffer.append("평균 : ?? 점<br>");
+			buffer.append("합계 : "+dto.getTotal()+"점<br>");
+			buffer.append("평균 : "+fmt.format(dto.getAverage())+"점<br>");
 			
 			return buffer.toString();
 		}
