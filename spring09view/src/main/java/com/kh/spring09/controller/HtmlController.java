@@ -10,4 +10,9 @@ public class HtmlController {
 	public String heading() {
 		return "/WEB-INF/views/heading.jsp";
 	}
+	
+	@RequestMapping("/image")
+	public String image() {
+		return "/WEB-INF/views/image.jsp";
+	}
 }
