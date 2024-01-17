@@ -9,11 +9,11 @@
 		- charset은 화면에 작성된 글자의 변환 방식을 말한다 (UTF-8)
 	- pageEncoding은 JSP가 실제 화면으로 변환될 때 변환 방식을 말한다 (UTF-8)
 	 --%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%--     <%@ page language="java" //지워도 돌아가지만 굳이 지우진 않는다.
-	contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%> --%>
+<h1>강사 테스트</h1>
 
- <h1>환영합니다!</h1>
+
+<%-- <%@ page language="java" //지워도 돌아가지만 굳이 지우진 않는다. contentType="text/html; charset=EUC-KR"
+pageEncoding="EUC-KR"%> --%>
