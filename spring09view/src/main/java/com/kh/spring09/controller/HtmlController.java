@@ -25,4 +25,14 @@ public class HtmlController {
 	public String dummy() {
 		return "/WEB-INF/views/dummy.jsp";
 	}
+	
+	@RequestMapping("/link")
+	public String link() {
+		return "/WEB-INF/views/link.jsp";
+	}
+	
+	@RequestMapping("/realtime")
+	public String realtime() {
+		return "/WEB-INF/views/realtime.jsp";
+	}
 }
