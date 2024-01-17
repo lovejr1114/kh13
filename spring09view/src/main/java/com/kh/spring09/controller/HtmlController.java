@@ -15,4 +15,9 @@ public class HtmlController {
 	public String image() {
 		return "/WEB-INF/views/image.jsp";
 	}
+	
+	@RequestMapping("/snslogin")
+	public String snslogin() {
+		return "/WEB-INF/views/snslogin.jsp";
+	}
 }
