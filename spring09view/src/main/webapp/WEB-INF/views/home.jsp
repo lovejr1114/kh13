@@ -1,19 +1,19 @@
 <%--
-	JSP¿¡´Â ¹Ýµå½Ã <%@...%> ÇüÅÂÀÇ ¼³Á¤ ±¸¹®ÀÌ Á¸ÀçÇØ¾ß ÇÑ´Ù
+	JSPì—ëŠ” ë°˜ë“œì‹œ <%@...%> í˜•íƒœì˜ ì„¤ì • êµ¬ë¬¸ì´ ì¡´ìž¬í•´ì•¼ í•œë‹¤
 		(Directive)
-	- ÃÑ 3Á¾·ùÀÇ ¼³Á¤ÀÌ Á¸Àç (page, include, taglib)
-	- ÀÌÈÄºÎÅÍ´Â key=value ÇüÅÂ·Î ¼³Á¤°ªÀ» ÀÛ¼º(ÁöÁ¤µÈ ÀÌ¸§¸¸ °¡´É)
-	- contentTypeÀº »ç¿ëÀÚ(ºê¶ó¿ìÀú)¿¡°Ô ¾Ë·ÁÁÖ±â À§ÇÑ È­¸éÀÇ ÇüÅÂ
-		- MIME-TYPEÀ» ÀÛ¼ºÇÑ´Ù (200Á¾·ù°¡ ³Ñ°Ô ÀÖÀ½)
-		- text/htmlÀÏ °æ¿ì ´ëºÐ·ù°¡ text, ¼ÒºÐ·ù°¡ html
-		- charsetÀº È­¸é¿¡ ÀÛ¼ºµÈ ±ÛÀÚÀÇ º¯È¯ ¹æ½ÄÀ» ¸»ÇÑ´Ù (UTF-8)
-	- pageEncodingÀº JSP°¡ ½ÇÁ¦ È­¸éÀ¸·Î º¯È¯µÉ ¶§ º¯È¯ ¹æ½ÄÀ» ¸»ÇÑ´Ù (UTF-8)
+	- ì´ 3ì¢…ë¥˜ì˜ ì„¤ì •ì´ ì¡´ìž¬ (page, include, taglib)
+	- ì´í›„ë¶€í„°ëŠ” key=value í˜•íƒœë¡œ ì„¤ì •ê°’ì„ ìž‘ì„±(ì§€ì •ëœ ì´ë¦„ë§Œ ê°€ëŠ¥)
+	- contentTypeì€ ì‚¬ìš©ìž(ë¸Œë¼ìš°ì €)ì—ê²Œ ì•Œë ¤ì£¼ê¸° ìœ„í•œ í™”ë©´ì˜ í˜•íƒœ
+		- MIME-TYPEì„ ìž‘ì„±í•œë‹¤ (200ì¢…ë¥˜ê°€ ë„˜ê²Œ ìžˆìŒ)
+		- text/htmlì¼ ê²½ìš° ëŒ€ë¶„ë¥˜ê°€ text, ì†Œë¶„ë¥˜ê°€ html
+		- charsetì€ í™”ë©´ì— ìž‘ì„±ëœ ê¸€ìžì˜ ë³€í™˜ ë°©ì‹ì„ ë§í•œë‹¤ (UTF-8)
+	- pageEncodingì€ JSPê°€ ì‹¤ì œ í™”ë©´ìœ¼ë¡œ ë³€í™˜ë  ë•Œ ë³€í™˜ ë°©ì‹ì„ ë§í•œë‹¤ (UTF-8)
 	 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<h1>°­»ç Å×½ºÆ®</h1>
+<h1>ê°•ì‚¬ í…ŒìŠ¤íŠ¸</h1>
 
 
-<%-- <%@ page language="java" //Áö¿öµµ µ¹¾Æ°¡Áö¸¸ ±»ÀÌ Áö¿ìÁø ¾Ê´Â´Ù. contentType="text/html; charset=EUC-KR"
-pageEncoding="EUC-KR"%> --%>
+<%-- page language="java" //ì§€ì›Œë„ ëŒì•„ê°€ì§€ë§Œ êµ³ì´ ì§€ìš°ì§„ ì•ŠëŠ”ë‹¤. contentType="text/html; charset=EUC-KR"
+pageEncoding="EUC-KR" --%>
