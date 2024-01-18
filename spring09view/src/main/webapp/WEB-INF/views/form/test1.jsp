@@ -20,8 +20,10 @@
 	<button>검색</button>
 </form>
 
+
 <h3>마켓컬리 검색창</h3>
 <form action="https://www.kurly.com/search">
+	<img width="160" height="100" src="/logo/marketkurly_logo.png">
 	<input name="sword">
 	<button title="검색"><img width="20" height="20" src="/search_icon.png"></button>
 </form>
