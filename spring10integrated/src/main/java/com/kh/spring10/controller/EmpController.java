@@ -43,7 +43,7 @@ public class EmpController {
 	//- 처음에 정보가 다 표시되어 있어야 한다
 	//- 그러기 위해서는 출력페이지에서 기본키(PK) 정도는 전달받아야 한다
 	//- 무언가를 화면으로 전달하고 싶다면 매개변수에 Model 객체를 선언.
-	//- model은 Map<String, Object> 형태
+	//- model은 Map<String, Object> 형태 (key,value)
 	@GetMapping("/edit")
 	public String edit(@RequestParam int empNo, Model model) {
 		EmpDto dto = dao.selectOne(empNo);
