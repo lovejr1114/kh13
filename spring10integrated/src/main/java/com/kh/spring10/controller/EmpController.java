@@ -2,10 +2,12 @@ package com.kh.spring10.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.spring10.dao.EmpDao;
 import com.kh.spring10.dto.EmpDto;
@@ -34,5 +36,41 @@ public class EmpController {
 	@RequestMapping("/insert3")
 	public String insert3() {
 		return "/WEB-INF/views/emp/insert3.jsp";
+	}
+	
+	//수정페이지
+	//- 수정페이지는 일반적으로 상세/목록에서 들어온다
+	//- 처음에 정보가 다 표시되어 있어야 한다
+	//- 그러기 위해서는 출력페이지에서 기본키(PK) 정도는 전달받아야 한다
+	//- 무언가를 화면으로 전달하고 싶다면 매개변수에 Model 객체를 선언.
+	//- model은 Map<String, Object> 형태
+	@GetMapping("/edit")
+	public String edit(@RequestParam int empNo, Model model) {
+		EmpDto dto = dao.selectOne(empNo);
+		//model.addAttribute("이름", 데이터);
+		model.addAttribute("dto", dto);
+		return "/WEB-INF/views/emp/edit.jsp";
+	}
+	
+	@PostMapping("/edit")
+	public String edit(@ModelAttribute EmpDto dto) {
+		if(dao.update(dto)) {
+//			return "redirect:/emp/editSuccess"; //절대
+			return "redirect:editSuccess"; //상대
+		}
+		else {
+//			return "redirect:/emp/editFail"; //절대
+			return "redirect:editFail"; //상대
+		}
+	}
+	
+	@RequestMapping("/editSuccess")
+	public String editSuccess() {
+		return "/WEB-INF/views/emp/editSuccess.jsp";
+	}
+	
+	@RequestMapping("/editFail")
+	public String editFail() {
+		return "/WEB-INF/views/emp/editFail.jsp";
 	}
 }

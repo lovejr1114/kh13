@@ -39,5 +39,10 @@ public class EmpDto {
 	public EmpDto() {
 		super();
 	}
+	@Override
+	public String toString() {
+		return "EmpDto [empNo=" + empNo + ", empName=" + empName + ", empDept=" + empDept + ", empDate=" + empDate
+				+ ", empSal=" + empSal + "]";
+	}
 	
 }
