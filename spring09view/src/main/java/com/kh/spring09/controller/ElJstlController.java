@@ -36,4 +36,9 @@ public class ElJstlController {
 	public String test03() {
 		return "/WEB-INF/views/elJstl/test03.jsp";
 	}
+	
+	@RequestMapping("/test04")
+	public String test04() {
+		return "/WEB-INF/views/elJstl/test04.jsp";
+	}
 }
