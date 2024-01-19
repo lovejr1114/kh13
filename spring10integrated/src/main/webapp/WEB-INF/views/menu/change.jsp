@@ -3,6 +3,10 @@
 
 ${dto}
 
+	<%--
+		readonly붙여주면 읽기 전용
+		${}를 붙여주면 Controller에 Model객체를 만들어줘야함
+		--%>
 <h1>메뉴 정보 수정</h1>
 
 <form action="change" method="post">

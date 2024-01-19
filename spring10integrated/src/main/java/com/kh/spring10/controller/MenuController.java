@@ -40,21 +40,27 @@ public class MenuController {
 	//수정 페이지
 	@GetMapping("/change")
 	public String change(@RequestParam int menuNo, Model model) {
-		MenuDto dto = dao.selectOne(menuNo);
-		model.addAttribute("dto",dto);
-		return "/WEB-INF/views/menu/change.jsp";
+		MenuDto dto = dao.selectOne(menuNo); //번호에 대한 메뉴 조회
+		if(dto == null) { //없는 메뉴면
+			return "redirect:changeFail"; //실패 페이지 이동
+		}
+		else {			
+			model.addAttribute("dto",dto); //JSP로 메뉴정보를 전달
+			return "/WEB-INF/views/menu/change.jsp"; //수정화면을 연결
+		}
 	}
 	
 	@PostMapping("/change")
 	public String change(@ModelAttribute MenuDto dto) {
-		if(dao.update(dto)) {
+//		if(dao.update(dto)) {
 //			return "redirect:/menu/changeSuccess";
+		dao.update(dto);
 			return "redirect:changeSuccess";
-		}
-		else {
+//		}
+//		else {
 //			return "redirect:/menu/changeFail";
-			return "redirect:changeFail";
-		}
+//			return "redirect:changeFail";
+//		}
 	}
 	
 	@RequestMapping("/changeSuccess")
