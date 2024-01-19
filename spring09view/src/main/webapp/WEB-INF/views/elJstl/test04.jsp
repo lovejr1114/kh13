@@ -45,3 +45,19 @@
 		<h2>n은 홀수입니다</h2>
 	</c:otherwise>
 </c:choose>
+
+<hr>
+<h1>JSTL을 이용한 반복 코드</h1>
+
+<h2>list = ${requestScore.list}</h2>
+<h2>list = ${list}</h2>
+
+<%--
+ for(int number : list){
+ 	System.out.println(number);
+ 	}
+--%>
+
+<c:forEach var="number" items="${list}">
+	<h2>number = ${number}</h2>
+</c:forEach>
