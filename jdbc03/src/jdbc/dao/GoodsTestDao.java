@@ -16,6 +16,6 @@ public class GoodsTestDao {
 //	String sql = "insert into board(board_no, board_title, board_content) "
 //				+ "values(board_seq.nextval, ?, ?)";
 //	
-//	Object[] param = {"테스트제목", "테스트내용"};
+//	Object[] param = {"boardTitle", "boardContent"};
 //	jdbcTemplate.update(sql, param);
 }
