@@ -49,7 +49,7 @@
 <hr>
 <h1>JSTL을 이용한 반복 코드</h1>
 
-<h2>list = ${requestScore.list}</h2>
+<h2>list = ${requestScope.list}</h2>
 <h2>list = ${list}</h2>
 
 <%--
