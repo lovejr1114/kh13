@@ -30,4 +30,10 @@ public class ElJstlController {
 		model.addAttribute("dto",dto);
 		return "/WEB-INF/views/elJstl/test02.jsp";
 	}
+	
+	
+	@RequestMapping("/test03")
+	public String test03() {
+		return "/WEB-INF/views/elJstl/test03.jsp";
+	}
 }
