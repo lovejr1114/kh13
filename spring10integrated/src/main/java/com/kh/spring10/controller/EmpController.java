@@ -77,6 +77,7 @@ public class EmpController {
 	}
 	
 	//목록&검색
+//	@RequestMapping(value = "/list", method = RequestMathod.GET)
 	@RequestMapping("/list")
 	public String list(@RequestParam(required = false) String column,
 							@RequestParam(required = false) String keyword,
@@ -84,7 +85,15 @@ public class EmpController {
 		boolean isSearch = column != null && keyword != null;
 		List<EmpDto> list = isSearch ? 
 						dao.selectList(column, keyword) : dao.selectList();
+//		List<EmpDto> list;
+//		if(isSearch) {
+//			list = dao.selectList(column, keyword);
+//		}
+//		else {
+//			list = dao.selectList();
+//		}
 		
+		model.addAttribute("isSearch", isSearch);
 		model.addAttribute("list", list);
 		
 		return "/WEB-INF/views/emp/list.jsp";
