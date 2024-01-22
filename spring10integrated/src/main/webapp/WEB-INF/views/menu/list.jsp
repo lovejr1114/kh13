@@ -3,7 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
- <h1>메뉴 목록</h1>
+ <h1>
+ 	메뉴 목록
+ 	<button><a href="insert"> 신규 등록</a></button>
+ </h1>
  
  <form action="list" method="get">
  	<select name="column">
@@ -15,10 +18,10 @@
  	<button>검색</button>
  </form>
  
- <table border="1" width="500">
+ <table border="1" width="700">
  	<thead>
  		<tr>
- 			<th>메뉴 번호</th>
+ 			<th width="20%">메뉴 번호</th>
  			<th>메뉴 이름</th>
  			<th>메뉴 유형</th>
  			<th>판매 가격</th>
@@ -33,6 +36,7 @@
 <%--  			<td align="right">${dto.menuPrice}원</td> --%>
 			<td align="right">
 				<fmt:formatNumber value="${dto.menuPrice}" pattern="#,##0"/>원
+			<td><button><a href="detail?menuNo=${dto.menuNo}">이동</a></button></td>
  		</tr>
  		</c:forEach>
  	</tbody>

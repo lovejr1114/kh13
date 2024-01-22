@@ -57,7 +57,8 @@ public class MenuController {
 //		if(dao.update(dto)) {
 //			return "redirect:/menu/changeSuccess";
 		dao.update(dto);
-			return "redirect:changeSuccess";
+//			return "redirect:changeSuccess"; //수정 성공 페이지
+			return "redirect:detail?menuNo="+dto.getMenuNo(); //수정 성공페이지
 //		}
 //		else {
 //			return "redirect:/menu/changeFail";
@@ -69,6 +70,7 @@ public class MenuController {
 	public String changeSuccess() {
 		return "/WEB-INF/views/menu/changeSuccess.jsp";
 	}
+	
 	
 	@RequestMapping("/changeFail")
 	public String changeFail() {
@@ -92,5 +94,21 @@ public class MenuController {
 		
 		model.addAttribute("list", list);
 		return "/WEB-INF/views/menu/list.jsp";
+	}
+	
+	//상세 페이지
+	@RequestMapping("/detail")
+	public String detail(@RequestParam int menuNo, Model model) {
+		MenuDto dto = dao.selectOne(menuNo);
+		model.addAttribute("dto", dto);
+		return "/WEB-INF/views/menu/detail.jsp";
+	}
+	
+	//삭제페이지
+	@RequestMapping("/delete")
+	public String delete(@RequestParam int menuNo) {
+		dao.delete(menuNo);
+		return "redirect:list";
+		//return "redirect:/menu/list";
 	}
 }
