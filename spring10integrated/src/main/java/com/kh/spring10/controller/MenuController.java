@@ -1,5 +1,7 @@
 package com.kh.spring10.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,5 +73,24 @@ public class MenuController {
 	@RequestMapping("/changeFail")
 	public String changeFail() {
 		return "/WEB-INF/views/menu/changeFail.jsp";
+	}
+	
+	@RequestMapping("/list")
+	public String list(
+			@RequestParam(required = false) String column,
+			@RequestParam(required = false) String keyword,
+			Model model) {
+		boolean isSearch = column != null && keyword != null;
+		//List<MenuDto> list = isSearch ? dao.selectList(column, keyword) : dao.selectList();
+		List<MenuDto> list;
+		if(isSearch) {
+			list = dao.selectList(column, keyword);
+		}
+		else {
+			list = dao.selectList();
+		}
+		
+		model.addAttribute("list", list);
+		return "/WEB-INF/views/menu/list.jsp";
 	}
 }
