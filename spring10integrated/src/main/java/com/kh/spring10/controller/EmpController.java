@@ -99,4 +99,19 @@ public class EmpController {
 		return "/WEB-INF/views/emp/list2.jsp";
 	}
 		
+	//상세 페이지
+	@RequestMapping("/detail")
+	public String detail(@RequestParam int empNo, Model model) {
+		EmpDto dto = dao.selectOne(empNo);
+		model.addAttribute("dto", dto);
+		return "/WEB-INF/views/emp/detail.jsp";
+	}
+	
+	//삭제 페이지
+	@RequestMapping("/delete")
+	public String delete(@RequestParam int empNo) {
+		dao.delete(empNo);
+		return "redirect:list";
+		//return "redirect:/emp/list";
+	}
 }

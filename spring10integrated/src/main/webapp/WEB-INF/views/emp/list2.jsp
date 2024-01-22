@@ -12,7 +12,9 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<h1>사원 목록 및 검색</h1>
+<h1>사원 목록 및 검색
+	<button><a href="insert">신규등록</a></button>
+</h1>
 <%-- 
 if(isSearch){
 	<h1>사원 검색</h1>
@@ -87,6 +89,7 @@ else{
 			<td>${dto.empDept}</td>
 			<td>${dto.empDate}</td>
 			<td>${dto.empSal}원</td>
+			<td><a href="detail?empNo=${dto.empNo}">이동</a></td>
 		</tr>
 		</c:forEach>
 	</tbody>
