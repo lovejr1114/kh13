@@ -57,8 +57,9 @@ public class EmpController {
 	@PostMapping("/edit")
 	public String edit(@ModelAttribute EmpDto dto) {
 		if(dao.update(dto)) {
-//			return "redirect:/emp/editSuccess"; //절대
-			return "redirect:editSuccess"; //상대
+//			return "redirect:/emp/editSuccess"; //절대경로
+//			return "redirect:editSuccess"; //상대경로
+			return "redirect:detail?empNo="+dto.getEmpNo(); //상세 페이지로 대체
 		}
 		else {
 //			return "redirect:/emp/editFail"; //절대

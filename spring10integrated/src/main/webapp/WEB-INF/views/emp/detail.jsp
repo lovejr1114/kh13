@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:choose>
 	<c:when test="${dto != null}">
@@ -26,12 +27,16 @@
 			</tr>
 			<tr>
 				<th>급여</th>
-				<td>${dto.empSal}</td>
+				<td>
+					<fmt:formatNumber value="${dto.empSal}" pattern="#,##0"></fmt:formatNumber>
+					원
+				</td>
 			</tr>
 		</table>
 		
 		<h3><a href="list">목록보기</a></h3>
 		<h3><a href="delete?empNo=${dto.empNo}">삭제하기</a></h3>
+		<h3><a href="edit?empNo=${dto.empNo}">변경하기</a></h3>
 	</c:when>
 	<c:otherwise>
 		<h2>존재하지 않는 사번입니다</h2>
