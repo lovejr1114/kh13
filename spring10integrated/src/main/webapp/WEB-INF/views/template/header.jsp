@@ -24,7 +24,7 @@
 		</div>
 		<div>
 			<a href="/member/join">회원가입</a>
-			<a href="">로그인</a>
+			<a href="/member/login">로그인</a>
 <!-- 			<a href="">로그아웃</a> -->
 <!-- 			<a href="">내정보</a> -->
 		</div>

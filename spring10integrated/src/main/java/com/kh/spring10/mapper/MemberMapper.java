@@ -14,20 +14,20 @@ public class MemberMapper implements RowMapper<MemberDto> {
 
 @Override
 public MemberDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-	MemberDto dto = new MemberDto();
-	dto.setMemberId(rs.getString("member_id"));
-	dto.setMemberPw(rs.getString("member_pw"));
-	dto.setMemberNick(rs.getString("member_nick"));
-	dto.setMemberBirth(rs.getString("member_birth"));
-	dto.setMemberContact(rs.getString("member_contact"));
-	dto.setMemberEmail(rs.getString("member_email"));
-	dto.setMemberPost(rs.getString("member_post"));
-	dto.setMemberAddress1(rs.getString("member_address1"));
-	dto.setMemberAddress2(rs.getString("member_address2"));
-	dto.setMemberLevel(rs.getString("member_level"));
-	dto.setMemberPoint(rs.getInt("member_point"));
-	dto.setMemberJoin(rs.getDate("member_join"));
-	dto.setMemberLogin(rs.getString("member_login"));
-	return dto;
+	MemberDto memberdto = new MemberDto();
+	memberdto.setMemberId(rs.getString("member_id"));
+	memberdto.setMemberPw(rs.getString("member_pw"));
+	memberdto.setMemberNick(rs.getString("member_nick"));
+	memberdto.setMemberBirth(rs.getString("member_birth"));
+	memberdto.setMemberContact(rs.getString("member_contact"));
+	memberdto.setMemberEmail(rs.getString("member_email"));
+	memberdto.setMemberPost(rs.getString("member_post"));
+	memberdto.setMemberAddress1(rs.getString("member_address1"));
+	memberdto.setMemberAddress2(rs.getString("member_address2"));
+	memberdto.setMemberLevel(rs.getString("member_level"));
+	memberdto.setMemberPoint(rs.getInt("member_point"));
+	memberdto.setMemberJoin(rs.getDate("member_join"));
+	memberdto.setMemberLogin(rs.getString("member_login"));
+	return memberdto;
 }
 }
