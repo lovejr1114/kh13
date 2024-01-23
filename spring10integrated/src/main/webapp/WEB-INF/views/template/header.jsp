@@ -14,12 +14,15 @@
 			- 로고, 검색창, 각종 메뉴들을 배치
 			- div는 투명한 영역
 		 --%>
-		<div>
-			<a href="pocketmon/list">포켓몬스터 시스템</a>
-			<a href="emp/list">사원관리 시스템</a>
-			<a href="menu/list">메뉴관리 시스템</a>	
-		</div>
 		
+		<div>
+			<%-- 템플릿 페이지는 무조건 절대경로를 써야한다 --%>
+			<a href="/">홈으로</a>
+			<a href="/pocketmon/list">포켓몬스터 시스템</a>
+			<a href="/emp/list">사원관리 시스템</a>
+			<a href="/menu/list">메뉴관리 시스템</a>	
+		</div>
+		 <hr>
 		<%--
 			중단 영역
 			- 실질적인 홈페이지의 내용이 표시되는 영역
