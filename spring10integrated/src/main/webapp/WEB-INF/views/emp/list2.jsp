@@ -12,6 +12,9 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%-- 템플릿 페이지를 불러오는 코드 --%>
+<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+
 <h1>사원 목록 및 검색
 	<button><a href="insert">신규등록</a></button>
 </h1>
@@ -95,3 +98,8 @@ else{
 	</tbody>
 	</thead>
 </table>
+
+
+
+<%-- 템플릿 페이지를 불러오는 코드 --%>
+<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

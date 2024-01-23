@@ -12,6 +12,9 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%-- 템플릿 페이지를 불러오는 코드 --%>
+<jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
+
 <h1>사원 목록 및 검색</h1>
 <%-- 
 if(isSearch){
@@ -109,3 +112,8 @@ else{
 <%-- 	급여 = ${dto.empSal} --%>
 <!-- 	</h2> -->
 <%-- </c:forEach> --%>
+
+
+
+<%-- 템플릿 페이지를 불러오는 코드 --%>
+<jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
