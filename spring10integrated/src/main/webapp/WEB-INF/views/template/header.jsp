@@ -22,6 +22,12 @@
 			<a href="/emp/list">사원관리 시스템</a>
 			<a href="/menu/list">메뉴관리 시스템</a>	
 		</div>
+		<div>
+			<a href="/member/join">회원가입</a>
+			<a href="">로그인</a>
+<!-- 			<a href="">로그아웃</a> -->
+<!-- 			<a href="">내정보</a> -->
+		</div>
 		 <hr>
 		<%--
 			중단 영역
