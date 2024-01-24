@@ -113,4 +113,17 @@ public class MemberController {
 		
 		return "/WEB-INF/views/member/mypage.jsp";
 	}
+	
+	@GetMapping("/pwChange")
+	public String pwChange() {
+		return "/WEB-INF/views/member/pwChange.jsp";
+	}
+	
+	@PostMapping("/pwChange")
+	public String pwChange(@RequestParam String memberPw,
+										@RequestParam String newPw,
+										HttpSession session, Model model) {
+//		MemberDto findDto = session.getAttribute();
+		return "";
+	}
 }

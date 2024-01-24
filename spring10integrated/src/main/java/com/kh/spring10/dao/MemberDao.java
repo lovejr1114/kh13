@@ -75,4 +75,5 @@ public class MemberDao {
 			Object[] data = {memberId};
 			return jdbcTemplate.update(sql, data) > 0;
 		}
+		
 }
