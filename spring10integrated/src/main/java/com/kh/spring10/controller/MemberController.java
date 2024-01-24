@@ -2,10 +2,12 @@ package com.kh.spring10.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.spring10.dao.MemberDao;
 import com.kh.spring10.dto.MemberDto;
@@ -61,6 +63,7 @@ public class MemberController {
 	public String login() {
 		return "/WEB-INF/views/member/login.jsp";
 	}
+	
 	@PostMapping("/login")
 	public String login(@ModelAttribute MemberDto inputDto, HttpSession session) {
 		//사용자가 입력한 아이디로 회원정보를 조회한다
@@ -73,6 +76,10 @@ public class MemberController {
 		if(isValid) {
 			//세션에 데이터 추가
 			session.setAttribute("loginId",findDto.getMemberId());
+			
+			//최종 로그인 시각 갱신
+			memberDao.updateMemberLogin(findDto.getMemberId());
+			
 			return "redirect:/";
 		}
 		else { //로그인 실패
@@ -87,5 +94,23 @@ public class MemberController {
 	public String logout(HttpSession session) {
 		session.removeAttribute("loginId");
 		return "redirect:/";
+	}
+	
+	//내 정보
+	//- (중요) 내 아이디는 HttpSession에 있다
+	//- 그리고 화면에 내 정보를 표시해야 한다
+	@RequestMapping("/mypage")
+	public String mypage(Model model, HttpSession session) {
+		//1. 세션에 저장된 아이디를 꺼낸다
+		String loginId = (String) session.getAttribute("loginId");
+		//다운 캐스팅해준다.
+		
+		//2. 아이디에 맞는 정보를 조회한다.
+		MemberDto memberDto = memberDao.selectOne(loginId);
+		
+		//3. 화면에 조회한 정보를 전달한다.
+		model.addAttribute("memberDto", memberDto);
+		
+		return "/WEB-INF/views/member/mypage.jsp";
 	}
 }

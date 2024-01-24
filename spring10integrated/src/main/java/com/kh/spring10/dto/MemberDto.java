@@ -15,7 +15,7 @@ public class MemberDto {
 	private String memberLevel;
 	private int memberPoint;
 	private Date memberJoin;
-	private String memberLogin;
+	private Date memberLogin;
 	
 
 	public String getMemberId() {
@@ -132,9 +132,7 @@ public class MemberDto {
 	public void setMemberJoin(Date memberJoin) {
 		this.memberJoin = memberJoin;
 	}
-	public String getMemberLogin() {
-		return memberLogin;
-	}
+	
 	//
 	public String getMemberLoginStr() {
 		if(memberLogin == null)
@@ -143,12 +141,16 @@ public class MemberDto {
 			return memberLogin.toString();
 	}
 	//
-	public void setMemberLogin(String memberLogin) {
-		this.memberLogin = memberLogin;
-	}
+	
 	
 	public MemberDto() {
 		super();
+	}
+	public Date getMemberLogin() {
+		return memberLogin;
+	}
+	public void setMemberLogin(Date memberLogin) {
+		this.memberLogin = memberLogin;
 	}
 	
 }

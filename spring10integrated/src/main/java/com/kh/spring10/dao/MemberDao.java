@@ -36,7 +36,7 @@ public class MemberDao {
 		}
 		
 		
-		//삭제 (Delete)
+		//회원 탈퇴 - 삭제 (Delete)
 		public boolean delete(String memberId) {
 			String sql = "delete member where member_id=?";
 			Object[] data = {memberId};
@@ -67,5 +67,12 @@ public class MemberDao {
 					+ "order by "+column+" asc";
 			Object[] data = {keyword};
 			return jdbcTemplate.query(sql, mapper, data); //구문을 제일 먼저, data를 제일 마지막에
+		}
+		
+		//최종로그인시각 변경 (수정, Update)
+		public boolean updateMemberLogin(String memberId) {
+			String sql = "update member set member_login = sysdate where member_id = ?";
+			Object[] data = {memberId};
+			return jdbcTemplate.update(sql, data) > 0;
 		}
 }

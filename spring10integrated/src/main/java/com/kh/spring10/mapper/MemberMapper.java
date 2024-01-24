@@ -27,7 +27,7 @@ public MemberDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 	memberdto.setMemberLevel(rs.getString("member_level"));
 	memberdto.setMemberPoint(rs.getInt("member_point"));
 	memberdto.setMemberJoin(rs.getDate("member_join"));
-	memberdto.setMemberLogin(rs.getString("member_login"));
+	memberdto.setMemberLogin(rs.getDate("member_login"));
 	return memberdto;
 }
 }
