@@ -26,6 +26,14 @@ public class MemberInterceptor implements HandlerInterceptor {
 			return true;
 		}
 		else { //회원이 아니면 
+			//단순히 차단만 하는게 아니라 사용자에게 보여줄 화면을 준비
+			//[1] 로그인 화면으로 강제 이동 (리다이렉트) -여기선 반환형이 boolean이라 안써짐.컨트롤러에서나 가능.
+			//response.sendRedirect("주소"); 여기선 이렇게 씀(정석)
+			response.sendRedirect("/member/login");
+			
+			//[2] HTTP 상태번호를 반환
+			//사이트 : https://developer.mozilla.org/ko/docs/Web/HTTP/Status
+//			response.sendError(401);
 			return false;
 		}
 	}

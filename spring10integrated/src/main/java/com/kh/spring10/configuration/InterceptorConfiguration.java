@@ -26,6 +26,19 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 //		registry.addInterceptor(인터셉터객체).addPathPatterns(주소);
 //		registry.addInterceptor(testInterceptor).addPathPatterns("/pocketmon/list", "/emp/list");
 		
-		registry.addInterceptor(memberInterceptor).addPathPatterns("/member/mypage");
+		//지정한 페이지만 허용하도록 설정
+//		registry.addInterceptor(memberInterceptor).addPathPatterns(
+//				"/member/mypage", "/member/password", "/member/passwordFinish");
+		
+		//중간 주소를 등록하고 특정 페이지를 제외 (exclude)
+		//- 주소를 설정할 때 **와 *를 사용할 수 있다
+		//- **는 하위 엔드포인트(마지막 슬래시)까지 모두 포함하여 설정할 때 사용 (후손)
+		//- *는 동일 엔드포인트까지만 포함하여 설정할 때 사용 (자식)
+		registry.addInterceptor(memberInterceptor)
+		.addPathPatterns("/member/**") //member에 대한 모든 주소
+		.excludePathPatterns(
+//				"/member/join","/member/joinSuccess",
+				"/member/join*",
+				"/member/login", "/member/exitFinish"); //해당주소만 제외
 	}
 }
