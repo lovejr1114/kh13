@@ -114,16 +114,47 @@ public class MemberController {
 		return "/WEB-INF/views/member/mypage.jsp";
 	}
 	
-	@GetMapping("/pwChange")
-	public String pwChange() {
-		return "/WEB-INF/views/member/pwChange.jsp";
+	//비밀번호 변경
+	@GetMapping("/password")
+	public String password() { //전달할 내용이있으면 Model을 만들고 없으면 냅두고.
+		return "/WEB-INF/views/member/password.jsp";
 	}
 	
-	@PostMapping("/pwChange")
-	public String pwChange(@RequestParam String memberPw,
-										@RequestParam String newPw,
+	//기존 비밀번호를 originPw, 변경할 비밀번호를 changePw로 처리
+	//아이디는 HttpSession에 존재한다.
+	@PostMapping("/password")
+	public String password(@RequestParam String originPw,
+										@RequestParam String changePw,
 										HttpSession session, Model model) {
-//		MemberDto findDto = session.getAttribute();
-		return "";
+		//로그인된 사용자의 아이디를 추출
+		String loginId = (String) session.getAttribute("loginId"); //다운캐스팅 (되돌린다)
+		
+//		memberDao.updateMemberPw(memberDto); //Dto가 없으면 만들어주면 된다
+		//loginId , origin, changePw 중에 dto에 들어가야할 것은 로그인아이디, 바꿀 아이디. ->이걸로 Dto만들기
+		
+		//비밀번호 검사를 위해 DB에 저장된 정보를 불러온다
+		MemberDto findDto = memberDao.selectOne(loginId); //findDto와 originPw를 비교
+		boolean isValid = findDto != null && findDto.getMemberPw().equals(originPw);
+		
+		if(isValid) { //입력한 기존 비밀번호가 유효할 경우
+			//아이디와 변경할 비밀번호로 DTO를 만들어 DAO의 기능을 호출
+			MemberDto memberDto = new MemberDto();
+			memberDto.setMemberId(loginId);
+			memberDto.setMemberPw(changePw);
+			memberDao.updateMemberPw(memberDto);
+			
+			return "redirect:passwordFinish";
+		}
+		else {//입력한 기존 비밀번호가 유효하지 않을 경우
+			return "redirect:password?error";
+		}
 	}
+
+	@RequestMapping("/passwordFinish")
+	public String passwordFinish() {
+		return "/WEB-INF/views/member/passwordFinish.jsp";
+	}
+	
+	//삭제
+	
 }
