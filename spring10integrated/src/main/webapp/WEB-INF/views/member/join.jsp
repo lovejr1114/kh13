@@ -13,7 +13,7 @@
 	생년월일 <input name="memberBirth" type="date"> <br><br>
 	연락처 <input name="memberContact" type="tel"> <br><br>
 	주소 <br><br>
-		 <input name="memerPost" type="text" placeholder="우편번호"> <br><br>
+		 <input name="memberPost" type="text" placeholder="우편번호"> <br><br>
 		 <input name="memberAddress1" type="text" placeholder="기본주소"> <br><br>
 		 <input name="memberAddress2" type="text" placeholder="상세주소"> <br><br>
 	<button>가입하기</button>
