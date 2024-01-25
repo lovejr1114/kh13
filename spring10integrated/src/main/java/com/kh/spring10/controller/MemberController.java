@@ -125,7 +125,7 @@ public class MemberController {
 	@PostMapping("/password")
 	public String password(@RequestParam String originPw,
 										@RequestParam String changePw,
-										HttpSession session, Model model) {
+										HttpSession session) {
 		//로그인된 사용자의 아이디를 추출
 		String loginId = (String) session.getAttribute("loginId"); //다운캐스팅 (되돌린다)
 		
@@ -155,6 +155,11 @@ public class MemberController {
 		return "/WEB-INF/views/member/passwordFinish.jsp";
 	}
 	
-	//삭제
+	//개인정보 변경
+	@GetMapping("/change")
+	public String change() { //기존 나의 정보 출력
+		return "/WEB-INF/views/member/change.jsp";
+	}
+//	@PostMapping("/change")
 	
 }
