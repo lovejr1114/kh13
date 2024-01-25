@@ -59,8 +59,8 @@
 		
 		
 <h3><a href="/member/password">비밀번호 변경</a></h3>
-<h3><a href="#">개인정보 변경</a></h3>
-<h3><a href="#">회원 탈퇴</a></h3>
+<h3><a href="/member/change">개인정보 변경</a></h3>
+<h3><a href="/member/exit">회원 탈퇴</a></h3>
 
 
 		

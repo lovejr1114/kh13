@@ -157,9 +157,69 @@ public class MemberController {
 	
 	//개인정보 변경
 	@GetMapping("/change")
-	public String change() { //기존 나의 정보 출력
+	public String change(Model model, HttpSession session) { //기존 나의 정보 출력
+		//사용자 아이디를 세션에 추출
+		String loginId = (String) session.getAttribute("loginId");
+		//위 코드를 JSP에서 표현하면 ${sessionScope.loginId}
+		
+		//아이디로 정보 조회 (단일 조회)
+		MemberDto memberDto = memberDao.selectOne(loginId); 
+		
+		//모델에 정보 추가
+		model.addAttribute("memberDto", memberDto);
+		
 		return "/WEB-INF/views/member/change.jsp";
 	}
-//	@PostMapping("/change")
+	@PostMapping("/change")
+	public String change(@ModelAttribute MemberDto memberDto, HttpSession session) {
+		//세션에서 아이디 추출
+		String loginId = (String)session.getAttribute("loginId");
+		
+		//memberDto에 아이디 설정
+		memberDto.setMemberId(loginId);
+		
+		//DB정보 조회
+		MemberDto findDto = memberDao.selectOne(loginId);
+		//memberDto와 findDto의 비밀번호를 비교해야한다. 같으면 성공, 다르면 에러
+		
+		//판정
+		boolean isValid = memberDto.getMemberPw().equals(findDto.getMemberPw());
+		
+		//변경 요청
+		if(isValid) {
+			memberDao.updateMember(memberDto);
+			return "redirect:mypage";	
+		}
+		else {
+			//이전 페이지로 리다이렉트
+			return "redirect:change?error";		
+		}
+	}
+	//회원 탈퇴
+	@GetMapping("/exit")
+	public String exit() {
+		return "/WEB-INF/views/member/exit.jsp";
+	}
 	
+	@PostMapping("/exit")
+	public String exit(@RequestParam String memberPw, HttpSession session) {
+		String loginId = (String) session.getAttribute("loginId");
+		
+		MemberDto findDto = memberDao.selectOne(loginId);
+		boolean isValid = findDto.getMemberPw().equals(memberPw);
+		
+		if(isValid) {
+			memberDao.delete(loginId); //회원 탈퇴
+			session.removeAttribute("loginId"); //로그아웃
+			return "redirect:exitFinish";
+		}
+		else {
+			return "redirect:exit?error";
+		}
+	}
+	
+	@RequestMapping("/exitFinish")
+	public String exitFinish() {
+		return "/WEB-INF/views/member/exitFinish.jsp";
+	}
 }
