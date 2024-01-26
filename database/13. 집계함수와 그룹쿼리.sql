@@ -28,7 +28,7 @@ select book_genre, sum(book_price), avg(book_price) from book group by book_genr
 -- (Q) product 테이블에서 상품종류별 개수와 최고, 최저가격을 출력
 select type, count(type), max(price), min(price) from product group by type; --내가한거
 select count(no) 개수, max(price) 최고가, min(price) 최저가 from product; --샘이한거
-
+--뒤에 글씨는 별칭을 붙이는것
 SELECT type from product;
 SELECT distinct type from product; --중복제거 (그룹 아님)
 SELECT type from product group by type;
