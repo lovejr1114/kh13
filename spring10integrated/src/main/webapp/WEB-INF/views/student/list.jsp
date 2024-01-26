@@ -7,15 +7,6 @@
 <h1>학생 목록 및 검색</h1>
 <h3><a href="add">신규 등록</a></h3>
 
-<c:choose>
-	<c:when test="${requestScope.isSearch}">
-		<h1>학생 검색</h1>
-	</c:when>
-	<c:otherwise>
-		<h1>학생 목록</h1>
-	</c:otherwise>
-</c:choose>
-
 
 <form action="list" method="get">
 	<select name="column">
