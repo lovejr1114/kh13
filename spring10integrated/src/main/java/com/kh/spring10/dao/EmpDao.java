@@ -62,9 +62,10 @@ public class EmpDao {
 	private StatMapper statMapper;
 	
 	//변종 메소드 - 사원 개체수 통계
-	public List<StatVO> statByType(){
+	public List<StatVO> countByEmpDept(){ //countByGroup이라는걸 실무에서 많이 쓴다.
 		String sql = "select emp_dept 항목, count(*) 개수 from emp group by emp_dept "
 				+ "order by 개수 desc, emp_dept asc";
+		//구문에 emp_dept asc는 좀 더 안정적이게 함.
 		return jdbcTemplate.query(sql, statMapper);
 	}
 }

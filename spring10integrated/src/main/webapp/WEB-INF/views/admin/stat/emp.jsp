@@ -5,7 +5,7 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<h1>사원 부서별 인원 수</h1>
+<h1>사원 부서별 인원 수 통계</h1>
 
 <table border="1" width="300">
 	<thead>
@@ -15,7 +15,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="statVO" items="${list}">
+		<c:forEach var="statVO" items="${list}"> <%-- var은 내가 정하는 변수, items는 데이터 --%>
 			<tr>
 				<td>${statVO.title}</td>
 				<td>${statVO.count}</td>
