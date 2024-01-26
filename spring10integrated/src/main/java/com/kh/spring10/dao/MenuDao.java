@@ -68,10 +68,10 @@ public class MenuDao {
 	@Autowired
 	private StatMapper statMapper;
 	//변종메소드
-	public List<StatVO> statByType(){
+	public List<StatVO> countByMenuType(){
 		String sql = "select menu_type 항목, count(*) 개수 "
 				+ "from menu group by menu_type "
-				+ "order by 개수 desc, menu_type asc";
+				+ "order by 개수 desc, 항목 asc";
 		return jdbcTemplate.query(sql, statMapper);
 	}
 }

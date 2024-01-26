@@ -47,8 +47,9 @@ public class AdminController {
 	//메뉴 통계
 	@RequestMapping("/stat/menu")
 	public String statMenu(Model model) {
-		List<StatVO> list = menuDao.statByType();
-		model.addAttribute("list", list);
+//		List<StatVO> list = menuDao.countByMenuType();
+//		model.addAttribute("list", list);
+		model.addAttribute("list", menuDao.countByMenuType());
 		return "/WEB-INF/views/admin/stat/menu.jsp";
 	}
 	
