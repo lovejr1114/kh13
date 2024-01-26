@@ -45,7 +45,7 @@
 			<a href="/admin/stat/pocketmon">포켓몬 통계</a>
 			<a href="/admin/stat/emp">사원 통계</a>
 			<a href="/admin/stat/menu">메뉴 통계</a>
-			<a href="#">회원 통계</a>
+			<a href="/admin/stat/member">회원 통계</a>
 		</div>
 		</c:if>		
 		<div>

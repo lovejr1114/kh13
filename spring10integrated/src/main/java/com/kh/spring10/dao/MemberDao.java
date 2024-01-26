@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.spring10.dto.MemberDto;
 import com.kh.spring10.mapper.MemberMapper;
+import com.kh.spring10.mapper.StatMapper;
+import com.kh.spring10.vo.StatVO;
 
 @Repository
 public class MemberDao {
@@ -89,5 +91,15 @@ public class MemberDao {
 					memberDto.getMemberAddress2(), memberDto.getMemberId()
 			};
 			return jdbcTemplate.update(sql, data) > 0;
+		}
+		
+		@Autowired
+		private StatMapper statMapper;
+		//회원(멤버) 통계
+		public List<StatVO> statByType(){
+			String sql = "select member_level 항목, count(*) 개수 "
+					+ "from member group by member_level "
+					+ "order by 개수 desc, member_level asc";
+			return jdbcTemplate.query(sql, statMapper);
 		}
 }

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.spring10.dao.EmpDao;
+import com.kh.spring10.dao.MemberDao;
 import com.kh.spring10.dao.MenuDao;
 import com.kh.spring10.dao.PocketmonDao;
 import com.kh.spring10.vo.StatVO;
@@ -45,5 +46,15 @@ public class AdminController {
 		List<StatVO> list = menuDao.statByType();
 		model.addAttribute("list", list);
 		return "/WEB-INF/views/admin/stat/menu.jsp";
+	}
+	
+	@Autowired
+	private MemberDao memberDao;
+	//멤버 통계
+	@RequestMapping("/stat/member")
+	public String statMember(Model model) {
+		List<StatVO> list = memberDao.statByType();
+		model.addAttribute("list", list);
+		return "/WEB-INF/views/admin/stat/member.jsp";
 	}
 }
