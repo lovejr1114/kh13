@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kh.spring10.dao.EmpDao;
 import com.kh.spring10.dao.PocketmonDao;
 import com.kh.spring10.vo.StatVO;
 
@@ -23,5 +24,15 @@ public class AdminController {
 		List<StatVO> list = pocketmonDao.statByType();
 		model.addAttribute("list", list);
 		return "/WEB-INF/views/admin/stat/pocketmon.jsp";
+	}
+	
+	@Autowired
+	private EmpDao empDao;
+	//사원 통계
+	@RequestMapping("/stat/emp")
+	public String statEmp(Model model) {
+		List<StatVO> list = empDao.statByType();
+		model.addAttribute("list", list);
+		return "/WEB-INF/views/admin/stat/emp.jsp";
 	}
 }

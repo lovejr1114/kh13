@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.spring10.dto.EmpDto;
 import com.kh.spring10.mapper.EmpMapper;
+import com.kh.spring10.mapper.StatMapper;
+import com.kh.spring10.vo.StatVO;
 
 @Repository
 public class EmpDao {
@@ -54,5 +56,15 @@ public class EmpDao {
 		Object[] data = {empNo};
 		List<EmpDto> list = jdbcTemplate.query(sql, mapper, data);
 		return list.isEmpty() ? null : list.get(0);
+	}
+	
+	@Autowired
+	private StatMapper statMapper;
+	
+	//변종 메소드 - 사원 개체수 통계
+	public List<StatVO> statByType(){
+		String sql = "select emp_dept 항목, count(*) 개수 from emp group by emp_dept "
+				+ "order by 개수 desc, emp_dept asc";
+		return jdbcTemplate.query(sql, statMapper);
 	}
 }
