@@ -91,9 +91,11 @@ public class AdminController {
 	
 	
 	//상세페이지
-//	@RequestMapping("/member/detail")
-//	public String memberDetail() {
-//		
-//	}
+	@RequestMapping("/member/detail")
+	public String memberDetail(@RequestParam String memberId, Model model) {
+		MemberDto memberDto = memberDao.selectOne(memberId);
+		model.addAttribute("memberDto", memberDto);
+		return "/WEB-INF/views/admin/member/detail.jsp";
+	}
 	
 }
