@@ -102,4 +102,23 @@ public class MemberDao {
 					+ "order by 개수 desc, member_level asc";
 			return jdbcTemplate.query(sql, statMapper);
 		}
+
+		
+		//관리자에 의한 회원 정보 수정
+		public boolean updateMemberByAdmin(MemberDto memberDto) {
+			String sql = "update member set "
+					+ "member_nick=?, member_email=?, member_birth=?, "
+					+ "member_contact=?, member_post=?, "
+					+ "member_address1=?, member_address2=? "
+					+ "member_level=?, member_point=? "
+					+ "where member_id=?";
+			Object[] data = {
+					memberDto.getMemberNick(), memberDto.getMemberEmail(), 
+					memberDto.getMemberBirth(), memberDto.getMemberContact(),
+					memberDto.getMemberPost(), memberDto.getMemberAddress1(),
+					memberDto.getMemberAddress2(), memberDto.getMemberLevel(), 
+					memberDto.getMemberPoint(), memberDto.getMemberId()
+			};
+			return jdbcTemplate.update(sql, data) > 0;
+		}
 }

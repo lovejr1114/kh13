@@ -55,7 +55,7 @@
 </table>
 
 <h2><a href="#">임시 비밀번호 발행</a></h2>
-<h2><a href="#">회원 정보 변경</a></h2>
+<h2><a href="edit?memberId=${memberDto.memberId}">회원 정보 변경</a></h2>
 <h2><a href="delete?memberId=${membetDto.memberId}">회원 강제 탈퇴</a></h2>
 
 

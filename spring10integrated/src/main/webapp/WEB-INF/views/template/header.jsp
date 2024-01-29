@@ -41,7 +41,7 @@
 		<%-- 관리자 메뉴 -관리자일 경우만 출력 --%>
 		<c:if test="${sessionScope.loginLevel == '관리자'}">
 		<div>
-			<a href="#">회원관리</a>
+			<a href="/admin/member/search">회원관리</a>
 			<a href="/admin/stat/pocketmon">포켓몬 통계</a>
 			<a href="/admin/stat/emp">사원 통계</a>
 			<a href="/admin/stat/menu">메뉴 통계</a>

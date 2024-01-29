@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -106,5 +108,21 @@ public class AdminController {
 		memberDao.delete(memberId);
 		return "redirect:/admin/member/search"; //절대경로
 		//return "redirect:search"; //상대경로
+	}
+	
+	
+	//회원정보 수정
+	@GetMapping("/member/edit")
+	public String edit(@RequestParam String memberId, Model model) {
+		MemberDto memberDto = memberDao.selectOne(memberId);
+		model.addAttribute("memberDto", memberDto);
+		return "/WEB-INF/views/admin/member/edit.jsp";
+	}
+	
+	@PostMapping("/member/edit")
+	public String edit(@ModelAttribute MemberDto memberDto) {
+		memberDao.updateMemberByAdmin(memberDto); //새로운 기능을 만들어야함.
+//		return "redirect:/admin/member/detail?memberId="+memberDto.getMemberId(); //절대
+		return "redirect:detail?memberId="+memberDto.getMemberId(); //상대
 	}
 }
