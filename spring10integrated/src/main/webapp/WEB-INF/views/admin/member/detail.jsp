@@ -41,6 +41,10 @@
 		<td>${memberDto.memberLevel}</td>
 	</tr>
 	<tr>
+		<th>포인트</th>
+		<td>${memberDto.memberPoint} Point</td>
+	</tr>
+	<tr>
 		<th>가입일</th>
 		<td>
 			<fmt:formatDate value="${memberDto.memberJoin}" pattern="yyyy-MM-dd E HH:mm:ss"/>
