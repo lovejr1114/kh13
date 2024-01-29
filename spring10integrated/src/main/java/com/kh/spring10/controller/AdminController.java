@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -98,4 +99,12 @@ public class AdminController {
 		return "/WEB-INF/views/admin/member/detail.jsp";
 	}
 	
+	
+	//회원 삭제
+	@GetMapping("/member/delete")
+	public String memberDelete(@RequestParam String memberId) {
+		memberDao.delete(memberId);
+		return "redirect:/admin/member/search"; //절대경로
+		//return "redirect:search"; //상대경로
+	}
 }
