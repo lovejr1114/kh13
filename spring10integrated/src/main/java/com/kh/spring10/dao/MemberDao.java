@@ -109,7 +109,7 @@ public class MemberDao {
 			String sql = "update member set "
 					+ "member_nick=?, member_email=?, member_birth=?, "
 					+ "member_contact=?, member_post=?, "
-					+ "member_address1=?, member_address2=? "
+					+ "member_address1=?, member_address2=?, "
 					+ "member_level=?, member_point=? "
 					+ "where member_id=?";
 			Object[] data = {
