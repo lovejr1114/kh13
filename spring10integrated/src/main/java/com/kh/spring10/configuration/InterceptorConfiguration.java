@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.kh.spring10.interceptor.AdminInterceptor;
+import com.kh.spring10.interceptor.BoardReadcountInterceptor;
 import com.kh.spring10.interceptor.MemberInterceptor;
 import com.kh.spring10.interceptor.TestInterceptor;
 
@@ -23,6 +24,9 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 	
 	@Autowired
 	private AdminInterceptor adminInterceptor;
+	
+	@Autowired
+	private BoardReadcountInterceptor boardReadcountInterceptor;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -49,7 +53,11 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 		//관리자 인터셉터 등록
 		registry.addInterceptor(adminInterceptor)
 					.addPathPatterns("/admin/**");
+		
+		
+		//게시글 조회수 중복방지 인터셉터 등록
+		registry.addInterceptor(boardReadcountInterceptor)
+					.addPathPatterns("/board/detail");
+		
 	}
-	
-	
 }

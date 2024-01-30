@@ -25,19 +25,33 @@ public class BoardDao {
 	
 	//항목, 검색
 	public List<BoardDto> selectList(String column, String keyword){
-		String sql = "select * from board where instr("+column+", ?) > 0 "
-						+ "order by board_no desc";
+//		String sql = "select * from board where instr("+column+", ?) > 0 "
+//						+ "order by board_no desc";
+//		Object[] data = {keyword};
+//		return jdbcTemplate.query(sql, boardMapper, data);
+		
+		//샘 코드
+		String sql = "select "
+				+ "board_no, board_title, board_writer, "
+				+ "board_wtime, board_etime, board_readcount "
+			+ "from board "
+			+ "where instr("+column+", ?) > 0 "
+			+ "order by board_no desc";
 		Object[] data = {keyword};
-		return jdbcTemplate.query(sql, boardMapper, data);
+		return jdbcTemplate.query(sql, boardListMapper, data);
 	}
 	
 	//목록
 	public List<BoardDto> selectList(){
-		String sql = "select * from board order by board_no desc";
+//		String sql = "select * from board order by board_no desc";
 //		String sql = "select * from board order by board_wtime desc"; //이것도 되지만 PK로 해주는게 제일 성능이 좋음
-		return jdbcTemplate.query(sql, boardMapper);
-		
-		
+//		return jdbcTemplate.query(sql, boardMapper);
+		//선생님 코드
+		String sql = "select "
+				+ "board_no, board_title, board_writer, "
+				+ "board_wtime, board_etime, board_readcount "
+			+ "from board order by board_no desc";
+		return jdbcTemplate.query(sql, boardListMapper);
 	}
 	
 	//등록
@@ -57,7 +71,7 @@ public class BoardDao {
 	}
 	
 	
-	//상세
+	//상세 (단일조회)
 	public BoardDto selectOne(int boardNo) {
 		String sql = "select * from board where board_no=?";
 		Object[] data = {boardNo};
@@ -79,6 +93,15 @@ public class BoardDao {
 	//삭제
 	public boolean delete(int boardNo) {
 		String sql = "delete board where board_no=?";
+		Object[] data = {boardNo};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+	
+	//조회수 증가
+	public boolean updateBoardReadcount(int boardNo) {
+		String sql = "update board "
+						+ "set board_readcount = board_readcount +1 "
+						+ "where board_no = ?";
 		Object[] data = {boardNo};
 		return jdbcTemplate.update(sql, data) > 0;
 	}

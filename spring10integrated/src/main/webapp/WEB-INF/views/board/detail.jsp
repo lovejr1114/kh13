@@ -1,23 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<h1>${boardDto.boardNo}번 글 보기</h1>
+
 <table border="1" width="800">
 	<tr>
-		<td>${boardDto.boardTitle}</td>
+		<td>
+			${boardDto.boardTitle}
+		</td>
 	</tr>
 	<tr>
-		<td>${boardDto.boardWriter}</td>
+		<td>
+			<%-- 탈퇴한 사용자일 때와 아닐 때 나오는 정보가 다르게 구현 --%>
+			<c:choose>
+				<c:when test="${boardDto.boardWriter == null}">
+					${boardDto.boardWriterStr}
+				</c:when>
+				<c:otherwise>
+					${memberDto.memberNick}
+					(${memberDto.memberLevel})
+				</c:otherwise>
+			</c:choose>
+		</td>
+	</tr>
+	<tr height="200" valign="top">
+		<td>
+			${boardDto.boardContent}
+		</td>
 	</tr>
 	<tr>
-		<td>${boardDto.boardContent}</td>
-	</tr>
-	<tr>
-		<td>${boardDto.boardWtime}</td>
-	</tr>
-	<tr>
-		<td>${boardDto.boardReadCount}</td>
+		<td>
+			조회수 ${boardDto.boardReadcount}
+			댓글?
+			<br>
+			<fmt:formatDate value="${boardDto.boardWtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+		</td>
 	</tr>
 </table>
 

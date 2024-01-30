@@ -58,7 +58,7 @@ public class BoardDto {
 	}
 	public String getBoardWriterStr() {
 		if(boardWriter == null)
-			return "탈퇴한사용자";
+			return "(탈퇴한사용자)";
 		else
 			return boardWriter;
 	}
