@@ -6,7 +6,9 @@ public class StudentDto {
 	private int koreanScore;
 	private int mathScore;
 	private int englishScore;
-	
+	public StudentDto() {
+		super();
+	}
 	public int getStudentId() {
 		return studentId;
 	}
@@ -37,8 +39,10 @@ public class StudentDto {
 	public void setEnglishScore(int englishScore) {
 		this.englishScore = englishScore;
 	}
-	public StudentDto() {
-		super();
+	public int getTotal() {
+		return koreanScore+mathScore+englishScore;
 	}
-
+	public float getAverage() {
+		return getTotal() / 3f;
+	}
 }
