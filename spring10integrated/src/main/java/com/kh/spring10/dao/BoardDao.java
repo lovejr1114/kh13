@@ -75,6 +75,23 @@ public class BoardDao {
 	}
 	
 	//검색+페이징
+	public List<BoardDto> searchByPaging(String column, String keyword, int page, int size){
+		int endRow = page * size;
+		int beginRow = endRow - (size-1);
+		
+		String sql = "select * from ("
+				+ "select rownum rn, TMP.* from ("
+					+ "select "
+					+ "board_no, board_title, board_writer, "
+					+ "board_wtime, board_etime, board_readcount "
+					+ "from board where instr("+column+", ?) > 0 "
+					+ "order by board_no desc"
+				+ ")TMP"
+		+ ") where rn between ? and ?";
+		Object[] data = {keyword, beginRow, endRow};
+		return jdbcTemplate.query(sql, boardListMapper, data);
+	}
+	
 	
 	//count, sequence, max, min, sum, avg처럼 결과가 하나만 나오는 경우
 	//그 결과는 객체가 아니라 원시데이터 형태일 확률이 높다
