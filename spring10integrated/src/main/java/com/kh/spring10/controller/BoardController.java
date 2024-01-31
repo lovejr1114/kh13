@@ -30,13 +30,16 @@ public class BoardController {
 	@RequestMapping("/list")
 	public String list(
 			@RequestParam(required = false) String column, 
-			@RequestParam(required = false) String keyword, Model model) {
+			@RequestParam(required = false) String keyword, 
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "10") int size,
+			Model model) {
 		boolean isSearch = column != null && keyword != null;
 		if(isSearch) {
 			model.addAttribute("list", boardDao.selectList(column, keyword));
 		}
 		else {
-			model.addAttribute("list", boardDao.selectList());
+			model.addAttribute("list", boardDao.selectListByPaging(page, size));
 		}
 		return "/WEB-INF/views/board/list.jsp";
 	}
