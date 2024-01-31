@@ -54,22 +54,27 @@ public class BoardDao {
 		return jdbcTemplate.query(sql, boardListMapper);
 	}
 	
-	//등록
-	public void insert(BoardDto boardDto) {
-		String sql = "insert into board(board_no, board_title, board_content, "
-					+ "board_writer) "
-					+ "values (board_seq.nextval, ?, ?, ?)";
-		Object[] data = {boardDto.getBoardTitle(), boardDto.getBoardContent(),
-								boardDto.getBoardWriter()};
-		jdbcTemplate.update(sql, data);
-	}
+	
+	//count, sequence, max, min, sum, avg처럼 결과가 하나만 나오는 경우
+	//그 결과는 객체가 아니라 원시데이터 형태일 확률이 높다
 	
 	//게시글 등록 시퀀스
-	public int boardSeqNo(){ //이렇게하는 이유가 시퀀스라서 자동으로 DB가 번호 넣어줌
+	public int getSequence(){ //이렇게하는 이유가 시퀀스라서 자동으로 DB가 번호 넣어줌
 		String sql = "select board_seq.nextval from dual";
+		//jdbcTemplate.queryForObject(구문, 결과자료형); .class = 자료형객체
 		return jdbcTemplate.queryForObject(sql, int.class);
 	}
 	
+	// 등록할 때 시퀀스 번호를 생성하면 절대 안된다. (위에 만들어줬기 때문에)
+	//등록
+	public void insert(BoardDto boardDto) {
+		String sql = "insert into board(board_no, board_title, "
+						+ "board_content, board_writer) "
+						+ "values (?, ?, ?, ?)";
+		Object[] data = {boardDto.getBoardNo(), boardDto.getBoardTitle(),
+				boardDto.getBoardContent(), boardDto.getBoardWriter()};
+		jdbcTemplate.update(sql, data);
+	}
 	
 	//상세 (단일조회)
 	public BoardDto selectOne(int boardNo) {

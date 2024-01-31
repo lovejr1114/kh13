@@ -14,6 +14,8 @@ import com.kh.spring10.dao.MemberDao;
 import com.kh.spring10.dto.BoardDto;
 import com.kh.spring10.dto.MemberDto;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -63,10 +65,17 @@ public class BoardController {
 	}
 	
 	@PostMapping("/write")
-	public String write(@ModelAttribute BoardDto boardDto, Model model) {
-		int boardNo = boardDao.boardSeqNo();
-		boardDto.setBoardNo(boardNo);
-		boardDao.insert(boardDto);
+	public String write(@ModelAttribute BoardDto boardDto,
+								HttpSession session) {
+		//세션에서 로그인한 사용자의 ID를 추출
+		String loginId = (String)session.getAttribute("loginId");
+		
+		//ID를 게시글 정보에 포함시킨다
+		boardDto.setBoardWriter(loginId);
+		
+		int sequence = boardDao.getSequence(); //DB에서 시퀀스 번호를 추출
+		boardDto.setBoardNo(sequence); //게시글 정보에 추출한 번호를 포함시킨다.
+		boardDao.insert(boardDto); //등록
 //		return "redirect:/board/detail";
 		return "redirect:detail?boardNo="+boardDto.getBoardNo();
 	}
