@@ -43,11 +43,16 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 		//- **는 하위 엔드포인트(마지막 슬래시)까지 모두 포함하여 설정할 때 사용 (후손)
 		//- *는 동일 엔드포인트까지만 포함하여 설정할 때 사용 (자식)
 		registry.addInterceptor(memberInterceptor)
-		.addPathPatterns("/member/**") //member에 대한 모든 주소
-		.excludePathPatterns(
+//				.addPathPatterns("/member/**") //member에 대한 모든 주소
+				.addPathPatterns(
+						"/member/**",
+						"/board/**"
+						)
+				.excludePathPatterns(
 //				"/member/join","/member/joinSuccess",
 				"/member/join*",
-				"/member/login", "/member/exitFinish"); //해당주소만 제외
+				"/member/login", "/member/exitFinish",
+				"/board/list"); //해당주소만 제외
 		
 		
 		//관리자 인터셉터 등록

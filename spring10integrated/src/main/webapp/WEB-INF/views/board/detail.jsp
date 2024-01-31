@@ -11,6 +11,11 @@
 	<tr>
 		<td>
 			${boardDto.boardTitle}
+			
+			<%-- (추가) 수정시각 유무에 따라 수정됨 표시 --%>
+			<c:if test="${boardDto.boardEtime != null}">
+				(수정됨)
+			</c:if>
 		</td>
 	</tr>
 	<tr>
@@ -38,14 +43,29 @@
 			댓글?
 			<br>
 			<fmt:formatDate value="${boardDto.boardWtime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+			<br>
+			${boardDto.boardWtimeDiff}
+		</td>
+	</tr>
+	<tr>
+		<td align="right">
+			<a href="write">글쓰기</a>
+			<a href="#">답글쓰기</a>
+			
+			<%-- 
+				수정과 삭제링크는 회원이면서 본인글이거나 관리자일 경우만 출력
+				- if문에 ${회원 && (본인글 || 관리자)}
+				- 본인글이란 로그인한 사용자와 아이디와 게시글 작성자가 같은 경우
+				- 관리자란 로그인한 사용자 등급이 '관리자'인 경우
+			--%>
+			<c:if test="${sessionScope.loginId != null && (sessionScope.loginId == boardDto.boardWriter || sessionScope.loginLevel == '관리자')}">
+				<a href="edit?boardNo=${boardDto.boardNo}">글 수정</a>
+				<a href="delete?boardNo=${boardDto.boardNo}">글 삭제</a>
+			</c:if>
+			<a href="list">글 목록</a>
 		</td>
 	</tr>
 </table>
-
-<h3><a href="delete?boardNo=${boardDto.boardNo}">삭제하기</a></h3>
-<h3><a href="edit?boardNo=${boardDto.boardNo}">수정하기</a></h3>
-
-
 
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

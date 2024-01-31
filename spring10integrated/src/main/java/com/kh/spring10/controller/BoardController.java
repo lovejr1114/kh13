@@ -87,24 +87,22 @@ public class BoardController {
 	@GetMapping("/edit")
 	public String edit(@RequestParam int boardNo, Model model) {
 		BoardDto boardDto = boardDao.selectOne(boardNo);
-		if(boardDto == null) {
-			return "";
-		}
-		else {
-			return "/WEB-INF/views/board/edit.jsp";
-		}
+		model.addAttribute("boardDto", boardDto);
+		return "/WEB-INF/views/board/edit.jsp";
 	}
+	
 	@PostMapping("/edit")
-	public String edit(@ModelAttribute BoardDto boardDto, int boardSeqNo) {
+	public String edit(@ModelAttribute BoardDto boardDto) {
 		boardDao.update(boardDto);
-		return "";
+		return "redirect:detail?boardNo="+boardDto.getBoardNo();
 	}
 	
 	
 	//삭제
-	@RequestMapping("/delete")
+	@GetMapping("/delete")
 	public String delete(@RequestParam int boardNo) {
 		boardDao.delete(boardNo);
+//		return "redirect:/board/list";	
 		return "redirect:list";
 	}
 }
