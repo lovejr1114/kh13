@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.kh.spring10.interceptor.AdminInterceptor;
+import com.kh.spring10.interceptor.BoardOwnerInterceptor;
 import com.kh.spring10.interceptor.BoardReadcountInterceptor;
 import com.kh.spring10.interceptor.MemberInterceptor;
 import com.kh.spring10.interceptor.TestInterceptor;
@@ -27,6 +28,9 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 	
 	@Autowired
 	private BoardReadcountInterceptor boardReadcountInterceptor;
+	
+	@Autowired
+	private BoardOwnerInterceptor boardOwnerInterceptor;
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -64,5 +68,9 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 		registry.addInterceptor(boardReadcountInterceptor)
 					.addPathPatterns("/board/detail");
 		
+		
+		//내 글 또는 관리자만 수정, 삭제하는 인터셉터 등록
+		registry.addInterceptor(boardOwnerInterceptor)
+					.addPathPatterns("/board/edit", "/board/delete");
 	}
 }
