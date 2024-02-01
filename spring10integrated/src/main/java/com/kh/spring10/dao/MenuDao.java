@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.spring10.dto.MenuDto;
 import com.kh.spring10.mapper.MenuMapper;
 import com.kh.spring10.mapper.StatMapper;
+import com.kh.spring10.vo.PageVO;
 import com.kh.spring10.vo.StatVO;
 
 @Repository
@@ -20,7 +21,7 @@ public class MenuDao {
 	@Autowired
 	private MenuMapper mapper;
 	
-	
+	//등록
 	public void insert(MenuDto dto) {
 		String sql = "insert into menu(menu_no, menu_name_kor, menu_name_eng, menu_type, "
 				+ "menu_price) "
@@ -29,13 +30,13 @@ public class MenuDao {
 									dto.getMenuType(), dto.getMenuPrice()};
 		jdbcTemplate.update(sql, data);
 	}
-	
+	//수정
 	public boolean update(MenuDto dto) {
 		String sql = "update menu set menu_name_kor=?, menu_name_eng=?, menu_type=?, menu_price=? where menu_no=?";
 		Object[] data = {dto.getMenuNameKor(), dto.getMenuNameEng(), dto.getMenuType(), dto.getMenuPrice(), dto.getMenuNo()};
 		return jdbcTemplate.update(sql, data) > 0;
 	}
-	
+	//삭제
 	public boolean delete(int menuNo) {
 		String sql = "delete menu where menu_no=?";
 		Object[] data = {menuNo};
@@ -56,6 +57,99 @@ public class MenuDao {
 		Object[] data = {keyword};
 		return jdbcTemplate.query(sql, mapper, data);
 	}
+	
+	//목록+페이징
+	public List<MenuDto> selectListByPaging(int page, int size){
+		int endRow = page * size;
+		int beginRow = endRow - (size-1);
+		
+		String sql = "select * from ("
+				+ "select rownum rn, TMP.*from ("
+					+ "select "
+					+ "menu_no, menu_name_kor, menu_name_eng, "
+					+ "menu_type, menu_price "
+					+ "from menu order menu_no asc"
+				+ ")TMP"
+				+ ") where rn between ? and ?";
+		Object[] data = {beginRow, endRow};
+		return jdbcTemplate.query(sql, mapper, data);
+	}
+	//검색+페이징
+	public List<MenuDto> selectListByPaging(String column, String keyword, int page, int size){
+		int endRow = page * size;
+		int beginRow = endRow - (size-1);
+		
+		String sql = "select * from ("
+				+ "select rownum rn, TMP.*from ("
+					+ "select "
+						+ "menu_no, menu_name_kor, menu_name_eng, "
+						+ "menu_type, menu_price "
+						+ "from menu where menu("+column+", ? ) > 0 "
+						+ "order menu_no asc"
+					+ ")TMP"
+			+ ") where rn between ? and ?";
+		Object[] data = {keyword, beginRow, endRow};
+		return jdbcTemplate.query(sql, mapper, data);
+	}
+	
+	//통합+페이징 (페이징을 위한 목록/검색/카운트 구현)
+	public List<MenuDto> selectListByPaging(PageVO pageVO){
+		if(pageVO.isSearch()) {//검색
+			String sql = "select * from ("
+					+ "select rownum rn, TMP.*from ("
+						+ "select "
+							+ "menu_no, menu_name_kor, menu_name_eng, "
+								+ "menu_type, menu_price "
+								+ "from menu "
+								+ "where instr("+pageVO.getColumn()+", ?) > 0 "
+								+ "order by "+pageVO.getColumn()+" asc"
+							+ ")TMP"
+					+ ") where rn between ? and ?";
+			Object[] data = {pageVO.getKeyword(),
+					pageVO.getBeginRow(), pageVO.getEndRow()};
+			return jdbcTemplate.query(sql, mapper, data);
+		}
+		else { //목록
+			String sql = "select * from ("
+					+ "select rownum rn, TMP.* from ("
+					+ "select "
+						+ "menu_no, menu_name_kor, menu_name_eng,"
+						+ "menu_type, menu_price "
+						+ "from menu order by menu_no asc"
+				+ ")TMP"
+			+ ") where rn between ? and ?";
+		Object[] data = {pageVO.getBeginRow(), pageVO.getEndRow()};
+		return jdbcTemplate.query(sql, mapper, data);
+		}
+	}
+	
+	//카운트
+	//목록
+	public int count() {
+		String sql = "select count(*) from menu";
+		return jdbcTemplate.queryForObject(sql, int.class);
+	}
+	//검색
+	public int count(String column, String keyword) {
+		String sql = "select count(*) from menu "
+				+ "where instr("+column+", ?) > 0";
+		Object[] data = {keyword};
+		return jdbcTemplate.queryForObject(sql, int.class, data);
+	}
+	//검색+목록
+	public int count(PageVO pageVO) {
+		if(pageVO.isSearch()) { //검색
+			String sql = "select count(*) from menu "
+					+ "where instr("+pageVO.getColumn()+", ?) > 0";
+			Object[] data = {pageVO.getKeyword()};
+			return jdbcTemplate.queryForObject(sql, int.class, data);
+		}
+		else {//목록
+			String sql = "select count(*) from menu";
+			return jdbcTemplate.queryForObject(sql, int.class);
+		}
+	}
+	
 	
 	//상세
 	public MenuDto selectOne(int menuNo) {
