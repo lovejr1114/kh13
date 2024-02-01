@@ -92,6 +92,20 @@ public class BoardDao {
 		return jdbcTemplate.query(sql, boardListMapper, data);
 	}
 	
+	//카운트 - 목록일 경우와 검색일 경우를 각각 구현
+	//목록
+	public int count() {
+		String sql = "select count(*) from board";
+		return jdbcTemplate.queryForObject(sql, int.class);
+	}
+	//검색
+	public int count(String column, String keyword) {
+		String sql = "select count(*) from board "
+				+ "where instr("+column+", ?) > 0";
+		Object[] data = {keyword};
+		return jdbcTemplate.queryForObject(sql, int.class, data);
+	}
+	
 	
 	//count, sequence, max, min, sum, avg처럼 결과가 하나만 나오는 경우
 	//그 결과는 객체가 아니라 원시데이터 형태일 확률이 높다
