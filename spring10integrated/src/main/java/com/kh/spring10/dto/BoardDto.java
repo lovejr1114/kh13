@@ -14,6 +14,12 @@ public class BoardDto {
 	private Date boardWtime;//작성시각
 	private Date boardEtime;//편집시각
 	private int boardReadcount;//조회수
+	
+	private int boardGroup; //그룹번호
+	private Integer boardTarget; //상위글
+	private int boardDepth; //차수
+	
+	
 	public int getBoardNo() {
 		return boardNo;
 	}
@@ -63,6 +69,24 @@ public class BoardDto {
 			return boardWriter;
 	}
 	
+	public int getBoardGroup() {
+		return boardGroup;
+	}
+	public void setBoardGroup(int boardGroup) {
+		this.boardGroup = boardGroup;
+	}
+	public Integer getBoardTarget() {
+		return boardTarget;
+	}
+	public void setBoardTarget(Integer boardTarget) {
+		this.boardTarget = boardTarget;
+	}
+	public int getBoardDepth() {
+		return boardDepth;
+	}
+	public void setBoardDepth(int boardDepth) {
+		this.boardDepth = boardDepth;
+	}
 	//오늘 작성한 글은 시간을, 이전에 작성한 글은 날짜를 반환
 	//- LocalDate 형태로 시간을 변환하여 오늘 날짜와 비교
 	//- 날짜가 같다면 LocalDateTime으로 변환해서 시간만 반환
