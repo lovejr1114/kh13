@@ -12,7 +12,16 @@
 		<input type="hidden" name="boardTarget" value="${param.boardTarget}">
 	</c:if>
 	
-	제목 <input name="boardTitle" type="text" requird><br><br>
+	제목 
+	<c:choose>
+		<c:when test="${param.boardTarget == null}">
+			<input type="text" name="boardTitle" required>
+		</c:when>
+		<c:otherwise>
+			<input name="boardTitle" type="text" requird value="[Re] ${targetDto.boardTitle}">
+		</c:otherwise>
+	</c:choose>
+	<br><br>
 	내용 <br>
 	<%-- 
 		여러 줄 입력하고 싶다면 textarea 태그를 사용한다. type은 없고 name만 적으면 된다.

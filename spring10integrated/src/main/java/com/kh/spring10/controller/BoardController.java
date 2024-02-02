@@ -121,9 +121,15 @@ public class BoardController {
 	}
 	
 	
-	//추가
+	//등록
 	@GetMapping("/write")
-	public String write() {
+	public String write(@RequestParam(required = false) Integer boardTarget,
+								Model model) {
+		//답글일 경우는 작성 페이지로 답글의 정보를 전달(제목 등에 사용)
+		if(boardTarget != null) {
+			BoardDto targetDto = boardDao.selectOne(boardTarget);
+			model.addAttribute("targetDto", targetDto);
+		}
 		return "/WEB-INF/views/board/write.jsp";
 	}
 	
@@ -162,6 +168,7 @@ public class BoardController {
 			boardDto.setBoardGroup(sequence); //그룹번호는 글번호로 설정
 //			boardDto.setBoardTarget(null); //대상은 null로 설정 (사실 안 적어도 null로 설정되긴 함)
 //			boardDto.setBoardDepth(0); //차수는 0으로 설정(사실 이것도 안적으면 int는 0으로 설정되긴함)
+			//근데 target과 depth를 주석처리 하지않으면 게시글 생성이 약간 이상하게 됨
 		}
 		else {//답글이면 (대상 != null)
 			//대상글의 모든 정보를 조회
