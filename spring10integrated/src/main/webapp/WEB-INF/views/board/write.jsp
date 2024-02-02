@@ -9,7 +9,7 @@
 <form action="write" method="post">
 	<%-- (중요) 답변글일 경우 대산의 번호가 반드시 등록페이지로 전송되어야 함 --%>
 	<c:if test="${param.boardTarget != null}">
-		<input type="hidden" name="boardTarget" vlaue="${param.boardTarget}">
+		<input type="hidden" name="boardTarget" value="${param.boardTarget}">
 	</c:if>
 	
 	제목 <input name="boardTitle" type="text" requird><br><br>
