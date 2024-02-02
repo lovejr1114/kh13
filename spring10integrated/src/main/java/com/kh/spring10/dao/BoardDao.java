@@ -177,10 +177,13 @@ public class BoardDao {
 	//등록
 	public void insert(BoardDto boardDto) {
 		String sql = "insert into board(board_no, board_title, "
-						+ "board_content, board_writer) "
-						+ "values (?, ?, ?, ?)";
+						+ "board_content, board_writer, board_group, "
+						+ "board_target, board_depth) "
+						+ "values (?, ?, ?, ?, ?, ?, ?)";
 		Object[] data = {boardDto.getBoardNo(), boardDto.getBoardTitle(),
-				boardDto.getBoardContent(), boardDto.getBoardWriter()};
+				boardDto.getBoardContent(), boardDto.getBoardWriter(),
+				boardDto.getBoardGroup(), boardDto.getBoardTarget(),
+				boardDto.getBoardDepth()};
 		jdbcTemplate.update(sql, data);
 	}
 	

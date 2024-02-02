@@ -34,7 +34,13 @@
 	</tr>
 	<tr height="200" valign="top">
 		<td>
-			${boardDto.boardContent}
+			<%-- 
+				HTML은 엔터와 스페이스 등을 무시하기 때문에 textarea와 모양이 달라진다
+				- 상용 에디터를 쓰면 알아서 글자를 보정해주기 때문에 문제가 없다
+				- 기본 textarea를 쓰면 문제가 발생한다 
+				- <pre>태그를 사용하면 글자를 있는 그대로 출력한다.
+			 --%>
+			<pre>${boardDto.boardContent}</pre>
 		</td>
 	</tr>
 	<tr>
@@ -50,7 +56,7 @@
 	<tr>
 		<td align="right">
 			<a href="write">글쓰기</a>
-			<a href="#">답글쓰기</a>
+			<a href="write?boardTarget=${boardDto.boardNo}">답글쓰기</a>
 			
 			<%-- 
 				수정과 삭제링크는 회원이면서 본인글이거나 관리자일 경우만 출력

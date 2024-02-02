@@ -8,7 +8,7 @@
 <form action="edit" method="post">
 	<input type="hidden" name="boardNo" value="${boardDto.boardNo}">
 
-	제목 <input type="text" name="boardTitle" value="${boardDto.boardTitle}">
+	제목 <input type="text" name="boardTitle" value="${boardDto.boardTitle}"> <br><br>
 	<%-- textarea는 시작태그와 종료태그 사이에 내용을 작성(enter,띄어쓰기도 인식함) --%>
 	내용 <textarea name="boardContent" value="${boardDto.boardContent}" required>${boardDto.boardContent}</textarea><br><br>
 	<button>수정</button>
