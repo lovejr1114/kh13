@@ -16,7 +16,7 @@ public class BoardDto {
 	private int boardReadcount;//조회수
 	
 	private int boardGroup; //그룹번호
-	private Integer boardTarget; //상위글
+	private Integer boardTarget; //원본글 번호 (상위글)
 	private int boardDepth; //차수
 	
 	
