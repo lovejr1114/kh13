@@ -42,7 +42,6 @@ public class AttachService {
 		File target = new File (dir, String.valueOf(attachNo));
 		target.delete();
 		attachDao.delete(attachNo); //파일 정보 지우고
-		return ;
 	}
 	
 }

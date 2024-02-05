@@ -8,6 +8,8 @@
 <hr>
 <h2>${sessionScope.loginId} 님의 회원 정보</h2>
 
+<img src="image" width="200" height="200"><br>
+
 <table border="1" width="400">
 	<tr>
 		<th>닉네임</th>
