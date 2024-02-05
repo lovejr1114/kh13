@@ -2,9 +2,11 @@ package com.kh.spring10.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -90,5 +92,14 @@ public class AdminItemController {
 			itemDao.connect(itemNo, attachNo);
 		}
 		return "redirect:add";
+	}
+	
+	
+	//포인트 상품 목록
+	@RequestMapping("/list")
+	public String list(Model model) {
+		List<AttachDto> list = attachDao.selectList();
+		model.addAttribute("list",list);
+		return "/WEB-INF/views/admin/item/list.jsp";
 	}
 }
