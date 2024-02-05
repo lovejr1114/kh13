@@ -231,6 +231,15 @@ public class MemberController {
 		boolean isValid = findDto.getMemberPw().equals(memberPw);
 		
 		if(isValid) {
+			//회원 탈퇴 전에 프로필 번호를 찾아서 삭제 처리
+			try {
+				int attachNo = memberDao.findAttachNo(loginId);
+				attachService.remove(attachNo); //파일삭제+DB삭제
+			}
+			catch(Exception e) {
+				e.printStackTrace();
+			}
+			
 			memberDao.delete(loginId); //회원 탈퇴
 			session.removeAttribute("loginId"); //로그아웃
 			return "redirect:exitFinish";

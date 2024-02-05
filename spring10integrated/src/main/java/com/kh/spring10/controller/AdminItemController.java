@@ -18,6 +18,7 @@ import com.kh.spring10.dao.AttachDao;
 import com.kh.spring10.dao.ItemDao;
 import com.kh.spring10.dto.AttachDto;
 import com.kh.spring10.dto.ItemDto;
+import com.kh.spring10.service.AttachService;
 
 @Controller
 @RequestMapping("/admin/item")
@@ -29,6 +30,9 @@ public class AdminItemController {
 	@Autowired
 	private ItemDao itemDao;
 
+	@Autowired
+	private AttachService attachService;
+	
 	@GetMapping("/add")
 	public String add() {
 		return "/WEB-INF/views/admin/item/add.jsp";
@@ -59,7 +63,7 @@ public class AdminItemController {
 			System.out.println("파일크기="+attach.getSize());
 			
 			//파일명을 대체하기 위한 시퀀스 생성
-			int attachNo = attachDao.getSequence();
+//			int attachNo = attachDao.getSequence();
 			
 			//파일과 관련된 작업(저장 등..)을 구현
 			//[1] 파일이 저장될 위치(디렉터리)를 정한다
@@ -68,25 +72,26 @@ public class AdminItemController {
 			
 			//[1]
 //			File dir = new File("D:/upload"); //디렉터리 객체 생성
-			File dir = new File(System.getProperty("user.home"), "upload");
-			dir.mkdirs(); //실제 디렉터리 생성
-			System.out.println("dir="+dir.getAbsolutePath()); //절대경로 위치
+//			File dir = new File(System.getProperty("user.home"), "upload");
+//			dir.mkdirs(); //실제 디렉터리 생성
+//			System.out.println("dir="+dir.getAbsolutePath()); //절대경로 위치
 			
 			//[2]
 //			File target = new File(dir, attach.getOriginalFilename()); //파일 객체 생성
-			File target = new File(dir, String.valueOf(attachNo)); //파일 객체 생성
+//			File target = new File(dir, String.valueOf(attachNo)); //파일 객체 생성
 			
 			//[3]
-			attach.transferTo(target); //파일 내용 복사
+//			attach.transferTo(target); //파일 내용 복사
 			
 			//첨부파일 정보를 DB에 저장
-			AttachDto attachDto = new AttachDto();
-			attachDto.setAttachNo(attachNo);
-			attachDto.setAttachName(attach.getOriginalFilename());//사용자가 올린 파일명
-			attachDto.setAttachType(attach.getContentType());
-			attachDto.setAttachSize(attach.getSize());
+//			AttachDto attachDto = new AttachDto();
+//			attachDto.setAttachNo(attachNo);
+//			attachDto.setAttachName(attach.getOriginalFilename());//사용자가 올린 파일명
+//			attachDto.setAttachType(attach.getContentType());
+//			attachDto.setAttachSize(attach.getSize());	
+//			attachDao.insert(attachDto);
 			
-			attachDao.insert(attachDto);
+			int attachNo = attachService.save(attach);
 			
 			//연결
 			itemDao.connect(itemNo, attachNo);
@@ -123,15 +128,12 @@ public class AdminItemController {
 	public String delete(@RequestParam int itemNo) {
 		try {
 			int attachNo = itemDao.findAttcahNo(itemNo); //아이템 번호로 파일 번호 찾고
-			
-			//실제 파일 삭제
-			File dir = new File(System.getProperty("user.home"), "upload");
-			File target = new File (dir, String.valueOf(attachNo));
-			target.delete();
-			attachDao.delete(attachNo); //파일 정보 지우고
-			
-			itemDao.delete(itemNo); //아이템 정보 삭제
-			
+			attachService.remove(attachNo); //파일삭제+DB삭제
+//			실제 파일 삭제
+//			File dir = new File(System.getProperty("user.home"), "upload");
+//			File target = new File (dir, String.valueOf(attachNo));
+//			target.delete();
+//			attachDao.delete(attachNo); //파일 정보 지우고			
 		}
 		catch(Exception e) {}
 		finally {//예외 여부와 관계 없이 무조건 실행되는 구문
