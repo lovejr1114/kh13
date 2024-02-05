@@ -91,15 +91,101 @@ public class AdminItemController {
 			//연결
 			itemDao.connect(itemNo, attachNo);
 		}
-		return "redirect:add";
+		return "redirect:list";
 	}
 	
 	
 	//포인트 상품 목록
 	@RequestMapping("/list")
 	public String list(Model model) {
-		List<AttachDto> list = attachDao.selectList();
+		List<ItemDto> list = itemDao.selectList();
 		model.addAttribute("list",list);
 		return "/WEB-INF/views/admin/item/list.jsp";
+	}
+	
+	
+	//상품번호를 전달하면 파일번호를 찾아서 리다이렉트하는 페이지
+	@RequestMapping("/image")
+	public String image(@RequestParam int itemNo) {
+		try {
+			int attachNo = itemDao.findAttcahNo(itemNo);
+			return "redirect:/download?attachNo="+attachNo;
+		}
+		catch(Exception e) {
+			//return "기본 이미지 주소";
+			return "redirect:http://via.placeholder.com/200x100";
+		}
+	}
+	
+	//충전 상품 삭제
+	//- 주의할 점은 파일 번호를 먼저 알아내고 지워야 한다는 것
+	@GetMapping("/delete")
+	public String delete(@RequestParam int itemNo) {
+		try {
+			int attachNo = itemDao.findAttcahNo(itemNo); //아이템 번호로 파일 번호 찾고
+			
+			//실제 파일 삭제
+			File dir = new File(System.getProperty("user.home"), "upload");
+			File target = new File (dir, String.valueOf(attachNo));
+			target.delete();
+			attachDao.delete(attachNo); //파일 정보 지우고
+			
+			itemDao.delete(itemNo); //아이템 정보 삭제
+			
+		}
+		catch(Exception e) {}
+		finally {//예외 여부와 관계 없이 무조건 실행되는 구문
+			itemDao.delete(itemNo); //아이템 정보 삭제
+		}
+		return "redirect:list";
+	}
+	
+	//충전상품 정보 수정
+	@GetMapping("/edit")
+	public String edit(@RequestParam int itemNo, Model model) {
+		ItemDto itemDto = itemDao.selectOne(itemNo);
+		model.addAttribute("itemDto", itemDto);
+		return "/WEB-INF/views/admin/item/edit.jsp";
+	}
+	@PostMapping("/edit")
+	public String edit(@ModelAttribute ItemDto itemDto,
+				@RequestParam MultipartFile attach) throws IllegalStateException, IOException {
+		//우선 아이템 정보는 첨부파일과 관계없이 수정처리
+		itemDao.update(itemDto);
+		
+		//첨부파일이 있다면 기존의 첨부파일을 지우고 신규 첨부파일을 등록(연결해주기)
+		if(!attach.isEmpty()) {
+			//기존 파일 삭제
+			try {
+				int attachNo = itemDao.findAttcahNo(itemDto.getItemNo()); //파일번호 찾고
+				File dir = new File(System.getProperty("user.home"), "upload"); //폴더 안에
+				File target = new File(dir, String.valueOf(attachNo)); //해당하는 번호를 선택해라.
+				target.delete(); //실제 파일 삭제
+				attachDao.delete(attachNo); //DB에서 삭제
+			}
+		catch (Exception e) {} //예외 발생 시 아무것도 안함 (skip)
+			
+		//신규 파일 추가
+		//- attach_seq 번호 생성
+		//- 실물 파일을 등록
+		//- DB에 insert
+		//- item과 connect 처리
+		int attachNo = attachDao.getSequence(); //시퀀스 생성
+		File dir = new File(System.getProperty("user.home"),"upload");
+		File target = new File(dir, String.valueOf(attachNo));
+		attach.transferTo(target); //실물 파일 저장
+		
+		AttachDto attachDto = new AttachDto(); //새로 만들어서 정보를 다 채우기
+		attachDto.setAttachNo(attachNo);
+		attachDto.setAttachName(attach.getOriginalFilename());
+		attachDto.setAttachType(attach.getContentType());
+		attachDto.setAttachSize(attach.getSize());
+		attachDao.insert(attachDto); //DB 저장
+		
+		itemDao.connect(itemDto.getItemNo(), attachNo); //연결 처리
+		
+		}
+		
+		return "redirect:list";
 	}
 }
