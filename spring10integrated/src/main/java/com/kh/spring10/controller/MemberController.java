@@ -1,5 +1,7 @@
 package com.kh.spring10.controller;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,9 +10,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.kh.spring10.dao.AttachDao;
 import com.kh.spring10.dao.MemberDao;
 import com.kh.spring10.dto.MemberDto;
+import com.kh.spring10.service.AttachService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -21,14 +26,28 @@ public class MemberController {
 	@Autowired
 	private MemberDao memberDao;
 	
+	@Autowired
+	private AttachDao attachDao;
+	
+	@Autowired
+	private AttachService attachService;
+	
 	@GetMapping("/join")
 	public String join() {
 		return "/WEB-INF/views/member/join.jsp";
 	}
 	
 	@PostMapping("/join")
-	public String join(@ModelAttribute MemberDto memberDto) {
+	public String join(@ModelAttribute MemberDto memberDto,
+							@RequestParam MultipartFile attach) throws IllegalStateException, IOException {
+		
 		memberDao.insert(memberDto);
+		
+		if(!attach.isEmpty()) {
+			int attachNo = attachService.save(attach); //파일저장+DB저장
+			
+			memberDao.connect(memberDto.getMemberId(), attachNo); //연결
+		}
 		return "redirect:joinSuccess";
 	}
 	
@@ -225,4 +244,5 @@ public class MemberController {
 	public String exitFinish() {
 		return "/WEB-INF/views/member/exitFinish.jsp";
 	}
+	
 }
