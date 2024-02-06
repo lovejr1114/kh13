@@ -138,14 +138,14 @@ public class MemberDao {
 		
 		//포인트 충전, 차감
 		public boolean plusMemberPoint(String memberId, int point) {
-			String sql = "update member set member_point + ? "
+			String sql = "update member set member_point=member_point + ? "
 								+ "where member_id=?";
 			Object[] data = {point, memberId};
 			return jdbcTemplate.update(sql, data) > 0;
 		}
 		
 		public boolean minusMemberPoint(String memberId, int point) {
-			String sql = "update member set member_point - ? "
+			String sql = "update member set member_point=member_point - ? "
 							+ "where member_id=?";
 			Object[] data = {point, memberId};
 			return jdbcTemplate.update(sql, data) > 0;
