@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>   
@@ -61,6 +61,43 @@
 <h2><a href="#">임시 비밀번호 발행</a></h2>
 <h2><a href="edit?memberId=${memberDto.memberId}">회원 정보 변경</a></h2>
 <h2><a href="delete?memberId=${membetDto.memberId}">회원 강제 탈퇴</a></h2>
+
+<hr>
+
+<h1>포인트 구매내역</h1>
+<c:choose>
+	<c:when test="${buyList.isEmpty()}">
+		<h3>구매 내역이 존재하지 않습니다.</h3>
+	</c:when>
+	<c:otherwise>
+		<table border="1" width="600">
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>상품명</th>
+					<th>수량</th>
+					<th>구매금액</th>
+					<th>구매일시</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="buyDto" items="${buyList}">
+					<tr>
+						<td>${buyDto.buySerial}</td>
+						<td>${buyDto.itemName}</td>
+						<td>${buyDto.buyQty}</td>
+						<td>
+							<fmt:formatNumber value="${buyDto.buyTotal}" pattern="#,##0"/>
+						</td>
+						<td>
+							<fmt:formatDate value="${buyDto.buyTime}" pattern="yyyy-MM-dd HH:mm"/>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</c:otherwise>
+</c:choose>
 
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>   

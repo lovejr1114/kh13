@@ -274,7 +274,7 @@ public class MemberController {
 			return "redirect:/download?attachNo="+attachNo;
 		}
 		catch(Exception e) {
-			return "redirect:/user.png";
+			return "redirect:/image/user.png";
 		}
 	}
 }
