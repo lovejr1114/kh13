@@ -106,7 +106,6 @@ public class AdminController {
 		
 		model.addAttribute("buyList", buyDao.selectList(memberId));
 		
-		
 		return "/WEB-INF/views/admin/member/detail.jsp";
 	}
 	
