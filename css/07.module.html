@@ -33,7 +33,7 @@
     .cell{
         border:1px dotted gray;
         margin-top: 10px;
-        margin-right: 10px;
+        margin-bottom: 10px;
     }
 
     /*
@@ -69,16 +69,89 @@
     .w-50{width:50%;}
     .w-33{width:33.3333%;}
     .w-25{width:25%;}
+
+    /*
+        입력창과 버튼 스타일
+        - 입력창 - .tool
+        - 버튼 - .btn
+    */
+    .tool , .btn { /* 콤마(,) 를 써주면 둘 다 해당되게끔 */
+        font-size: 20px;
+        padding: 0.5em 1em; /*왼: 상하 , 오른: 좌우*/
+        outline: none; /* 선택 시 자동 강조 효과 제거 */
+        border: 1px solid #636e72;
+        border-radius: 0.1em;
+    }
+
+    /* 입력창은 focus 효과가 발생할 때 테두리를 강조 */
+    .tool:focus{
+        border-color: #2d3436;
+    }
+
+    /*
+        버튼은 크게 세 가지 용도로 구분한다
+        1. 긍정버튼 - 누르면 긍정적인 작업이 발생하는 경우 (순리대로 흘러가는 경우)
+        2. 부정버튼 - 누르면 작업이 중단되거나 위험한 일이 발생하는 경우
+        3. 중립버튼 - 긍정도 부정도 아닌 제 3의 작업이 발생하는 경우
+
+        그냥 .btn은 중립버튼으로 처리
+        긍정버튼은 .btn 뒤에 .positive 추가
+        부정버튼은 .btn 뒤에 .negative 추가
+
+        마우스가 버튼에 올라가면(hover)  강조 효과 부여
+    */
+
+    .btn { /*a태그를 버튼으로 쓸 경우*/
+        color:#2d3436;
+        text-decoration: none; /* 밑줄 제거 */
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .btn.positive{
+        border-color:1px solid #00b894;
+        background-color: #00b894;
+        color: white;
+    }
+    .btn.negative{
+        border-color:1px solid #d63031;
+        background-color: #d63031;
+        color: white;
+    }
+
+    /* 버튼에 마우스가 올라가면 색상의 변화를 주겠다 */
+    .btn:hover{
+        background-color: #e5e5e5;
+    }
+    .btn.positive:hover {
+        border-color:1px solid #00a585;
+        background-color: #00a585;
+        color: white;
+    }
+    .btn.negative:hover {
+        border-color:1px solid #c42627;
+        background-color: #c42627;
+        color: white;
+    }
 </style>
 </head>
 <body>
-    <div class="container w-300">
+    <div class="container w-500">
         <div class="cell">이미지</div>
-        <div class="cell">아이디 입력창</div>
-            <input type="text" name="memberId" class="w-100">
+        <div class="cell">
+            <input type="text" name="memberId" class="tool w-100" placeholder="아이디">
         </div>
-        <div class="cell">비밀번호 입력창</div>
-        <div class="cell">로그인 버튼</div>
+        <div class="cell">
+            <input type="text" name="memberPw" class="tool w-100" placeholder="비밀번호">
+        </div>
+        <div class="cell">
+            <button class="btn positive w-100">로그인</button>
+        </div>
+        <hr>
+        <div class="cell">
+            <a href="#" class="btn w-100">회원가입</a>
+        </div>
     </div>
 </body>
 </html>
