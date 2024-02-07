@@ -134,11 +134,23 @@
         background-color: #c42627;
         color: white;
     }
+
+    /*
+        정렬 스타일
+        - .left를 붙이면 왼쪽 정렬
+        - .center를 붙이면 가운데 정렬
+        - .right를 붙이면 오른쪽 정렬
+    */
+    .left {text-align:left;}
+    .center {text-align:center;}
+    .right {text-align:right;}
 </style>
 </head>
 <body>
     <div class="container w-500">
-        <div class="cell">이미지</div>
+        <div class="cell center">
+            <img src="image/naver_logo.png" width="200">
+    </div>
         <div class="cell">
             <input type="text" name="memberId" class="tool w-100" placeholder="아이디">
         </div>
