@@ -20,11 +20,11 @@ public class ItemDao2 {
 	//등록
 	public void insert(ItemDto2 itemDto2) {}
 	//목록
-	public List<ItemDto2> selectList() {}
-	//상세
-	public ItemDto2 selectOne(int itemNo) {}
-	//수정
-	public boolean update(ItemDto2 itemDto2) {}
-	//삭제
-	public boolean delete(int itemNo) {}
+//	public List<ItemDto2> selectList() {}
+//	//상세
+//	public ItemDto2 selectOne(int itemNo) {}
+//	//수정
+//	public boolean update(ItemDto2 itemDto2) {}
+//	//삭제
+//	public boolean delete(int itemNo) {}
 }

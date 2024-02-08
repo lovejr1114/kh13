@@ -20,11 +20,11 @@ public class ClientDao {
 	//등록
 	public void insert(ClientDto clientDto) {}
 	//목록
-	public List<ClientDto> selectList(){}
-	//상세
-	public ClientDto selectOne(String clientId) {}
-	//수정
-	public boolean update(ClientDto clientDto) {}
-	//삭제
-	public boolean delete(String clientId) {}
+//	public List<ClientDto> selectList(){}
+//	//상세
+//	public ClientDto selectOne(String clientId) {}
+//	//수정
+//	public boolean update(ClientDto clientDto) {}
+//	//삭제
+//	public boolean delete(String clientId) {}
 }
