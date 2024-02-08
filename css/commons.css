@@ -96,6 +96,15 @@
         padding-right:0;
     }
 
+    /* 이미지가 들어갈 수 있는 입력창 */
+    .tool.tool-image{
+        padding-left: 2.25em;
+        background-size:1em;
+        background-repeat: no-repeat;
+        background-position-x: 0.625em;
+        background-position-y: center;
+    }
+
     /*
         버튼은 크게 세 가지 용도로 구분한다
         1. 긍정버튼 - 누르면 긍정적인 작업이 발생하는 경우 (순리대로 흘러가는 경우)
