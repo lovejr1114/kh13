@@ -17,11 +17,27 @@
 	폼(상대경로)
 	<form action="insert2">
 --%>
-<form action="insert2">
-	번호 : <input name="pocketmonNo"> <br><br>
-	이름 : <input name="pocketmonName"> <br><br>
-	속성 : <input name="pocketmonType"> <br><br>
-	<button>등록</button>
+<form action="insert2" autocomplete="off">
+<div class="container w-400">
+	<div class="cell center">
+		<h1>포켓몬스터 등록</h1>
+	</div>
+	<div class="cell">
+		<label>번호</label>
+		<input name="pocketmonNo" class="tool w-100">
+	</div>
+	<div class="cell">
+		<label>이름</label>
+		<input name="pocketmonName" class="tool w-100">
+	</div>
+	<div class="cell">
+		<label>속성</label>
+		<input name="pocketmonType" class="tool w-100">
+	</div>
+	<div class="cell">
+		<button class="btn positive w-100">등록</button>
+	</div>
+</div>
 </form>
 
 <%-- 템플릿 페이지를 불러오는 코드 --%>
