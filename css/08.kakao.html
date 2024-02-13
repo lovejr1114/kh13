@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kakao-Login</title>
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="test.css"> -->
+    <style>
+        /* 디자인을 재정의하여 원하는 모양이나 색상으로 변경 */
+        .btn.positive{
+            background-color:rgb(250,225,0);
+            border:rgb(250,225,0);
+            color: #2d3436;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container w-400 mt-50">
+        <div class="cell center my-20">
+            <img src="image/kakao_logo.png" width="20%">
+        </div>
+        <form action="#" method="post" autocomplete="off">
+            <div class="cell">
+                <input type="text" name="memberId" placeholder="카카오메일, 아이디, 이메일, 전화번호" class="tool underline w-100">
+            </div>
+            <div class="cell">
+                <input type="password" name="memeberPw" placeholder="비밀번호" class="tool underline w-100"
+            </div>
+            <div class="cell mt-30">
+                <button class="btn positive w-100">로그인</button>
+            </div>
+        </form>
+        <hr class="my-20">
+        <div class="cell">
+            <button class="btn w-100">QR코드 로그인</button>
+        </div>
+    </div>
+    
+</body>
+</html>
