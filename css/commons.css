@@ -146,10 +146,11 @@
         - .left를 붙이면 왼쪽 정렬
         - .center를 붙이면 가운데 정렬
         - .right를 붙이면 오른쪽 정렬
+        - 우선순위에서 밀리지않기 위해 !important 처리를 해야함
     */
-    .left {text-align:left;}
-    .center {text-align:center;}
-    .right {text-align:right;}
+    .left {text-align:left !important;}
+    .center {text-align:center !important;}
+    .right {text-align:right !important;}
 
 
     /*
@@ -392,7 +393,8 @@
             display: inline-block;
             color: #2d3436;
             text-decoration: none;
-            border:1px solid #2d3436;
+            /* border:1px solid #2d3436; */
+            border:1px solid transparent; /* transparent는 투명 */
             padding:0.5em; /* 패딩으로 여백을 주면 웬만하면 글자크기 조정.*/
             font-size: inherit; /* inherit은 상속.*/
             min-width: 2.5em;
@@ -406,10 +408,43 @@
         }
 
         /*
-            현재 페이지에 해당하는 번호에는 활성화 클래스인 on을 추가한다.
+            현재 페이지에 해당하는 번호에는 활성화 클래스인 on을 추가한다
+            단, off인 경우는 hover에서 제외한다
         */
         .page-navigator > a.on,
-        .page-navigator > a:hover {
+        .page-navigator > a:not(.off)hover {   
             color: #6594aa;
             border-color: #6594aa;
+        }
+
+        /* off 클래스에 대한 효과 추가 */
+        .page-navigator > a.off {
+        	color: #b2bec3;
+        	cursor:not-allowed;
+        }
+
+
+        /* 이미지 디자인*/
+        .image-circle {
+            border-radius:50%;
+        }
+        .image-round {
+            border-radius: 5px;
+        }
+        .image-grayscale {
+            filter:grayscale(100%)
+        }
+        .image-blur {
+            opacity: 0.7; /* 불투명도 -1 (100%), 0(0%) */
+        }
+        .image-blur.hover:hover {
+            opacity: 1;
+            transition: opacity 0.1s linear;
+        }
+        .image-shadow {
+            /* box-shadow : x위치, y위치, 번짐, 확대, 색상; */
+            box-shadow: 5px 5px 0 0 #2d3436;
+        }
+        .image-lift {
+            box-shadow: 0 0 2px 1px #2d3436;
         }
