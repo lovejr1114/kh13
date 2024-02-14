@@ -12,13 +12,31 @@
 	<form action="insert2"></form>
 --%>
 
-<form action="insert" method="post">
-	사원명 <input name="empName" type="text"> <br><br>
-	부서명 <input name="empDept" type="text"> <br><br>
-	입사일 <input name="empDate" type="date"> <br><br>
-	급여액 <input name="empSal" type="text"> <br><br>
-	<button>등록</button>
-</form>
+<form action="insert" method="post" autocomplete="off">
+<div class="container w-400">
+	<div class="cell center"><h1>사원 등록</h1></div>
+	<div class="cell">
+		<label>사원명</label>
+		<input name="empName" type="text" class="tool w-100">
+	</div>
+	<div class="cell">
+		<label>부서명</label>
+		<input name="empDept" type="text" class="tool w-100">
+	</div>
+	<div class="cell">
+		<label>입사일</label>
+		<input name="empDate" type="date" class="tool w-100">
+	</div>
+	<div class="cell">
+		<label>급여액</label>
+		<input name="empSal" type="text" class="tool w-100 right">
+	</div>
+	<div class="cell">
+		<button class="btn positive w-100">사원등록</button>
+	</div>
+</div>
+	
+</form>	
 
 
 <%-- 템플릿 페이지를 불러오는 코드 --%>

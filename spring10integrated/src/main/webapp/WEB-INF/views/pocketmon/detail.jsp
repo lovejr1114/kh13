@@ -29,7 +29,7 @@
 		
 		<%-- 다른 페이지로의 링크 --%>
 		<h2><a href="list">목록보기</a></h2>
-		<h2><a href="">수정하기</a></h2>
+		<h2><a href="edit?pocketmonNo=${dto.pocketmonNo}">수정하기</a></h2>
 		<h2><a href="delete?pocketmonNo=${dto.pocketmonNo}">삭제하기</a></h2>
 	</c:when>
 	<c:otherwise>
