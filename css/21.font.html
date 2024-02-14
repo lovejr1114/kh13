@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폰트</title>
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- 내가 구현한 스타일 -->
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <link rel="stylesheet" type="text/css" href="test.css">
+
+    <!-- font awesome 아이콘 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /*
+            텍스트 디자인
+            - word-break 설정을 통해 줄바꿈 기준을 정한다
+            - 줄바꿈을 원치 않는 경우도 설정 가능하도록 구현한다
+        */
+        .dummy-text { 
+            word-break: break-all;
+        }
+        .ellipsis { 
+            /*
+                다음 세 개의 스타일을 같이 사용하면 말줄임표 처리가 된다
+                단, 반드시 영역에 폭이 설정되어 있어야 한다
+            */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        /*
+            웹 폰트 설정
+               @font-face {
+            font-family: 이름;
+            src: url("위치");
+        }
+        */
+        @font-face {
+            font-family: SOGANG_UNIVERSITY_for_windows;
+            src: url("font/SOGANG_UNIVERSITY_for_windows.ttf");
+        }
+        *{
+            font-family: "Noto Sans KR", sans-serif;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container w-500">
+        <div class="cell center">
+            <h1>폰트 디자인</h1>
+        </div>
+
+        <div class="cell">
+            <h2>Lorem Ipsum</h2>
+        </div>
+
+        <div class="cell"><h2>줄바꿈 기준 변경</h2></div>
+        <div class="cell dummy-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget pulvinar mi. Pellentesque sed ultricies urna. Curabitur efficitur justo nec dignissim condimentum. Quisque non orci vitae urna cursus vehicula. Aliquam erat volutpat. Aenean elementum lobortis sapien id gravida. Integer convallis eget ex convallis dignissim. In viverra interdum felis vitae dignissim. Maecenas dictum lacus non mauris cursus finibus. Curabitur bibendum accumsan dui, vehicula rutrum ex tempor vitae. In a risus ornare, lacinia massa sit amet, tristique lorem. Fusce dictum, lacus et lacinia vulputate, nisi tellus consectetur eros, non aliquet urna nulla sed massa. Fusce in dolor eget mi congue suscipit. Vivamus ultrices placerat malesuada.
+        </div>
+
+        <div class="cell"><h2>한줄+말줄임표</h2></div>
+        <div class="cell ellipsis"> 
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget pulvinar mi. Pellentesque sed ultricies urna. Curabitur efficitur justo nec dignissim condimentum. Quisque non orci vitae urna cursus vehicula. Aliquam erat volutpat. Aenean elementum lobortis sapien id gravida. Integer convallis eget ex convallis dignissim. In viverra interdum felis vitae dignissim. Maecenas dictum lacus non mauris cursus finibus. Curabitur bibendum accumsan dui, vehicula rutrum ex tempor vitae. In a risus ornare, lacinia massa sit amet, tristique lorem. Fusce dictum, lacus et lacinia vulputate, nisi tellus consectetur eros, non aliquet urna nulla sed massa. Fusce in dolor eget mi congue suscipit. Vivamus ultrices placerat malesuada.
+        </div>
+    </div>
+</body>
+</html>
