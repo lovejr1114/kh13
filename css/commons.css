@@ -346,10 +346,10 @@
     }
 
     /*
-            링크 디자인
-            - class="link"인 경우 디자인을 설정
-            - 방문한 경우의 색상은 :visited 상태에 대해서 디자인을 하면 된다
-        */
+        링크 디자인
+        - class="link"인 경우 디자인을 설정
+        - 방문한 경우의 색상은 :visited 상태에 대해서 디자인을 하면 된다
+     */
         .link {
             text-decoration : none;
             color: #2d3436;
@@ -692,3 +692,22 @@
             left: auto;
             right: 100%;
         }
+
+        /* 
+    float 모듈 디자인
+    - float를 사용하고 싶다면 div에 floating-cell이라는 클래스를 부여
+    - 영역이 끝나는 시점에 자동으로 clear를 수행하도록 디자인
+    - 가상 선택자인 ::after를 사용하여 강제 영역 생성 후 clear 수행
+    */
+    .floating-cell::after {
+        content: ""; /* 태그 종료 시점의 가상영역을 생성하고 */
+        display: block; /* div처럼 block 상태로 만들고 */
+        clear: both; /* 사용한 float 속성을 모두 제거 */
+    }
+    /* floating-cell 내부의 항목들은 모두 float:left 처리 */
+    .floating-cell > * {
+        float: left;
+    }
+    .floating-cell.reverse > * {
+        float: right;
+    }
