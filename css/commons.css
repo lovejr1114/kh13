@@ -265,6 +265,29 @@
     .py-40 { padding-top:40px; padding-bottom:40px;}
     .py-50 { padding-top:50px; padding-bottom:50px;}
 
+
+	/*
+    테이블 디자인
+    - table이라는 클래스가 붙는 경우만 디자인하도록 설계
+    - table은 전체와 칸에 테두리가 따로 적용된다(나눠져있다, seperate)
+	*/
+	.table {
+	    border-collapse: collapse;
+	    border-spacing: 0px;
+	    width: 100%;
+	}
+	
+	/*
+	    .table 안에 있는 td와 th에만 디자인을 적용하는 방법
+	    (1) 후손 선택자
+	        - .table th 라고 작성하면 .table 안에있는 모든 th를 선택
+	        - .table td 라고 작성하면 .table 안에 있는 모든 td를 선택
+	        - 작성이 편하지만 테이블이 중첩되면 문제가 생김(범용성↓)
+	    (2) 자식 선택자
+	        - .table > tbody > tr > td 라고 작성하면 순서대로 따라가서 나오는 td를 선택
+	        - 작성이 까다롭지만 정확한 대상을 지정할 수 있음(범용성↑)
+	*/
+	
     .table > thead > tr > th,
     .table > thead > tr > td,
     .table > tbody > tr > th,
@@ -274,6 +297,7 @@
         text-align:center;
         padding: 0.25em;
     }
+    
 
     /*    테이블 확장 스타일 - 테두리가 있는 테이블   */
     .table.table-border > thead > tr > th,
@@ -601,7 +625,7 @@
             background-color: #2d3436;
         }
         .menu li {
-            font-size: 24px;
+            font-size: 20px;
             width:200px;
             color: white;
             padding: 0.5em;
