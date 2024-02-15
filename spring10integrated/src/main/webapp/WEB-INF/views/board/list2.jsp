@@ -18,7 +18,7 @@
 	</div>
 	<div class="cell">
 		<%-- 테이블 --%>
-		<table class="table table-horizontal">
+		<table class="table table-border table-hover">
 			<thead>
 				<tr>
 					<th>번호</th>
