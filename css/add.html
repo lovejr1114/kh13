@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제목을 설정하세요</title>
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 내가 구현한 스타일 -->
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <link rel="stylesheet" type="text/css" href="test.css">
+
+    <!-- font awesome 아이콘 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+   
+    <form action="add" method="post" enctype="multipart/form-data" autocomplete="off">
+        <div class="container w-500">
+            <div class="cell">
+                <h1>판매 상품 등록</h1>
+            </div>
+            <div calss="cell">
+                    <input type="text" name="itemName" required>
+                    <input type="number" name="itemPrice" required>
+                    <input type="nember" name="itemCharge" required>
+                    <div class="cell">
+                        <label>이미지</label>
+                        <input type="file" name="attach" class="tool w-100">
+                    </div>
+                    <button>신규 등록</button>
+                </div>
+            </div>
+    </form>
+        
+</body>
+</html>
