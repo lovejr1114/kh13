@@ -19,11 +19,14 @@
 	<div class="cell">
 		<button class="btn positive w-100">로그인</button>
 	</div>
+	
 	<div class="cell center">
-		<a href="#">아이디가 기억나지 않습니다</a>
-	</div>
-	<div class="cell center">
-		<a href="#">비밀번호가 기억나지 않습니다</a>
+		<div class="cell">
+			<a href="#">아이디 찾기</a>
+		</div>
+		<div class="cell">
+			<a href="#">비밀번호 찾기</a>
+		</div>
 	</div>
 	<c:if test="${param.error != null}">
 	<div class="cell center">
