@@ -711,3 +711,17 @@
     .floating-cell.reverse > * {
         float: right;
     }
+
+     /* flex layout 디자인 */
+     .flex-cell {
+        display: flex;
+    }
+    .flex-cell > .width-fill {
+        flex-grow: 1; /* grow는 나머지 설정 */
+    }
+    .flex-cell.auto-width > * {
+        flex-grow: 1;
+    }
+    .flex-cell.verical { 
+        flex-direction: column;
+    }
