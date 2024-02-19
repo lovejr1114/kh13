@@ -5,73 +5,98 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<h1>마이페이지</h1>
-<hr>
-<h2>${sessionScope.loginId} 님의 회원 정보</h2>
+<div class="container w-1200">
+	<div class="cell title center">
+		<h1 align="center">마이페이지</h1>
+		<hr class="my-20">
+	</div>
+	
+	<div class="cell center">
+		<h2>${sessionScope.loginId} 님의 회원 정보</h2>
+	</div>
+	
+	<div class="cell floating-cell">
+		<div class="p-20">
+			<div class="cell">
+				<img src="image" width="200" height="200">
+			</div>
+			<div class="cell">
+				<a href="/member/password" class=" btn w-100">비밀번호 변경</a>
+			</div>
+			<div class="cell">
+				<a href="/member/change" class="btn w-100">개인정보 변경</a>
+			</div>	
+			<div class="cell">	
+				<a href="/member/exit" class="btn negative w-100">회원 탈퇴</a>
+			</div>
+	</div>
+	
+	<div class="cell w-50 m-50">
+		<table class="table table-border">
+			<tr>
+				<th>닉네임</th>
+				<td>${memberDto.memberNick}</td>
+			</tr>
+			<tr>
+				<th>연락처</th>
+				<td>${memberDto.memberContact}</td>
+			</tr>
+			<tr>
+				<th>생년월일</th>
+				<td>${memberDto.memberBirth}</td>
+			</tr>
+			<tr>
+				<th>E-mail</th>
+				<td>${memberDto.memberEmail}</td>
+			</tr>
+			<tr>
+				<th>주소</th>
+				<td>
+					[${memberDto.memberPost}]
+					${memberDto.memberAddress1}
+					${memberDto.memberAddress2}
+				</td>
+			</tr>
+			<tr>
+				<th>회원등급</th>
+				<td>${memberDto.memberLevel}</td>
+			</tr>
+			<tr>
+				<th>포인트</th>
+				<td>${memberDto.memberPoint} Point</td>
+			</tr>
+			<tr>
+				<th>가입일</th>
+				<td>
+					<fmt:formatDate value="${memberDto.memberJoin}" 
+											pattern="y년 M월 d일 H시 m분 s초"/>
+				</td>
+			</tr>
+			<tr>
+				<th>최근 로그인</th>
+				<td>
+					<fmt:formatDate value="${memberDto.memberLogin}" 
+											pattern="y년 M월 d일 H시 m분 s초"/>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+</div>
 
-<img src="image" width="200" height="200"><br>
-
-<table border="1" width="400">
-	<tr>
-		<th>닉네임</th>
-		<td>${memberDto.memberNick}</td>
-	</tr>
-	<tr>
-		<th>연락처</th>
-		<td>${memberDto.memberContact}</td>
-	</tr>
-	<tr>
-		<th>생년월일</th>
-		<td>${memberDto.memberBirth}</td>
-	</tr>
-	<tr>
-		<th>E-mail</th>
-		<td>${memberDto.memberEmail}</td>
-	</tr>
-	<tr>
-		<th>주소</th>
-		<td>
-			[${memberDto.memberPost}]
-			${memberDto.memberAddress1}
-			${memberDto.memberAddress2}
-		</td>
-	</tr>
-	<tr>
-		<th>회원등급</th>
-		<td>${memberDto.memberLevel}</td>
-	</tr>
-	<tr>
-		<th>포인트</th>
-		<td>${memberDto.memberPoint} Point</td>
-	</tr>
-	<tr>
-		<th>가입일</th>
-		<td>
-			<fmt:formatDate value="${memberDto.memberJoin}" 
-									pattern="y년 M월 d일 H시 m분 s초"/>
-		</td>
-	</tr>
-	<tr>
-		<th>최근 로그인</th>
-		<td>
-			<fmt:formatDate value="${memberDto.memberLogin}" 
-									pattern="y년 M월 d일 H시 m분 s초"/>
-		</td>
-	</tr>
-</table>
-		
-		
-<h3><a href="/member/password">비밀번호 변경</a></h3>
-<h3><a href="/member/change">개인정보 변경</a></h3>
-<h3><a href="/member/exit">회원 탈퇴</a></h3>
-
-<hr>
-
-<h1>
-	포인트 구매 내역
-	<a href="/point/charge">추가 구매</a>
-</h1>
-<table border="1" width="600">
+<div>
+		<div class="cell title center">
+		<h2>포인트 구매내역</h2>
+	</div>
+	<div class="cell">
+		<h3 align="right">
+			<i class="fa-solid fa-credit-card"></i>
+			<a href="/point/charge" class="link">추가 구매</a>
+		</h3>
+	</div>
+</div>
+	<div class="cell">
+		<table class="table table-border">
 	<thead>
 		<tr>
 			<th>번호</th>
@@ -97,5 +122,9 @@
 		</c:forEach>
 	</tbody>
 </table>
+	</div>
+</div>
+
+
 		
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
