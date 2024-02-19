@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript 예제</title>
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 내가 구현한 스타일 -->
+    <link rel="stylesheet" type="text/css" href="../css/commons.css">
+    <link rel="stylesheet" type="text/css" href="../css/test.css">
+
+    <!-- font awesome 아이콘 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+    
+    </style>
+    <!-- javascript를 의도적으로 head 자리에 배치해서 가장 먼저 실행되도록 구현 -->
+    <script type="text/javascript">
+        function age() {
+            var currentDate = new Date();
+            var currentYear = currentDate.getFullYear();
+            
+            var inputTarget = document.querySelector("[name=userBirth]");
+            console.log(inputTarget);
+            var copyTarget = document.querySelector(".copy");
+            var userAge = currentYear - inputTarget.value;
+        
+            var price;
+            if(userAge >= 65 || userAge < 8){
+                price = 0;
+            }
+            else if (userAge >= 20) {
+                price = 1400;
+            }
+            else if (userAge >= 14) {
+                price = 800;
+            }
+            else {
+                price = 500;
+            }
+            copyTarget.textContent = price;
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container w-500">
+        <div class="cell center">
+            <h1>지하철 요금 계산</h1>
+        </div>
+        <div class="cell">
+            출생년도 4자리
+            <input name="userBirth" class="tool w-100">
+        </div>
+
+        <div class="cell">
+            <button class="btn positive w-100" onclick="age();">
+                요금 계산하기
+            </button>
+        </div>
+
+        <hr>
+        <div class="cell center">
+            지불하실 금액은 
+            <span class="copy"></span>원
+        </div>
+
+    </div>
+
+</body>
+</html>
