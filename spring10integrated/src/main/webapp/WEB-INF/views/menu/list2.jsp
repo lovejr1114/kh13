@@ -5,7 +5,21 @@
 
 <%-- 템플릿 페이지를 불러오는 코드 --%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
-   
+  
+  
+<div class="container w-800">
+	<div class="cell center">
+		<h1>메뉴 목록</h1>
+		<a href="insert"> 신규 등록</a>
+	</div>
+	<div class="cell">
+		
+	</div>
+</div>
+
+
+
+
  <h1>
  	메뉴 목록
  	<button><a href="insert"> 신규 등록</a></button>
