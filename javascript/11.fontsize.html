@@ -16,25 +16,27 @@
     <!-- font awesome 아이콘 CDN -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-    .text
-    {
-        min-height: 500px;
-    }
+        .editor {
+            min-height: 250px;
+        }
     </style>
     <!-- javascript를 의도적으로 head 자리에 배치해서 가장 먼저 실행되도록 구현 -->
     <script type="text/javascript">
         
         function smallSize() {
-            var target =  document.querySelector(".text");
-            target.style.fontSize = 12+"px";
+            var target =  document.querySelector(".editor");
+            // target.style = "font-size:12px";
+            target.style.fontSize = "12px"; // 여러단어일 경우 카멜케이스로 작성
+            // target.style["fontSize"] = "12px"; //자바스크립트 객체 접근 방식(자바의 Map과 유사)
+
         }
-        function middleSize() {
-            var target =  document.querySelector(".text");
-            target.style.fontSize = 16+"px";
+        function normalSize() {
+            var target =  document.querySelector(".editor");
+            target.style.fontSize = "16px";
         }
         function bigSize() {
-            var target =  document.querySelector(".text");
-            target.style.fontSize = 24+"px";
+            var target =  document.querySelector(".editor");
+            target.style.fontSize = "24px";
         }
     </script>
 </head>
@@ -42,18 +44,18 @@
 
     <div class="container w-500">
         <div class="cell center">
-            <h1>글자 사이즈 조절하기</h1>
+            <h1>글자 크기 변경 문제</h1>
         </div>
         <div class="cell">
+            <div class="cell center">
+                <button class="btn positive" onclick="smallSize();">작게</button>
+                <button class="btn positive" onclick="normalSize();">보통</button>
+                <button class="btn positive" onclick="bigSize();">크게</button>
+            </div>
             <div class="cell">
-                <textarea class="text tool tool-fixed w-100">
+                <textarea class="editor tool w-100">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget pulvinar mi. Pellentesque sed ultricies urna. Curabitur efficitur justo nec dignissim condimentum. Quisque non orci vitae urna cursus vehicula. Aliquam erat volutpat. Aenean elementum lobortis sapien id gravida. Integer convallis eget ex convallis dignissim. In viverra interdum felis vitae dignissim. Maecenas dictum lacus non mauris cursus finibus. Curabitur bibendum accumsan dui, vehicula rutrum ex tempor vitae. In a risus ornare, lacinia massa sit amet, tristique lorem. Fusce dictum, lacus et lacinia vulputate, nisi tellus consectetur eros, non aliquet urna nulla sed massa. Fusce in dolor eget mi congue suscipit. Vivamus ultrices placerat malesuada.
                 </textarea>
-            </div>
-            <div class="cell center">
-                <button class="btn" onclick="smallSize();">작게</button>
-                <button class="btn" onclick="middleSize();">보통</button>
-                <button class="btn" onclick="bigSize();">크게</button>
             </div>
         </div>
     </div>

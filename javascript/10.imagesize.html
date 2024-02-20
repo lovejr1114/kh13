@@ -16,25 +16,29 @@
     <!-- font awesome 아이콘 CDN -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-    
+        .dummy {
+            transition-property: width height;
+            transition-timing-function: ease-out;
+            transition-duration: 0.1s;
+        }
     </style>
     <!-- javascript를 의도적으로 head 자리에 배치해서 가장 먼저 실행되도록 구현 -->
     <script type="text/javascript">
         
         function smallSize() {
-            var target = document.querySelector(".image");
-            target.style.width = 150+"px";
-            target.style.height = 150+"px";
+            var target = document.querySelector(".dummy");
+            target.style.width = "150px";
+            target.style.height = "150px";
         }
-        function middleSize() {
-            var target = document.querySelector(".image");
-            target.style.width = 300+"px";
-            target.style.height = 300+"px";
+        function normalSize() {
+            var target = document.querySelector(".dummy");
+            target.style.width = "300px";
+            target.style.height = "300px";
         }
         function bigSize() {
-            var target = document.querySelector(".image");
-            target.style.width = 450+"px";
-            target.style.height = 450+"px";
+            var target = document.querySelector(".dummy");
+            target.style.width = "450px";
+            target.style.height = "450px";
         }
     </script>
 </head>
@@ -47,11 +51,11 @@
         <div class="cell">
             <div class="cell center">
                 <button class="btn" onclick="smallSize();">작게</button>
-                <button class="btn" onclick="middleSize();">보통</button>
+                <button class="btn" onclick="normalSize();">보통</button>
                 <button class="btn" onclick="bigSize();">크게</button>
             </div>
             <div>
-                <img  class="image" src="../css/image/egg.png">
+                <img  class="dummy" src="../css/image/egg.png">
             </div>
         </div>
     </div>
