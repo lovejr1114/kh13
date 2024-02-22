@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript 예제</title>
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 내가 구현한 스타일 -->
+    <link rel="stylesheet" type="text/css" href="../css/commons.css">
+    <link rel="stylesheet" type="text/css" href="../css/test.css">
+
+    <!-- font awesome 아이콘 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+    
+    </style>
+    <!-- javascript를 의도적으로 head 자리에 배치해서 가장 먼저 실행되도록 구현 -->
+    <script type="text/javascript">
+       function checkId(){
+            var inputIdTarget = document.querySelector(".tempId");
+            var text1 = inputIdTarget.value;
+            var regexId = /^[a-z][a-z0-9]{7,19}$/;
+            var idValid = regexId.test(text1);
+
+            var regexIdTarget = document.querySelector(".idValid");
+            if(idValid) {
+                regexIdTarget.textContent = "멋진 아이디네요!";
+                regexIdTarget.style.color = "green";
+            }
+            else{
+                regexIdTarget.textContent = "아이디는 소문자 시작, 숫자포함 8~20자로 작성하세요.";
+                regexIdTarget.style.color = "red";
+            }
+       }
+
+       function checkPw() {
+            var inputPwTarget = document.querySelector(".tempPw");
+            var text2 = inputPwTarget.value;
+            var regexPw = /^(?=(.*?)[A-Z]+)(?=(.*?)[a-z]+)(?=(.*?)[0-9]+)(?=(.*?)[!@#$]+)[A-Za-z0-9!@#$]{8,16}$/;
+            var pwValid = regexPw.test(text2);
+
+            var regexPwTarget = document.querySelector(".pwValid");
+            if(pwValid) {
+                regexPwTarget.textContent = "올바른 형식의 비밀번호입니다."
+                regexPwTarget.style.color = "green";
+            }
+            else {
+                regexPwTarget.textContent = "비밀번호에는 반드시 숫자, 영문 대소문자, 특수문자를 포함하세요!";
+                regexPwTarget.style.color = "red";
+            }
+       }
+
+       function checkPwMatch() {
+        var pwInput = document.querySelector(".tempPw");
+        var pwConfirmInput = document.querySelector(".tempPwConfirm");
+        var pwMatchTarget = document.querySelector(".pwMatch");
+
+        if (pwInput.value === pwConfirmInput.value) {
+            pwMatchTarget.textContent = "비밀번호가 일치합니다.";
+            pwMatchTarget.style.color = "green";
+        } else {
+            pwMatchTarget.textContent = "비밀번호가 일치하지 않습니다.";
+            pwMatchTarget.style.color = "red";
+        }
+    }
+    </script>
+</head>
+<body>
+
+    <div class="container w-500">
+        <div class="cell center">
+            <h1>join 구현</h1>
+        </div>
+        <div class="cell">
+            아이디 <br>
+            <input type="text" placeholder="소문자/숫자 8~20자" class="tempId tool w-100" oninput="checkId();">
+            <div class="cell idValid"></div>
+        </div>
+        <div class="cell">
+            비밀번호 <br>
+            <input class="tempPw tool w-100" type="password" placeholder="대문자,소문자,숫자,특수문자 포함 8~16자" oninput="checkPw();">
+            <div class="cell pwValid"></div>
+        </div>
+        <div class="cell">
+            비밀번호 확인 <br>
+            <input class="tempPwConfirm tool w-100" type="password" placeholder="비밀번호 입력 확인" oninput="checkPwMatch();">
+            <div class="pwMatch"></div>
+        </div>
+    </div>
+
+</body>
+</html>

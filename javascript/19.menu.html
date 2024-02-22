@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript 예제</title>
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 내가 구현한 스타일 -->
+    <link rel="stylesheet" type="text/css" href="../css/commons.css">
+    <link rel="stylesheet" type="text/css" href="../css/test.css">
+
+    <!-- font awesome 아이콘 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+    
+    </style>
+    <!-- javascript를 의도적으로 head 자리에 배치해서 가장 먼저 실행되도록 구현 -->
+    <script type="text/javascript">
+        function checkMenuNameKor() {
+            var inputTarget = document.querySelector("[name=menuNameKor]");
+
+            var regex = /^[가-힣]+$/;
+            var isValid = regex.test(inputTarget.value);
+
+            inputTarget.classList.remove("success","fail");
+            inputTarget.classList.add(isValid ? "success" : "fail");
+            return isValid;
+        }
+        function checkMenuNameEng() {
+            var inputTarget = document.querySelector("[name=menuNameEng]");
+
+            var regex = /^[a-zA-Z]+$/;
+            var isValid = regex.test(inputTarget.value);
+
+            inputTarget.classList.remove("success","fail");
+            inputTarget.classList.add(isValid ? "success" : "fail");
+            return isValid;
+        }
+        function checkMenuType() {
+            var inputTarget = document.querySelector("[name=menuType]");
+            var menuType = inputTarget.value;
+
+            var isValid = menuType.length > 0;
+
+            inputTarget.classList.remove("success","fail");
+            inputTarget.classList.add(isValid ? "success" : "fail");
+            return isValid;
+        }
+        function checkMenuPrice() {
+            var inputTarget = document.querySelector("[name=menuPrice]");
+
+            var regex = /^[0-9]+$/;
+            var isValid = regex.test(inputTarget.value);
+
+            inputTarget.classList.remove("success","fail");
+            inputTarget.classList.add(isValid ? "success" : "fail");
+            return isValid;
+        }
+        function checkForm() {
+            var isValid1 = checkMenuNameKor();
+            var isValid2 = checkMenuNameEng();
+            var isValid3 = checkMenuType();
+            var isValid4 = checkMenuPrice();
+            return isValid1 && isValid2 && isValid3 && isValid4;
+        }
+    </script>
+</head>
+<body>
+
+    <form action="?" method="post" autocomplete="off" onsubmit="return checkForm();">
+    <div class="container w-500">
+        <div class="cell center">
+            <h1>메뉴 등록</h1>
+        </div>
+        <div class="cell">
+            <label>한글메뉴명</label>
+            <input type="text" name="menuNameKor" placeholder="(ex) 아메리카노" 
+                        class="tool w-100" onblur="checkMenuNameKor();">
+            <div class="fail-feedback">한글로만 입력하세요</div>
+        </div>
+        <div class="cell">
+            <label>영문메뉴명</label>
+            <input type="text" name="menuNameEng" placeholder="(ex) Americano" 
+                            class="tool w-100" onblur="checkMenuNameEng();">
+            <div class="fail-feedback">영문으로만 입력하세요</div>
+        </div>
+        <div class="cell">
+            <label>메뉴유형</label>
+            <select name="menuType" class="tool w-100" oninput="checkMenuType();">
+                <option value="">선택하세요</option>
+                <option value="커피">커피</option>
+                <option value="스무디">스무디</option>
+                <option value="에이드">에이드</option>
+                <option value="디저트">디저트</option>
+            </select>
+            <div class="fail-feedback">유형을 선택하세요</div>
+        </div>
+        <div class="cell">
+            <label>메뉴가격</label>
+            <input type="text" name="menuPrice" placeholder="(ex) 4500" 
+                            class="tool w-100" onblur="checkMenuPrice();">
+            <div class="fail-feedback">가격을 입력하세요</div>
+        </div>
+        <div class="cell">
+            <button class="btn positive tool w-100">
+               <i class="fa-solid fa-utensils"></i>
+                메뉴 등록
+            </button>
+        </div>
+    </div>
+    </form>
+
+</body>
+</html>
