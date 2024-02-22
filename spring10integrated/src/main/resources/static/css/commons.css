@@ -105,6 +105,20 @@
         background-position-x: 0.625em;
         background-position-y: center;
     }
+    /*
+            textarea도 입력도구이므로 .tool을 사용
+            textarea의 최대 문제점은 가로로 크기조절이 가능한 것이므로 이를 제어
+            resize 속성으로 설정
+            - 'resize : none' 으로 설정하면 크기 조절이 불가능
+            - 'resize : vertical' 로 설정하면 세로 크기 조절만 가능
+        */
+        textarea.tool { /* textarea에 tool이 붙어있는 경우 */
+            resize: vertical;
+            min-height: 5em; /* 필요시 개조 */
+        }
+        textarea.tool.tool-fixed {
+            resize: none;
+        }
 
     /*
         버튼은 크게 세 가지 용도로 구분한다
@@ -725,3 +739,33 @@
     .flex-cell.verical { 
         flex-direction: column;
     }
+
+    /* 
+            입력창 피드백 디자인
+            - 입력창 뒤에 피드백 영역이 있다면 판정 결과에 따라 표시되도록 구현
+        */
+        .tool.success {
+            border-color: #00b894 !important;
+        }
+        .tool.fail,
+        .tool.fail2,
+        .tool.fail3 {
+            border-color : #d63031 !important;
+        }
+
+        .success-feedback {
+            color : #00b894;
+            display: none;
+        }
+        .fail-feedback,
+        .fail2-feedback,
+        .fail3-feedback {
+            color : #d63031;
+            display: none;
+        }
+
+        .tool.success ~ .success-feedback,
+        .tool.fail ~ .fail-feedback,
+        .tool.fail2 ~ .fail2-feedback,
+        .tool.fail3 ~ .fail3-feedback {
+             display: block; }
