@@ -34,8 +34,8 @@
 
             // [2] 다음 버튼을 누르면 버튼이 있는 페이지는 숨기고 다음 페이지를 표시
             $(".btn-next").click(function(){
-                // $(this).parent(".page").hide().next(".page").show(); //페이지 바로 앞에 있을 때
-                $(this).parents(".page").hide().next(".page").show(); // 페이지 내부에 있을 때 
+                // $(this).parent(".page").hide().next(".page").show(); //페이지 바로 밑에 버튼이 있어야 작동
+                $(this).parents(".page").hide().next(".page").show(); // 페이지 내부에 버튼이 있으면 작동
             });
 
             // [3] 이전 버튼을 누르면 버튼이 있는 페이지는 숨기고 이전  페이지를 표시
