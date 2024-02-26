@@ -19,11 +19,11 @@
 			<input type="password" name="memberPw" placeholder="대소문자,숫자,특수문자 포함 6~15자" required class="tool w-100">
 		</div>	
 		
-		<div class="floating-cell">
-			<div class="w-50 left">
+		<div class="flex-cell">
+			<div class="w-100 left">
 				<button type="button" class="btn btn-prev">이전</button>
 			</div>
-			<div class="w-50 right">
+			<div class="w-100 right">
 				<button type="button" class="btn btn-next">다음</button>
 			</div>
 		</div>
@@ -35,11 +35,11 @@
 			<input type="text" name="memberNick" placeholder="한글숫자 2~10자" required class="tool w-100">
 		</div>
 		
-		<div class="floating-cell">
-			<div class="w-50 left">
+		<div class="flex-cell">
+			<div class="w-100 left">
 				<button type="button" class="btn btn-prev">이전</button>
 			</div>
-			<div class="w-50 right">
+			<div class="w-100 right">
 				<button type="button" class="btn btn-next">다음</button>
 			</div>
 		</div>
@@ -59,11 +59,11 @@
 			<input type="tel" name="memberContact" class="tool w-100">
 		</div>
 		
-		<div class="floating-cell">
-			<div class="w-50 left">
+		<div class="flex-cell">
+			<div class="w-100 left">
 				<button type="button" class="btn btn-prev">이전</button>
 			</div>
-			<div class="w-50 right">
+			<div class="w-100 right">
 				<button type="button" class="btn btn-next">다음</button>
 			</div>
 		</div>
@@ -84,11 +84,11 @@
 			<input type="text" name="memberAddress2" placeholder="상세주소" class="tool w-100">
 		</div>
 		
-		<div class="floating-cell">
-			<div class="w-50 left">
+		<div class="flex-cell">
+			<div class="w-100 left">
 				<button type="button" class="btn btn-prev">이전</button>
 			</div>
-			<div class="w-50 right">
+			<div class="w-100 right">
 				<button type="button" class="btn btn-next">다음</button>
 			</div>
 		</div>
@@ -100,11 +100,11 @@
 			<input type="file" name="attach" class="tool w-100">
 		</div>
 		
-		<div class="floating-cell">
-			<div class="w-50 left">
+		<div class="flex-cell">
+			<div class="w-100 left">
 				<button type="button" class="btn btn-prev">이전</button>
 			</div>
-			<div class="w-50 right">
+			<div class="w-100 right">
 				<button type="button" class="btn btn-next">다음</button>
 				<button type="submit" class="btn positive">회원가입</button>
 			</div>
