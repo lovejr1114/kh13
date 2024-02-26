@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript 예제</title>
+
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 내가 구현한 스타일 -->
+    <link rel="stylesheet" type="text/css" href="../css/commons.css">
+    <link rel="stylesheet" type="text/css" href="../css/test.css">
+
+    <!-- font awesome 아이콘 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .dummy {
+            transition-property: width,height;
+            transition-duration: 0.1s;
+            transition-timing-function: ease-out;
+        }
+    </style>
+
+    <!-- jquery cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    
+    <!-- javascript를 의도적으로 head 자리에 배치해서 가장 먼저 실행되도록 구현-->
+    <script type="text/javascript">
+        $(function(){
+            $(".btn-small").click(function(){
+                //this == 작게 버튼
+                //$(".dummy").css("width", "150px");
+                //$(".dummy").css("height", "150px");
+                
+                $(".dummy").css("width", "150px").css("height", "150px");
+
+                // $(".dummy").css({
+                //     "width":"150px", 
+                //     "height":"150px"
+                // });
+            });
+            $(".btn-normal").click(function(){
+                $(".dummy").css("width", "300px")
+                                    .css("height", "300px");
+            });
+            $(".btn-big").click(function(){
+                $(".dummy").css("width", "450px")
+                                    .css("height", "450px");
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <div class="container w-500">
+        <div class="cell center">
+            <h1>이미지 크기조절 문제</h1>
+        </div>
+        <div class="cell center">
+            <button class="btn positive btn-small">작게</button>
+            <button class="btn positive btn-normal">보통</button>
+            <button class="btn positive btn-big">크게</button>
+        </div>  
+        <div class="cell center">
+            <img class="dummy" 
+                    src="https://picsum.photos/id/1001/500/500" 
+                    style="width:300px; height:300px">
+        </div>
+    </div>
+
+</body>
+</html>
