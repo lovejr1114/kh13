@@ -40,12 +40,21 @@
     
     <style>
     </style>
+    
+    <!-- jQuery CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    
+    <!-- 내가 만든 JS -->
+    <script src="/js/commons.js"></script>
+    
+    
 </head>
 <body>
     
     <main>
-        <div class="header">
-            <h1 class="center">KH정보교육원</h1>            
+        <div class="header center">
+        	<a href="/"><img src="/image/kh_logo.png"></a>
+<%--	 <h1 class="center">KH정보교육원</h1>  --%>                       
         </div>
         <div class="nav">
 			<ul class="menu">

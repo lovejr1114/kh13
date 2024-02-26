@@ -21,8 +21,8 @@
 		<h1>사원 목록 및 검색</h1>
 	</div>
 	<div class="cell right">
-		<i class="fa-solid fa-plus"></i>
-		<a href="insert">신규등록</a>
+		<i class="fa-solid fa-user"></i>
+		<a href="insert" class="link">신규등록</a>
 	</div>
 	
 	
@@ -81,11 +81,17 @@
 		</form>
 	</div>
 	
+	<form action="deleteAll" method="post">
 	<div class="cell">
 		<%-- 목록 출력 --%>
-		<table class="table table-border">
+		<table class="table table-horizontal">
 			<thead>
 				<tr>
+					 <c:if test="${sessionScope.loginLevel == '관리자'}">
+					<th>
+						<input type="checkbox" class="check-all">
+					</th>
+					</c:if>
 					<th>사원번호</th>
 					<th>사원명</th>
 					<th>부서명</th>
@@ -93,21 +99,33 @@
 					<th>급여액</th>
 					<th></th>
 				</tr>
+			</thead>
 			<tbody align="center">
 				<c:forEach var="dto" items="${list}">
 				<tr>
+					<td>
+						<input type="checkbox" class="check-item"
+									name="empNo" value="${dto.empNo}">
+					</td>
 					<td>${dto.empNo}</td>
 					<td>${dto.empName}</td>
 					<td>${dto.empDept}</td>
 					<td>${dto.empDate}</td>
 					<td>${dto.empSal}원</td>
-					<td><a href="detail?empNo=${dto.empNo}">이동</a></td>
+					<td><a href="detail?empNo=${dto.empNo}" class="link">이동</a></td>
 				</tr>
 				</c:forEach>
 			</tbody>
-			</thead>
 		</table>
 	</div>
+	
+	<!-- 삭제 버튼 -->
+	 <c:if test="${sessionScope.loginLevel == '관리자'}">
+	<div class="cell right">
+		<button class="btn negative">삭제</button>
+	</div>
+	</c:if>
+	</form>
 </div>
 
 
