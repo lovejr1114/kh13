@@ -20,9 +20,6 @@
 		</div>	
 		
 		<div class="flex-cell">
-			<div class="w-100 left">
-				<button type="button" class="btn btn-prev">이전</button>
-			</div>
 			<div class="w-100 right">
 				<button type="button" class="btn btn-next">다음</button>
 			</div>
@@ -59,6 +56,10 @@
 			<input type="tel" name="memberContact" class="tool w-100">
 		</div>
 		
+		<!-- 
+			버튼이 없는 경우도 처리하기 위해서 flex-cell 사용
+			flex-cell은 설정에 따라 줄바꿈을 금지할 수 있기 때문에 폭을 100%로 설정	 
+		-->
 		<div class="flex-cell">
 			<div class="w-100 left">
 				<button type="button" class="btn btn-prev">이전</button>
@@ -105,7 +106,6 @@
 				<button type="button" class="btn btn-prev">이전</button>
 			</div>
 			<div class="w-100 right">
-				<button type="button" class="btn btn-next">다음</button>
 				<button type="submit" class="btn positive">회원가입</button>
 			</div>
 		</div>

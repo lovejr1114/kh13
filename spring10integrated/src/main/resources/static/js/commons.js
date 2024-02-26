@@ -63,8 +63,8 @@ $(function(){
     //$(".page:gt(0)").hide();//권장하지 않음
 
     //(추가) 첫번째 이전버튼과 마지막 다음버튼을 삭제
-    $(".page").find(".btn-prev").first().remove();
-    $(".page").find(".btn-next").last().remove();
+    //$(".page").find(".btn-prev").first().remove();
+    //$(".page").find(".btn-next").last().remove();
 
     //[2] 다음 버튼을 누르면 버튼이 있는 페이지는 숨기고 다음 페이지를 표시
     $(".page").find(".btn-next").click(function(){
