@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript 예제</title>
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 내가 구현한 스타일 -->
+    <link rel="stylesheet" type="text/css" href="../css/commons.css">
+    <link rel="stylesheet" type="text/css" href="../css/test.css">
+
+    <!-- font awesome 아이콘 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+         .dummy {
+            transition-property: width, height;
+            transition-duration: 0.1s;
+            transition-timing-function: ease-out;
+        }
+    </style>
+    <!-- javascript를 의도적으로 head 자리에 배치해서 가장 먼저 실행되도록 구현 -->
+    <script type="text/javascript">
+        window.onload = function() {
+            var sizeButtons = document.querySelectorAll(".btn-size");
+            for(var i=0; i<sizeButtons.length; i++) {
+                sizeButtons[i].addEventListener("click",function(){
+                    // this는 이벤트가 발생한 주인공
+                    var image = document.querySelector(".dummy");
+                    image.style.width = this.dataset.size+"px";
+                    image.style.height = this.dataset.size+"px";
+                });
+            }
+        };
+    </script>
+</head>
+<body>
+
+    <div class="container w-500">
+        <div class="cell center">
+            <h1>이미지 크기 변경 문제</h1>
+        </div>
+        <div class="cell center">
+            <div class="cell">
+                <!-- 
+                    필요하다면 태그에 커스텀 속성을 작성할 수 있다
+                    단, 원래 있던 속성과의 구분을 위해 data- 로 시작하게 만든다
+                    (dataset이라고 부름)
+                 -->
+                <button class="btn btn-size" data-size="150">작게</button>
+                <button class="btn btn-size" data-size="300">보통</button>
+                <button class="btn btn-size" data-size="400">약간크게</button>
+                <button class="btn btn-size" data-size="450">크게</button>
+            </div>
+            <div>
+                <img  class="dummy" src="../css/image/ahh.jpg" width="300" height="300">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript 예제</title>
+
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 내가 구현한 스타일 -->
+    <link rel="stylesheet" type="text/css" href="../css/commons.css">
+    <link rel="stylesheet" type="text/css" href="../css/test.css">
+
+    <!-- font awesome 아이콘 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        
+    </style>
+
+    <!-- jquery cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <!-- 내가 만든 스크립트 추가(jQuery를 사용했으니 jQuery CDN 아래 작성) -->
+    <script src="commons.js"></script>
+    <!-- javascript를 의도적으로 head 자리에 배치해서 가장 먼저 실행되도록 구현-->
+    <script type="text/javascript">
+        $(function(){
+            // 상태 객체
+            var state = {
+                empNameValid : false,
+                empDeptValid : false,
+                empDateValid : false,
+                empSalValid : false,
+                ok : function(){
+                    return this.empNameValid && this.empDeptValid
+                                && this.empDateValid && this.empSalValid;
+                }
+            };
+
+            // 폼 이벤트(sumbit)
+            $(".check-form").submit(function(){
+                $(this).find("[name]").blur();
+                return state.ok();
+            });
+
+            // 개별 입력창 이벤트 (input, blur, selcet, change)
+            $("[name=empName]").blur(function(){
+                var regex = /^[가-힣]{2,7}$/;
+                state.empNameValid = regex.test($(this).val());
+                $(this).removeClass("success fail")
+                        .addClass(state.empNameValid ? "success" : "fail");
+            });
+            $("[name=empDept]").blur(function(){
+                state.empDeptValid = $(this).val().length > 0;
+                $(this).removeClass("success fail")
+                        .addClass(state.empDeptValid ? "success" : "fail");
+            });
+            $("[name=empDate]").blur(function(){
+                var regex = /^(19[0-9]{2}|20[0-9]{2})-(02-(0[1-9]|1[0-9]|2[0-8])|(0[469]|11)-(0[1-9]|1[0-9]|2[0-9]|30)|(0[13578]|1[02])-(0[1-9]|1[0-9]|2[0-9]|3[01]))$/;
+                state.empDateValid = regex.test($(this).val());
+                $(this).removeClass("success fail")
+                        .addClass(state.empDateValid ? "success" : "fail");
+            });
+            $("[name=empSal]").blur(function(){
+                state.empSalValid = parseInt($(this).val()) > 0;
+                $(this).removeClass("success fail")
+                        .addClass(state.empSalValid ? "success" : "fail");
+            });
+        });
+    </script>
+</head>
+<body>
+
+
+    <form action="?" method="post" autocomplete="off" class="check-form">
+    <div class="container w-500">
+        <div class="cell center">
+            <h1>사원등록</h1>
+        </div>
+        <div class="cell">
+            <label>사원명</label>
+            <input name="empName" type="text" class="tool w-100" placeholder="(ex) 홍길동">
+            <div class="fail-feedback">사원명 입력해라</div>
+        </div>
+        <div class="cell">
+            <label>부서명</label>
+            <input name="empDept" type="text" class="tool w-100" placeholder="(ex) 영업부">
+            <div class="fail-feedback">부서명 입력해라</div>
+        </div>
+        <div class="cell">
+            <label>입사일</label>
+            <input name="empDate" type="date" class="tool w-100" >
+            <div class="fail-feedback">잘못된 날짜 형식입니다</div>
+        </div>
+        <div class="cell">
+            <label>급여액</label>
+            <input name="empSal" type="text" class="tool w-100 right" placeholder="(ex) 5000000">
+            <div class="fail-feedback">급여액 입력해라</div>
+        </div>
+        <div class="cell mt-30">
+            <button class="btn positive w-100">
+                <i class="fa-solid fa-plus"></i>사원등록
+            </button>
+        </div>
+    </div>
+    </form>
+
+
+</body>
+</html>
