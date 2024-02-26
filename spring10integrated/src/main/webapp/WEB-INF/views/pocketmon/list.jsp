@@ -8,19 +8,19 @@
 
 
 <div clas="container w-1200">
-	<div class="cell floating-cell">
+	<div class="cell">
 		<div class="cell center">
 			<h1>포켓몬 목록</h1>
 		</div>
-		<div clas="cell">
-			<i class="fa-solid fa-plus"></i>
-			<a href="insert1">신규 등록</a>
+		<div class="cell right">
+			<i class="fa-solid fa-ghost yellow"></i>
+			<a href="insert1" class="link">신규 등록</a>
 		</div>
 	</div>	
 	
 		<div class="clearbox"></div>
 		
-		<div class="cell">
+		<div class="cell center">
 			<%-- 검색창 --%>
 			<form action="list" merthod="get" autocomplete="off">
 				<select name="column">
@@ -28,11 +28,14 @@
 					<option value="pocketmon_type">속성</option>
 				</select>
 				<input type="search" name="keyword" value="${param.keyword}">
-				<button>검색</button>
+				<button>
+					검색
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</button>
 			</form>
 		</div>
 
-	<div>
+	<div class="cell">
 		<%--for(PocketmonDto dto : list) --%>
 		<table class="table table-border">
 			<thead>
@@ -49,7 +52,7 @@
 						<td>${dto.pocketmonNo}</td>
 						<td>${dto.pocketmonName}</td>
 						<td>${dto.pocketmonType}</td>
-						<td><a href="detail?pocketmonNo=${dto.pocketmonNo}">이동</a></td>
+						<td><a href="detail?pocketmonNo=${dto.pocketmonNo}" class="link blue">이동</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

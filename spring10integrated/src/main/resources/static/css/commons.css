@@ -740,18 +740,18 @@
         flex-direction: column;
     }
 
-    /* 
-            입력창 피드백 디자인
-            - 입력창 뒤에 피드백 영역이 있다면 판정 결과에 따라 표시되도록 구현
-        */
-        .tool.success {
-            border-color: #00b894 !important;
-        }
-        .tool.fail,
-        .tool.fail2,
-        .tool.fail3 {
-            border-color : #d63031 !important;
-        }
+/* 
+    입력창 피드백 디자인
+    - 입력창 뒤에 피드백 영역이 있다면 판정 결과에 따라 표시되도록 구현
+*/
+.tool.success {
+    border-color: #00b894 !important;
+}
+.tool.fail,
+.tool.fail2,
+.tool.fail3 {
+    border-color : #d63031 !important;
+}
 
         .success-feedback {
             color : #00b894;
@@ -769,3 +769,18 @@
         .tool.fail2 ~ .fail2-feedback,
         .tool.fail3 ~ .fail3-feedback {
              display: block; }
+
+/*
+    진행바(progressbar) 디자인
+*/
+
+.progressbar {
+    box-shadow: 0 0 1px 0 #ccc;
+}
+.progressbar > .guage {
+    width : 1%;
+    height: 10px;
+    background: rgb(235,238,174);
+    background: radial-gradient(circle, rgba(235,238,174,1) 0%, rgba(77,223,99,1) 100%);
+    transition : width 0.1s ease-out;
+}
