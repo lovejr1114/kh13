@@ -150,4 +150,14 @@ public class MemberDao {
 			Object[] data = {point, memberId};
 			return jdbcTemplate.update(sql, data) > 0;
 		}
+		
+		//회원 닉네임으로 조회하기
+		//만약 있냐,없냐만 물어본다면 boolean으로 만들어도 된다.
+		//하지만 다른 용도로도 쓰일 것을 생각해서 그렇게 하지않음...
+		public MemberDto selectOneByMemberNick(String memberNick) {
+			String sql = "select * from member where member_nick=?";
+			Object[] data = {memberNick};
+			List<MemberDto> list = jdbcTemplate.query(sql, mapper, data);
+			return list.isEmpty() ? null : list.get(0); 
+		}
 }
