@@ -34,8 +34,8 @@
                 var regex = /^[a-z][a-z0-9]{7,19}$/;
                 var value = $(this).val();
                 // var isValid = regex.test($(this).val()); //이렇게보다 위에 변수 하나 만들고 밑에처럼해준다.
-                state.memberIdValid = regex.test($(this).val());
-                if(state.memberIdValid){ //아이디 형식 검사를 통과했다면
+
+                if(regex.test(value)){ //아이디 형식 검사를 통과했다면
                     $.ajax({
                         // url : "http://localhost:8080/checkId?memberId="+ value,
                         url : "http://localhost:8080/checkId",
