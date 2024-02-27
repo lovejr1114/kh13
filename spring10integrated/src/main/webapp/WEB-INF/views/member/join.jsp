@@ -3,10 +3,42 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<!-- 이 페이지에서만 사용할 JS 코드 -->
+<script type="text/javascript">
+	$(function(){
+		//이전, 다음 버튼을 누르면 표시된 페이지의 순서에 맞게 진행바 변경
+		calculatePercent(1);
+		
+		$(".page").find(".btn-prev").click(function(){
+			//표시되는 페이지가 몇 번째인가?
+			//-> $(대상).index(전체대상)
+			//-> 대상은 :visible 이라고 붙이면 표시된 항목을 찾아준다(jQuery 전용)
+			var index = $(".page:visible").index(".page") + 1;
+			calculatePercent(index);
+		});
+		$(".page").find(".btn-next").click(function(){
+			var index = $(".page:visible").index(".page") + 1;
+			calculatePercent(index);
+		});
+		
+		function calculatePercent(page) {
+			var total = $(".page").length;
+			var percent = page * 100 / total;
+			$(".progressbar > .guage").css("width", percent+"%");
+		}
+	});
+</script>
+
+
 <form action="join" method="post" enctype="multipart/form-data" autocomplete="off">
 
 <div class="container w-500">
 	<div class="cell center"><h1>회원 정보 입력</h1></div>
+	
+	<!-- 진행바 -->
+	<div class="cell">
+		<div class="progressbar"><div class="guage"></div></div>
+	</div>
 	
 	<!-- 1페이지 - 아이디/비밀번호 -->
 	<div class="cell page">
