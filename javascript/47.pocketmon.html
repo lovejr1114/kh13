@@ -27,63 +27,71 @@
     <!-- javascript를 의도적으로 head 자리에 배치해서 가장 먼저 실행되도록 구현-->
     <script type="text/javascript">
         $(function(){
-            var state = { pocketmonNoValid : false }
+            //상태 객체
+            var state = {
+                //key : value(function)
+                pocketmonNoValid : false,
+                pocketmonNameValid : false,
+                pocketmonTypeValid : false,
+                ok : function(){
+                    return this.pocketmonNoValid
+                                && this.pocketmonNameValid 
+                                && this.pocketmonTypeValid ;
+                }
+            };
+
+            $(".check-form").submit(function(){
+                //$("[name=pocketmonNo], [name=pocketmonName], [name=pocketmonType]").blur();
+                //find()는 내부에 있는 모든 태그를 탐색한다(후손선택자와 동일한 효과)
+                $(this).find("[name]").blur();
+                console.table(state);//객체 출력 구문
+                return state.ok();
+            });
+
             $("[name=pocketmonNo]").blur(function(){
                 var regex = /^[0-9]+$/;
-
-                // 형식 검사를 먼저해야 서버 부하가 적어진다
+                
+                //형식 검사를 먼저해야 서버 부하가 적어진다
                 var value = $(this).val();
                 if(regex.test(value)) {
-                    // 형식에 일치할 경우 비동기통신(ajax)를 수행
+                    //형식에 일치할 경우 비동기통신(ajax)를 수행
                     $.ajax({
                         url : "http://localhost:8080/checkPocketmonNo",
-                        method : "post", //안쓰면 자동으로 get이나 그렇든 아니든 써주는게 좋다.
-                        data : {pocketmonNo : value}, //없어도 객체 넣기
-                        success : function(response) {
-                            if(response) { //사용가능(true)
-                                $("[name=pocketmonNo]").removeClass("success fail fail2").addClass("success");
+                        method : "post",
+                        data : { pocketmonNo : value },
+                        success : function(response){
+                            //console.log(response);
+                            if(response) {//사용 가능(true)
+                                $("[name=pocketmonNo]")
+                                                .removeClass("success fail fail2")
+                                                .addClass("success");
                                 state.pocketmonNoValid = true;
                             }
-                            else { //사용불가, 사용중 (false)
-                                $("[name=pocketmonNo]").removeClass("success fail fail2").addClass("fail2");
+                            else {//사용 불가, 사용중(false)
+                                $("[name=pocketmonNo]")
+                                                .removeClass("success fail fail2")
+                                                .addClass("fail2");
                                 state.pocketmonNoValid = false;
                             }
                         }
                     });
                 }
                 else {
-                    $("[name=pocketmonNo]").removeClass("success fail fail2").addClass("fail");
+                    $("[name=pocketmonNo]").removeClass("success fail fail2")
+                                                            .addClass("fail");
                     state.pocketmonNoValid = false;
                 }
             });
-        });
-        $(function(){
-            var state = { pocketmonNameValid : false }
             $("[name=pocketmonName]").blur(function(){
-                var regex = /^[가-힣]{1,10}$/;
-                var value = $(this).val();
-
-                if(regex.test(value)) {
-                    $.ajax({
-                        url : "http://localhost:8080/checkPocketmonName",
-                        method : "post",
-                        data : {pocketmonName : value},
-                        success : function(response) {
-                            if(response == false) {
-                                $("[name=pocketmonName]").removeClass("success fail fail2").addClass("fail2");
-                                state.pocketmonNoValid = false;
-                            }
-                            else if(response == true) {
-                                $("[name=pocketmonName]").removeClass("success fail fail2").addClass("success");
-                                state.pocketmonNoValid = true;
-                            }
-                        }
-                    });
-                }
-                else {
-                    $("[name=pocketmonName]").removeClass("success fail fail2").addClass("fail");
-                    state.pocketmonNoValid = false;
-                }
+                var regex = /^[가-힣]+$/;
+                state.pocketmonNameValid = regex.test($(this).val());
+                $(this).removeClass("success fail")
+                        .addClass(state.pocketmonNameValid ? "success" : "fail");
+            });
+            $("[name=pocketmonType]").blur(function(){
+                state.pocketmonTypeValid = $(this).val().length > 0;
+                $(this).removeClass("success fail")
+                        .addClass(state.pocketmonTypeValid ? "success" : "fail");
             });
         });
     </script>
