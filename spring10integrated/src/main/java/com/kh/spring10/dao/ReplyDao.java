@@ -24,4 +24,11 @@ public class ReplyDao {
 		Object[] data = {replyOrigin};
 		return jdbcTemplate.query(sql, replyMapper, data);
 	}
+	
+	// 댓글 삭제
+	public boolean delete(int replyNo) {
+		String sql = "delete reply where reply_no=?";
+		Object[] data = {replyNo};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
 }

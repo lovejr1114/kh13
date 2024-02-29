@@ -19,8 +19,16 @@ public class ReplyRestController {
 	@Autowired
 	private ReplyDao replyDao;
 	
+	// 비동기통신은 여태까지 알고있던 메소드가 다르다.. 혼동 조심
+	
+	//댓글 목록 읽기
 	@PostMapping("/list")
 	public List<ReplyDto> list(@RequestParam int replyOrigin) {
 		return replyDao.selectList(replyOrigin);
+	}
+	//댓글 삭제
+	@PostMapping("/delete")
+	public void delete(@RequestParam int replyNo){
+		replyDao.delete(replyNo);
 	}
 }

@@ -27,7 +27,7 @@
 </script>
 
 <script type="text/javascript">
-	$(function(){
+	function loadList(){
 		// 파라미터에서 게시글 번호를 읽는다
 		var params = new URLSearchParams(location.search);
 		var boardNo = params.get("boardNo");
@@ -37,10 +37,15 @@
 			url : "/rest/reply/list",
 			method : "post",
 			data : {replyOrigin : boardNo },
-			success : function(response) { //response는 List<ReplyDto> 형태
+			success : function(response) {
 				//댓글 개수를 표시
 				$(".reply-count").text(response.length);
+			
+				// 기존에 있는 내용을 지우도록 지시
+				$(".reply-list-wrapper").empty(); //'지워라'가 아니라 '비워라'
 				
+				//내용을 목록에 출력
+				//response는 List<ReplyDto> 형태
 				for(var i=0; i<response.length; i++){
 					// template 불러오고
 					var templateText = $("#reply-item-wrapper").text();
@@ -51,15 +56,41 @@
 					$(templateHtml).find(".reply-content").text(response[i].replyContent); //내용
 					$(templateHtml).find(".reply-time").text(response[i].replyTime); //작성시간
 					
+					// 화면에 필요한 정보를 추가(ex : 삭제 버튼에 번호 설정)
+					// - data라는 명령으로는 읽기만 가능하다
+					// - 태그에 글자를 추가하고 싶다면 .attr() 명령 사용
+					$(templateHtml).find(".btn-reply-delete").attr("data-reply-no", response[i].replyNo);
+					
 					// 화면에 추가
 					$(".reply-list-wrapper").append(templateHtml);
 				}
 			}
 		});
+	}
+
+	$(function(){
+		//최초의 목록 불러오기
+		loadList();
+		
 		//문서에 댓글 삭제 이벤트 등록
 		// - 화면을 지우는 것이 아니라 서버에 지워달라고 요청을 해야한다
 		// - 삭제가 완료되면 화면을 직접 지우지 말고 목록을 다시 불러온다
-	    $(document).on("click", ".btn-reply-delete", function(){});
+	    $(document).on("click", ".btn-reply-delete", function(){
+	    	var choice = window.confirm("댓글을 삭제하시겠습니까?");
+	    	if(choice == false) return;
+	    	
+	    	//태그에 심어져있는 번호 정보를 읽어와서 삭제하도록 요청
+	    	var replyNo = $(this).data("reply-no");
+	    	
+	    	$.ajax({
+	    		url : "/rest/reply/delete",
+	    		method : "post",
+	    		data : { replyNo : replyNo },
+	    		success : function(response) {
+	    			loadList(); //삭제가 완료되면 목록 불러오기
+	    		}
+	    	});
+	    });
 	    
 	    //문서에 댓글 수정 이벤트 등록
 	    $(document).on("click", ".btn-reply-edit", function(){});
@@ -81,7 +112,7 @@
 		//목표 : 하트를 클릭하면 좋아요 갱신처리
 		$(".board-like").find(".fa-heart").click(function(){
 			$.ajax({
-				url : "/rest/board_like/toggle",//같은 서버이므로 앞 경로 생략
+				url : "/rest/board_like/toggle",//같은 서버이므로 앞 경로 생략 (코드가 더 유연해짐)
 				method : "post",
 				data : { boardNo : boardNo },
 				success : function(response){
