@@ -5,7 +5,8 @@ import java.sql.Date;
 public class ReplyDto {
 	private int replyNo;
 	private String replyContent;
-	private Date replyTime;
+	private String replyTime;
+//	private Date replyTime; // 시간을 출력하려면 데이터보다 String으로 해줘야함
 	private String replyWriter;
 	private int replyOrigin;
 	public int getReplyNo() {
@@ -20,10 +21,11 @@ public class ReplyDto {
 	public void setReplyContent(String replyContent) {
 		this.replyContent = replyContent;
 	}
-	public Date getReplyTime() {
+
+	public String getReplyTime() {
 		return replyTime;
 	}
-	public void setReplyTime(Date replyTime) {
+	public void setReplyTime(String replyTime) {
 		this.replyTime = replyTime;
 	}
 	public String getReplyWriter() {

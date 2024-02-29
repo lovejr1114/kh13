@@ -22,6 +22,39 @@
 	</div>
 </script>
 
+<script type="text/javascript">
+	$(function(){
+		// 파라미터에서 게시글 번호를 읽는다
+		var params = new URLSearchParams(location.search);
+		var boardNo = params.get("boardNo");
+		
+		//페이지 로딩 완료 시 댓글 목록을 불러와서 출력
+		$.ajax({
+			url : "/rest/reply/list",
+			method : "post",
+			data : {replyOrigin : boardNo },
+			success : function(response) { //response는 List<ReplyDto> 형태
+				//댓글 개수를 표시
+				$(".reply-count").text(response.length);
+				
+				for(var i=0; i<response.length; i++){
+					// template 불러오고
+					var templateText = $("#reply-item-wrapper").text();
+					var templateHtml = $.parseHTML(templateText);
+					
+					// 정보출력
+					$(templateHtml).find(".reply-writer").text(response[i].replyWriter); //작성자
+					$(templateHtml).find(".reply-content").text(response[i].replyContent); //내용
+					$(templateHtml).find(".reply-time").text(response[i].replyTime); //작성시간
+					
+					// 화면에 추가
+					$(".reply-list-wrapper").append(templateHtml);
+				}
+			}
+		});
+	});
+</script>
+
 
 <c:if test="${sessionScope.loginId != null}">
 <script type="text/javascript">
@@ -126,7 +159,6 @@
 	<hr>
 	<div class="cell">
 		조회수 ${boardDto.boardReadcount} 
-		댓글 ?
 		
 		<span class="board-like red">
 			<i class="fa-regular fa-heart"></i>
@@ -162,35 +194,9 @@
 	
 	<!-- 댓글 작성창 + 댓글 목록 -->
 	<div class="cell">
-	
-		<!-- 하나의 댓글이 나오는 영역 -->
-		<div class="reply-item">
-			<h3>testuser1</h3>
-			<pre>테스트 댓글 내용 댓글 목록</pre>
-			<div>2024-02-29 10:51:05</div>
-		</div>
-		<div class="reply-item">
-			<h3>testuser1</h3>
-			<pre>테스트 댓글 내용 댓글 목록</pre>
-			<div>2024-02-29 10:51:05</div>
-		</div>
-		<div class="reply-item">
-			<h3>testuser1</h3>
-			<pre>테스트 댓글 내용 댓글 목록</pre>
-			<div>2024-02-29 10:51:05</div>
-		</div>
-		<div class="reply-item">
-			<h3>testuser1</h3>
-			<pre>테스트 댓글 내용 댓글 목록</pre>
-			<div>2024-02-29 10:51:05</div>
-		</div>
-		<div class="reply-item">
-			<h3>testuser1</h3>
-			<pre>테스트 댓글 내용 댓글 목록</pre>
-			<div>2024-02-29 10:51:05</div>
-		</div>
-		
+		<span class="reply-count">0</span>개의 댓글이 있습니다.
 	</div>
+	<div class="cell reply-list-wrapper"></div>
 	<div class="cell">
 		댓글 작성창
 	</div>

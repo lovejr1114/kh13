@@ -19,7 +19,7 @@ public class ReplyRestController {
 	@Autowired
 	private ReplyDao replyDao;
 	
-	@RequestMapping("/list")
+	@PostMapping("/list")
 	public List<ReplyDto> list(@RequestParam int replyOrigin) {
 		return replyDao.selectList(replyOrigin);
 	}
