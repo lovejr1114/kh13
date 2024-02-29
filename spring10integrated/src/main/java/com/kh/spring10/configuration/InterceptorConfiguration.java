@@ -50,7 +50,8 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 //				.addPathPatterns("/member/**") //member에 대한 모든 주소
 				.addPathPatterns(
 						"/member/**",
-						"/board/**", "/point/**"
+						"/board/**", "/point/**",
+						"/rest/board_like/toggle"
 						)
 				.excludePathPatterns(
 //				"/member/join","/member/joinSuccess",
