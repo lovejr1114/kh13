@@ -31,4 +31,17 @@ public class ReplyDao {
 		Object[] data = {replyNo};
 		return jdbcTemplate.update(sql, data) > 0;
 	}
+	
+	// 댓글 등록 (시퀀스, 댓글등록)
+	public int sequence() {
+		String sql = "select reply_seq.nextval from dual";
+		return jdbcTemplate.queryForObject(sql, int.class);
+	}
+	public void insert(ReplyDto replyDto) {
+		String sql = "insert into reply(reply_no, reply_writer, reply_content, reply_time, reply_origin) "
+				+ "values(?, ?, ?, sysdate, ?)";
+		Object[] data = {replyDto.getReplyNo(), replyDto.getReplyWriter(),
+								replyDto.getReplyContent(), replyDto.getReplyOrigin()};
+		jdbcTemplate.update(sql, data);
+	}
 }

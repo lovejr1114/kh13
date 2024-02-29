@@ -21,7 +21,7 @@
 			<i class="fa-solid fa-edit blue ms-20 btn-reply-edit"></i>
 			<i class="fa-solid fa-trash red btn-reply-delete"></i>
 		</h3>
-		<pre calss="reply-content">댓글 내용</pre>
+		<pre class="reply-content">댓글 내용</pre>
 		<div class="reply-time">yyyy-MM-dd HH:mm:ss</div>
 	</div>
 </script>
@@ -92,6 +92,30 @@
 	    	});
 	    });
 	    
+		//댓글 등록 이벤트
+		// 등록 버튼은 한개라서 밑에 코드로 함.
+		$(".btn-reply-insert").click(function(){
+			//등록에 필요한 정보 (내용, 소속 글 번호)를 구해온다
+			var replyContent = $(".reply-editor").val();
+			if(replyContent.length == 0) return; //비어있는 경우만 차단
+			//if(replyContent.trim().length == 0) return; //공백만 있는 경우도 차단
+			
+			// 글 번호 읽기
+			var params = new URLSearchParams(location.search);
+			var boardNo = params.get("boardNo");
+			
+			$.ajax({
+				url : "/rest/reply/insert",
+				method : "post",
+				data : { replyContent : replyContent, 
+							replyOrigin : boardNo },
+				success : function(response){
+					$(".reply-editor").val(""); //에디터 내용 삭제
+					loadList(); //등록 완료 시 목록 갱신
+				}
+			});
+		});
+		
 	    //문서에 댓글 수정 이벤트 등록
 	    $(document).on("click", ".btn-reply-edit", function(){});
 	    $(document).on("click", ".btn-reply-save", function(){});
@@ -242,7 +266,14 @@
 	</div>
 	<div class="cell reply-list-wrapper"></div>
 	<div class="cell">
-		댓글 작성창
+		<textarea class="tool w-100 reply-editor" style="min-height:150px" 
+					placeholder="댓글 내용 입력"></textarea>
+	</div>
+	<div class="cell">
+		<button class="btn positive w-100 btn-reply-insert">
+			<i class="fa-solid fa-pen"></i>
+			댓글 작성
+		</button>
 	</div>
 	
 </div>
