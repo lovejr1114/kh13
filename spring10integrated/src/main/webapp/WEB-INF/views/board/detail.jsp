@@ -5,6 +5,24 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<style>
+	.reply-list-weapper > .reply-item{
+	padding-bottom : 10px;
+	margin-bottom : 10px;
+	border-bottom: 1px solid #b2bec3;
+	}
+</style>
+
+
+<script type="text/template" id="reply-item-wrapper">
+	<div class="reply-item">
+		<h3 class="reply-writer">작성자</h3>
+		<pre calss="reply-content">댓글 내용</pre>
+		<div class="reply-time">yyyy-MM-dd HH:mm:ss</div>
+	</div>
+</script>
+
+
 <c:if test="${sessionScope.loginId != null}">
 <script type="text/javascript">
 	//좋아요 하트 클릭 이벤트
@@ -140,6 +158,45 @@
 		</c:if>
 		<a class="btn positive" href="list">글목록</a>
 	</div>
+	
+	
+	<!-- 댓글 작성창 + 댓글 목록 -->
+	<div class="cell">
+	
+		<!-- 하나의 댓글이 나오는 영역 -->
+		<div class="reply-item">
+			<h3>testuser1</h3>
+			<pre>테스트 댓글 내용 댓글 목록</pre>
+			<div>2024-02-29 10:51:05</div>
+		</div>
+		<div class="reply-item">
+			<h3>testuser1</h3>
+			<pre>테스트 댓글 내용 댓글 목록</pre>
+			<div>2024-02-29 10:51:05</div>
+		</div>
+		<div class="reply-item">
+			<h3>testuser1</h3>
+			<pre>테스트 댓글 내용 댓글 목록</pre>
+			<div>2024-02-29 10:51:05</div>
+		</div>
+		<div class="reply-item">
+			<h3>testuser1</h3>
+			<pre>테스트 댓글 내용 댓글 목록</pre>
+			<div>2024-02-29 10:51:05</div>
+		</div>
+		<div class="reply-item">
+			<h3>testuser1</h3>
+			<pre>테스트 댓글 내용 댓글 목록</pre>
+			<div>2024-02-29 10:51:05</div>
+		</div>
+		
+	</div>
+	<div class="cell">
+		댓글 작성창
+	</div>
+	
 </div>
 
+
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
+
