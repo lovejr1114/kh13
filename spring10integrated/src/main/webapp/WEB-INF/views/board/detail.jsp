@@ -7,7 +7,7 @@
 
 <style>
 	.reply-list-weapper > .reply-item
-	 .reply-list-weapper > .reply-item-edit {
+	.reply-list-wrapper > .reply-item-edit {
 	padding-bottom : 10px;
 	margin-bottom : 10px;
 	border-bottom: 1px solid #b2bec3;
