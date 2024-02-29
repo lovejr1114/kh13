@@ -75,6 +75,7 @@
 					// 화면에 필요한 정보를 추가(ex : 삭제 버튼에 번호 설정)
 					// - data라는 명령으로는 읽기만 가능하다
 					// - 태그에 글자를 추가하고 싶다면 .attr() 명령 사용
+					$(templateHtml).find(".btn-reply-edit").attr("data-reply-no", response[i].replyNo);
 					$(templateHtml).find(".btn-reply-delete").attr("data-reply-no", response[i].replyNo);
 					
 					// 화면에 추가
@@ -134,7 +135,12 @@
 		
 	    //문서에 댓글 수정 이벤트 등록
 	    //- 수정용 템플릿을 불러와서 출력용 템플릿의 내용을 복사한 뒤 추가
+	    //- (네이버에서) 하나의 댓글만 수정이 가능하던데....
 	    $(document).on("click", ".btn-reply-edit", function(){
+	    	//(네이버 따라하기) 열려있는 모든 수정화면을 되돌린다
+	    	$(".reply-item-edit").prev(".reply-item").show();
+	    	$(".reply-item-edit").remove();
+	    	
 	    	// 템플릿 불러와서 해석
 	    	var templateText = $("#reply-item-edit-wrapper").text();
 	    	var templateHtml = $.parseHTML(templateText);
@@ -143,11 +149,34 @@
 	    	var replyContent = $(this).parents(".reply-item").find(".reply-content").text();
 	    	$(templateHtml).find(".reply-editor2").val(replyContent);
 	    	
+	    	//(추가) 변경버튼을 눌렀을 때 글번호를 알 수 있도록 설정
+	    	var replyNo = $(this).data("reply-no");
+	    	$(templateHtml).find(".btn-reply-save").attr("data-reply-no", replyNo);
+	    	
 	    	//화면에 추가
 	    	$(this).parents(".reply-item").hide().after(templateHtml);
 	    });
 	    //변경 저장
-	    $(document).on("click", ".btn-reply-save", function(){});
+	    $(document).on("click", ".btn-reply-save", function(){
+	    	//서버에 변경요청을 비동기로 보내고나서 성공하면 목록을 갱신시킨다.
+	    	// 전송에 필요한 정보 : 글번호, 글내용
+	    	
+	    	var replyNo = $(this).data("reply-no");
+	    	var replyContent = $(this).parents(".reply-item-edit").find(".reply-editor2").val();
+	    	if(replyContent.length == 0) return;
+	    	
+	    	$.ajax({
+	    		url : "/rest/reply/edit",
+	    		method : "post",
+	    		data : {
+	    			replyNo : replyNo,
+	    			replyContent : replyContent
+	    		},
+	    		success : function(response){ //수정 완료 성공 시
+	    			loadList(); // 목록 갱신
+	    		}
+	    	});
+	    });
 	    //취소
 	    $(document).on("click", ".btn-reply-cancel", function(){
 	    	// DB도 필요없고, 비동기통신(ajax)도 필요없다

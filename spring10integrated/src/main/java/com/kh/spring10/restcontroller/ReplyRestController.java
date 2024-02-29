@@ -45,4 +45,10 @@ public class ReplyRestController {
 		
 		replyDao.insert(replyDto);
 	}
+	
+	//댓글 수정
+	@PostMapping("/edit")
+	public void edit(@ModelAttribute ReplyDto replyDto) {
+		replyDao.update(replyDto);
+	}
 }

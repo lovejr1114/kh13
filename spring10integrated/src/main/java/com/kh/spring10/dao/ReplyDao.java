@@ -44,4 +44,12 @@ public class ReplyDao {
 								replyDto.getReplyContent(), replyDto.getReplyOrigin()};
 		jdbcTemplate.update(sql, data);
 	}
+	
+	//댓글 수정
+	public boolean update(ReplyDto replyDto) {
+		String sql  = "update reply set reply_content = ? where reply_no=?";
+		Object[] data = { replyDto.getReplyContent(), replyDto.getReplyNo()};
+		return jdbcTemplate.update(sql, data) > 0;
+		
+	}
 }
