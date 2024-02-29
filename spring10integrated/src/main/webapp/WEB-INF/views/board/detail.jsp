@@ -16,7 +16,11 @@
 
 <script type="text/template" id="reply-item-wrapper">
 	<div class="reply-item">
-		<h3 class="reply-writer">작성자</h3>
+		<h3>
+			<span class="reply-writer">작성자</span>
+			<i class="fa-solid fa-edit blue ms-20 btn-reply-edit"></i>
+			<i class="fa-solid fa-trash red btn-reply-delete"></i>
+		</h3>
 		<pre calss="reply-content">댓글 내용</pre>
 		<div class="reply-time">yyyy-MM-dd HH:mm:ss</div>
 	</div>
@@ -52,6 +56,15 @@
 				}
 			}
 		});
+		//문서에 댓글 삭제 이벤트 등록
+		// - 화면을 지우는 것이 아니라 서버에 지워달라고 요청을 해야한다
+		// - 삭제가 완료되면 화면을 직접 지우지 말고 목록을 다시 불러온다
+	    $(document).on("click", ".btn-reply-delete", function(){});
+	    
+	    //문서에 댓글 수정 이벤트 등록
+	    $(document).on("click", ".btn-reply-edit", function(){});
+	    $(document).on("click", ".btn-reply-save", function(){});
+	    $(document).on("click", ".btn-reply-cancel", function(){});
 	});
 </script>
 
