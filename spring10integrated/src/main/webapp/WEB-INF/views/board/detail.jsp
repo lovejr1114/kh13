@@ -6,7 +6,8 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <style>
-	.reply-list-weapper > .reply-item{
+	.reply-list-weapper > .reply-item
+	 .reply-list-weapper > .reply-item-edit {
 	padding-bottom : 10px;
 	margin-bottom : 10px;
 	border-bottom: 1px solid #b2bec3;
@@ -23,6 +24,21 @@
 		</h3>
 		<pre class="reply-content">댓글 내용</pre>
 		<div class="reply-time">yyyy-MM-dd HH:mm:ss</div>
+	</div>
+</script>
+<script type="text/template" id="reply-item-edit-wrapper">
+	<div class="reply-item-edit">
+		<textarea class="tool w-100 reply-editor2" style="min-height:150px"></textarea>
+		<div class="right">
+			<button class="btn positive btn-reply-save">
+				<i class="fa-solid fa-check"></i>
+				변경
+			</button>
+			<button class="btn negative btn-reply-cancel">
+				<i class="fa-solid fa-xmark"></i>
+				취소
+			</button>
+		</div>
 	</div>
 </script>
 
@@ -117,9 +133,28 @@
 		});
 		
 	    //문서에 댓글 수정 이벤트 등록
-	    $(document).on("click", ".btn-reply-edit", function(){});
+	    //- 수정용 템플릿을 불러와서 출력용 템플릿의 내용을 복사한 뒤 추가
+	    $(document).on("click", ".btn-reply-edit", function(){
+	    	// 템플릿 불러와서 해석
+	    	var templateText = $("#reply-item-edit-wrapper").text();
+	    	var templateHtml = $.parseHTML(templateText);
+	    	
+	    	//댓글 내용을 템플릿의 textarea에 설정
+	    	var replyContent = $(this).parents(".reply-item").find(".reply-content").text();
+	    	$(templateHtml).find(".reply-editor2").val(replyContent);
+	    	
+	    	//화면에 추가
+	    	$(this).parents(".reply-item").hide().after(templateHtml);
+	    });
+	    //변경 저장
 	    $(document).on("click", ".btn-reply-save", function(){});
-	    $(document).on("click", ".btn-reply-cancel", function(){});
+	    //취소
+	    $(document).on("click", ".btn-reply-cancel", function(){
+	    	// DB도 필요없고, 비동기통신(ajax)도 필요없다
+	    	// 수정용 화면을 제거하고 출력용 화면을 출력	    	
+	    	$(this).parents(".reply-item-edit").prev(".reply-item").show();
+	    	$(this).parents(".reply-item-edit").remove();
+	    });
 	});
 </script>
 
@@ -264,7 +299,36 @@
 	<div class="cell">
 		<span class="reply-count">0</span>개의 댓글이 있습니다.
 	</div>
-	<div class="cell reply-list-wrapper"></div>
+	<div class="cell reply-list-wrapper">
+	
+		<!-- 임시 화면 -->
+		<div class="reply-item">
+			<h3>
+				<span class="reply-writer">작성자</span>
+				<i class="fa-solid fa-edit blue ms-20 btn-reply-edit"></i>
+				<i class="fa-solid fa-trash red btn-reply-delete"></i>
+			</h3>
+			<pre class="reply-content">댓글 내용</pre>
+			<div class="reply-time">yyyy-MM-dd HH:mm:ss</div>
+		</div>
+		
+		<div class="reply-item-edit">
+			<textarea class="tool w-100 reply-editor2" style="min-height:150px"></textarea>
+			<div class="right">
+				<button class="btn positive btn-reply-save">
+					<i class="fa-solid fa-check"></i>
+					변경
+				</button>
+				<button class="btn negative btn-reply-cancel">
+					<i class="fa-solid fa-xmark"></i>
+					취소
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="cell">
+		
+	</div>
 	<div class="cell">
 		<textarea class="tool w-100 reply-editor" style="min-height:150px" 
 					placeholder="댓글 내용 입력"></textarea>
