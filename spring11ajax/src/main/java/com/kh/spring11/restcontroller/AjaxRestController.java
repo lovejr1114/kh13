@@ -60,5 +60,5 @@ public class AjaxRestController {
 		MemberDto memberDto = memberDao.selectOneByMemberNick(memberNick);
 		return memberDto == null;
 	}
-
+	
 }
