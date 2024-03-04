@@ -48,6 +48,10 @@
 		var params = new URLSearchParams(location.search);
 		var boardNo = params.get("boardNo");
 		
+		// 현재 사용자의 정보를 저장한다
+		var loginId = "${sessionScope.loginId}";
+		var isLogin = loginId.length > 0; // 로그인은 로그인아이디의 글자수가 0 초과
+		
 		//페이지 로딩 완료 시 댓글 목록을 불러와서 출력
 		$.ajax({
 			url : "/rest/reply/list",
@@ -75,8 +79,15 @@
 					// 화면에 필요한 정보를 추가(ex : 삭제 버튼에 번호 설정)
 					// - data라는 명령으로는 읽기만 가능하다
 					// - 태그에 글자를 추가하고 싶다면 .attr() 명령 사용
+					// - 현재 로그인한 사용자의 댓글에만 버튼을 표시(나머진 삭제하는 코드가 있어야 함)
+					if(isLogin && loginId == response[i].replyWriter) { //내가 작성한 댓글인 경우 (현재사용자ID == 댓글의 작성자)
 					$(templateHtml).find(".btn-reply-edit").attr("data-reply-no", response[i].replyNo);
-					$(templateHtml).find(".btn-reply-delete").attr("data-reply-no", response[i].replyNo);
+					$(templateHtml).find(".btn-reply-delete").attr("data-reply-no", response[i].replyNo);						
+					}
+					else {
+						$(templateHtml).find(".btn-reply-edit").remove();
+						$(templateHtml).find(".btn-reply-delete").remove();
+					}
 					
 					// 화면에 추가
 					$(".reply-list-wrapper").append(templateHtml);
@@ -355,19 +366,34 @@
 			</div>
 		</div>
 	</div>
-	<div class="cell">
-		
-	</div>
-	<div class="cell">
-		<textarea class="tool w-100 reply-editor" style="min-height:150px" 
-					placeholder="댓글 내용 입력"></textarea>
-	</div>
-	<div class="cell">
-		<button class="btn positive w-100 btn-reply-insert">
-			<i class="fa-solid fa-pen"></i>
-			댓글 작성
-		</button>
-	</div>
+	
+	<%-- 로그인이 된 경우만 댓글 작성란이 활성화 되도록 구분 --%>
+	<c:choose>
+		<c:when test="${sessionScope.loginId != null}">
+			<div class="cell">
+				<textarea class="tool w-100 reply-editor" style="min-height:150px" 
+							placeholder="댓글 내용 입력"></textarea>
+			</div>
+			<div class="cell">
+				<button class="btn positive w-100 btn-reply-insert">
+					<i class="fa-solid fa-pen"></i>
+					댓글 작성
+				</button>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div class="cell">
+				<textarea class="tool w-100 reply-editor" style="min-height:150px" 
+							placeholder="로그인 후 댓글 작성이 가능합니다." disabled></textarea>
+			</div>
+			<div class="cell">
+				<button class="btn positive w-100 btn-reply-insert" disabled>
+					<i class="fa-solid fa-ban"></i>
+					댓글 작성 (로그인 후 이용 가능)
+				</button>
+			</div>
+		</c:otherwise>
+	</c:choose>
 	
 </div>
 
