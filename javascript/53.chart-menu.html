@@ -37,7 +37,7 @@
         $(function () {
             //목표 : 서버에서 실제 데이터를 불러와서 그에 따른 차트를 구현
             $.ajax({
-                url : "http://localhost:8080/rest/stat/pocketmon",
+                url : "http://localhost:8080/rest/stat/menu",
                 method : "get", // 파라미터 데이터가 필요없어서 겟이든 포스트이든 상관없음
                 // data : {}, //get일 때에는 데이터가 없다.
                 success : function(response){
@@ -60,7 +60,7 @@
                         data: { // 차트에 표시될 정보
                             labels: labelList, //하단 항목명
                             datasets: [{
-                                label: '포켓몬스터 수', //범례  (label : 제목)
+                                label: '메뉴 수', //범례  (label : 제목)
                                 data: dataList, //실제 값
                                 borderWidth: 2,
                                 backgroundColor:["#d6303155","#fdcb6e77","#ffeaa777","#00b89477","#74b9ff77","#3742fa77","#5352ed77"],
