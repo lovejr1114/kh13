@@ -44,7 +44,7 @@
             var inputTarget = document.querySelector("[name=menuType]");
             var menuType = inputTarget.value;
 
-            var isValid = menuType.length >= 0;
+            var isValid = menuType.length > 0;
 
             inputTarget.classList.remove("success","fail");
             inputTarget.classList.add(isValid ? "success" : "fail");
