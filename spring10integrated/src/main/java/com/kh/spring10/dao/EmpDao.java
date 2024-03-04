@@ -68,4 +68,12 @@ public class EmpDao {
 		//구문에 emp_dept asc는 좀 더 안정적이게 함.
 		return jdbcTemplate.query(sql, statMapper);
 	}
+	
+	//사원 개체 수 통계
+	public List<StatVO> statByDept(){
+		String sql = "select emp_dept 항목, count(*) 개수 "
+					+ "from emp group by emp_dept "
+					+ "order by 개수 desc, emp_dept asc";
+		return jdbcTemplate.query(sql, statMapper);
+	}
 }

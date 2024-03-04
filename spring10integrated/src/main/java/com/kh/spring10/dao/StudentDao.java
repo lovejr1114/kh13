@@ -76,4 +76,7 @@ public class StudentDao {
 		//- 만약 String이라면 해당 위치에 String.class라고 작성
 		return jdbcTemplate.queryForObject(sql, int.class, data);
 	}
+	
+	//변종 메소드 (개체 수)
+//	public List<StatVO> 
 }

@@ -30,7 +30,7 @@
 						<th>국어</th>
 						<th>영어</th>
 						<th>수학</th>
-						<th>메뉴</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>

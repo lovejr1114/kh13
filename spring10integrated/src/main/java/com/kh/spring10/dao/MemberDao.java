@@ -96,7 +96,7 @@ public class MemberDao {
 		@Autowired
 		private StatMapper statMapper;
 		//회원(멤버) 통계
-		public List<StatVO> statByType(){
+		public List<StatVO> statByLevel(){
 			String sql = "select member_level 항목, count(*) 개수 "
 					+ "from member group by member_level "
 					+ "order by 개수 desc, member_level asc";

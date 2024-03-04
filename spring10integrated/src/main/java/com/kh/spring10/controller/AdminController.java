@@ -66,7 +66,7 @@ public class AdminController {
 	//멤버 통계
 	@RequestMapping("/stat/member")
 	public String statMember(Model model) {
-		List<StatVO> list = memberDao.statByType();
+		List<StatVO> list = memberDao.statByLevel();
 		model.addAttribute("list", list);
 		return "/WEB-INF/views/admin/stat/member.jsp";
 	}
