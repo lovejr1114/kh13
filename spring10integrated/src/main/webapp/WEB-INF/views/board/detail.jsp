@@ -389,7 +389,7 @@
 			<div class="cell">
 				<button class="btn positive w-100 btn-reply-insert" disabled>
 					<i class="fa-solid fa-ban"></i>
-					댓글 작성 (로그인 후 이용 가능)
+					댓글 작성(로그인 후 이용 가능)
 				</button>
 			</div>
 		</c:otherwise>
