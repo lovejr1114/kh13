@@ -298,7 +298,7 @@
 			- Rich Text Editor를 사용하면 문제가 해결된다 (ex : summernote)
 			<pre>${boardDto.boardContent}</pre>
 		--%>
-		<pre>${boardDto.boardContent}</pre>
+		${boardDto.boardContent}
 	</div>
 	
 	<hr>

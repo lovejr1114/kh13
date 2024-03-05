@@ -49,7 +49,26 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <script>
     	$(function(){
-    		$("[name=boardContent]").summernote();
+    		//에디터 툴바(메뉴) 설정
+    		var options = {
+    		toolbar: [
+                // [groupName, [list of button]]
+                ['fontsize', ['fontname', 'fontsize']],
+                ['style', ['bold', 'italic', 'underline']],
+                ['color', ['forecolor', 'backcolor']],
+                ['para', ['style', 'ul', 'ol', 'paragraph']],
+                ['insert',['picture', 'link', 'hr']],
+            ],
+            //기본높이 설정 (단위 : px)
+            hegiht : 250,
+            minHeight : 250,
+            maxHeight : 300,
+            //안내문구 설정
+            //placeholder : "입력하세요.",
+        };
+        
+        
+        	$("[name=boardContent]").summernote(options);
     	});
     </script>
     

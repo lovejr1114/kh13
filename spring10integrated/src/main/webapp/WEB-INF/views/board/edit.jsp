@@ -6,7 +6,7 @@
 <form action="edit" method="post" autocomplete="off">
 	<input type="hidden" name="boardNo" value="${boardDto.boardNo}">
 
-<div class="container w-400">
+<div class="container w-800">
 	<div class="cell center"><h1>게시글 수정</h1></div>
 	<div class="cell">
 		<label>제목</label>

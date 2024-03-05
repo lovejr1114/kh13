@@ -10,7 +10,7 @@
 		<input type="hidden" name="boardTarget" value="${param.boardTarget}">
 	</c:if>
 
-<div class="container w-400">
+<div class="container w-800">
 	<div class="cell center"><h1>게시글 작성</h1></div>
 	<div class="cell">
 		<label>제목</label>
