@@ -47,6 +47,11 @@
     <!-- summernote cdn (jQuery보다 밑에 있어야 함) -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script>
+    	$(function(){
+    		$("[name=boardContent]").summernote();
+    	});
+    </script>
     
     <!-- 내가 만든 JS -->
     <script src="/js/commons.js"></script>
