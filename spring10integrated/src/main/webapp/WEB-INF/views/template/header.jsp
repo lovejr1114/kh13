@@ -44,6 +44,10 @@
     <!-- jQuery CDN -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     
+    <!-- summernote cdn (jQuery보다 밑에 있어야 함) -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    
     <!-- 내가 만든 JS -->
     <script src="/js/commons.js"></script>
     
