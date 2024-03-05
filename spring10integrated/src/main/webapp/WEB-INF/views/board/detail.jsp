@@ -330,7 +330,7 @@
 			- 관리자란 로그인한 사용자 등급이 '관리자'인 경우
 		--%>
 		<c:if test="${sessionScope.loginId != null && (sessionScope.loginId == boardDto.boardWriter || sessionScope.loginLevel == '관리자')}">
-		<a class="btn" style="background-color:rgb(153,217,182)" href="edit?boardNo=${boardDto.boardNo}">글수정</a>
+		<a class="btn" style="background-color:rgb(153,217,234)" href="edit?boardNo=${boardDto.boardNo}">글수정</a>
 		<a class="btn negative" href="delete?boardNo=${boardDto.boardNo}">글삭제</a>
 		</c:if>
 		<a class="btn positive" href="list">글목록</a>
