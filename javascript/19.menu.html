@@ -23,7 +23,7 @@
         function checkMenuNameKor() {
             var inputTarget = document.querySelector("[name=menuNameKor]");
 
-            var regex = /^[가-힣0-9]{1,20}$/;
+            var regex = /^[가-힣0-9\s]{1,20}$/; // 정규표현식 띄어쓰기 = "\s"
             var isValid = regex.test(inputTarget.value);
 
             inputTarget.classList.remove("success","fail");
@@ -44,7 +44,7 @@
             var inputTarget = document.querySelector("[name=menuType]");
             var menuType = inputTarget.value;
 
-            var isValid = menuType.length >= 0;
+            var isValid = menuType.length > 0;
 
             inputTarget.classList.remove("success","fail");
             inputTarget.classList.add(isValid ? "success" : "fail");

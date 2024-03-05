@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript 예제</title>
+
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 내가 구현한 스타일 -->
+    <link rel="stylesheet" type="text/css" href="../css/commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../css/test.css"> -->
+
+    <!-- font awesome 아이콘 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .container {
+            display: grid;
+            margin: 0 auto;
+            padding: 60px;
+            border: 1px solid #ffffff;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px 10px #ccc;
+        }
+        .tool {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 0 auto;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #ccc;
+            margin: 20px 0;
+        }
+        .btn-login {
+            background-color : rgb(52,152,219);
+            color : white;
+        }
+        .btn-join {
+            background-color: rgb(224, 224, 224);
+        }
+    </style>
+
+    <!-- jquery cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <!-- 내가 만든 스크립트 추가(jQuery를 사용했으니 jQuery CDN 아래 작성) -->
+    <script src="commons.js"></script>
+    <!-- javascript를 의도적으로 head 자리에 배치해서 가장 먼저 실행되도록 구현-->
+    <script type="text/javascript">
+        function idPwCheck() {
+            var userId = document.querySelector("input[name=userId]").value;
+            var userPw = document.querySelector("input[name=userPw]").value;
+
+            if (userId == "" || userPw == "") {
+                alert("아이디와 비밀번호를 입력하세요.");
+                return false;
+            }
+        }
+
+
+        function uncheckAdmin() {
+            var adminCheckbox = document.querySelector(".adminCkbox");
+            if (adminCheckbox.checked) {
+                var normalCheckbox = document.querySelector(".normalCkbox");
+                normalCheckbox.checked = false;
+            }
+        }
+        function uncheckNormal() {
+            var normalCheckbox = document.querySelector(".normalCkbox");
+            if (normalCheckbox.checked) {
+                var adminCheckbox = document.querySelector(".adminCkbox");
+                adminCheckbox.checked = false;
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <form action="#" method="get" autocomplete="off" onsubmit="return idPwCheck()">
+    <div class="container w-600">
+        <div class="cell center">
+            <h1>User Login</h1>
+        </div>
+        <div class="cell">
+            <input type="text" class="tool w-100" placeholder="ID" name="userId">
+        </div>  
+        <div class="cell">
+            <input type="password" class="tool w-100" placeholder="password" name="userPw">
+        </div>
+        <div class="cell">
+            <div class="cell flex-cell">
+                <span class="w-50">
+                    <input type="radio" class="normalCkbox" onclick="uncheckNormal();" checked>
+                    일반회원
+                </span>
+                <span class="w-50 right">
+                    <input type="radio"  class="adminCkbox" onclick="uncheckAdmin();">
+                    관리자
+                </span>
+                </div>
+            </div>
+            <div class="cell">
+                <button class="btn btn-login w-100">로그인</button>
+            </div>
+            <hr>
+            <div class="cell">
+                <button class="btn btn-join w-100" onclick="return false">회원가입</button>
+            </div>
+        </div>
+    </div>
+    </form>
+
+</body>
+</html>
