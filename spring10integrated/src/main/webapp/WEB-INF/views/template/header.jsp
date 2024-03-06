@@ -95,10 +95,13 @@
 		                    success:function(response){
 		                       if(response == null) return; //response가 null이면 중지
 		                       
-		                       for(var i=0; i<response.length; i++) {
-									var tag = $("<img>").attr("src","/download?attachNo="+response[i]);
-		                            $(editor).summernote("insertNode", tag[0]);
-		                        }
+		                       for (var i = 0; i < response.length; i++) {
+									var tag = $("<img>")
+										.attr("src", "/download?attachNo=" + response[i])
+										.attr("data-key", response[i])
+										.addClass("server-img");
+									$(editor).summernote("insertNode", tag[0]);
+								} 
 		                     }
 		                });
 		           	}

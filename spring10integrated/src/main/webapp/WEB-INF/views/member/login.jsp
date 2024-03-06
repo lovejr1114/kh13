@@ -16,16 +16,16 @@
 		<label>비밀번호</label>
 		<input type="password" name="memberPw" required class="tool w-100">
 	</div>
-	<div class="cell">
+	<div class="cell my-30">
 		<button class="btn positive w-100">로그인</button>
 	</div>
-	
+	<hr>
 	<div class="cell center">
 		<div class="cell">
-			<a href="#">아이디 찾기</a>
+			<a href="#" class="link">아이디 찾기</a>
 		</div>
 		<div class="cell">
-			<a href="#">비밀번호 찾기</a>
+			<a href="#" class="link">비밀번호 찾기</a>
 		</div>
 	</div>
 	<c:if test="${param.error != null}">
