@@ -42,14 +42,14 @@
                     ['style', ['bold', 'italic', 'underline']],
                     ['color', ['forecolor', 'backcolor']],
                     ['para', ['style', 'ul', 'ol', 'paragraph']],
-                    ['insert',['picture', 'link', 'hr']],
+                    ['insert', ['picture', 'link', 'hr']],
                 ],
                 //기본높이 설정 (단위 : px)
-                hegiht : 250,
-                minHeight : 250,
-                maxHeight : 300,
+                hegiht: 250,
+                minHeight: 250,
+                maxHeight: 300,
                 //안내문구 설정
-                placeholder : "입력하세요.",
+                placeholder: "입력하세요.",
             });
 
             $("[name=test3]").summernote({
@@ -59,14 +59,70 @@
                     ['style', ['bold', 'italic', 'underline']],
                     ['color', ['forecolor', 'backcolor']],
                     ['para', ['style', 'ul', 'ol', 'paragraph']],
-                    ['insert',['picture', 'link', 'hr']],
+                    ['insert', ['picture', 'link', 'hr']],
                 ],
                 //기본높이 설정 (단위 : px)
-                hegiht : 250,
-                minHeight : 250,
-                maxHeight : 300,
+                hegiht: 250,
+                minHeight: 250,
+                maxHeight: 300,
                 //안내문구 설정
-                placeholder : "입력하세요.",
+                placeholder: "입력하세요.",
+            });
+
+            $("[name=test4]").summernote({
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['fontsize', ['fontname', 'fontsize']],
+                    ['style', ['bold', 'italic', 'underline']],
+                    ['color', ['forecolor', 'backcolor']],
+                    ['para', ['style', 'ul', 'ol', 'paragraph']],
+                    ['insert', ['picture', 'link', 'hr']],
+                ],
+                //기본높이 설정 (단위 : px)
+                hegiht: 250,
+                minHeight: 250,
+                maxHeight: 300,
+                //안내문구 설정
+                placeholder: "입력하세요.",
+                //이미지파일을 추가할 때 처리할 내용을 재정의
+                callbacks: {
+                    onImageUpload: function (files) {
+                        // console.log("이미지 파일 선택됨");
+                        // console.log(files);
+
+                        // 파일 업로드는 일반 데이터와 전송 방식이 다르다!
+                        // 이 방식의 이름은 multipart / form-data 이다
+                        // <form>은 enctype=multipart/form-data라고 쓰면 되는데..
+                        // ajax로는 어떻게 하지?
+                        // ajax를 post 방식으로 전송하며 두 가지 설정을 추가한다
+                        // processData : false, contentType : false,
+
+                        //FormData는 전송을 위한 데이터 저장소 (자바의 Map과 동일)
+                        var formData = new FormData();
+                        //formData.append("이름", 값);
+                        for(var i=0; i<files.length; i++) {
+                            formData.append("attachList", files[i]);
+                        }
+
+                        $.ajax ({
+                            url : "http://localhost:8080/rest/board_attach/upload",
+                            method : "post",
+                            data : formData,
+                            processData : false,
+                            contentType : false,
+                            success:function(response){
+                                //response에는 업로드된 이미지들의 번호 배열이 있다
+                                if(response == null) return; //response가 null이면 중지
+
+                                for(var i=0; i<response.length; i++) {
+                                    //response[i] == 이미지 번호 1개
+                                    var tag = $("<img>").attr("src","http://localhost:8080/download?attachNo="+response[i]);
+                                    $("[name=test4]").summernote("insertNode", tag[0]);
+                                }
+                            }
+                        });
+                    }
+                }
             });
         });
     </script>
@@ -95,6 +151,13 @@
 
         <div class="cell">
             <textarea name="test3">이 글자가 처음에 표시될 수 있을까요?</textarea>
+        </div>
+
+        <div class="cell">
+            <h2>이미지 업로드</h2>
+        </div>
+        <div class="cell">
+            <textarea name="test4"></textarea>
         </div>
     </div>
 
