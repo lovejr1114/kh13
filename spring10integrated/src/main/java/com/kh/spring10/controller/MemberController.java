@@ -285,4 +285,66 @@ public class MemberController {
 			return "redirect:/image/user.png";
 		}
 	}
+	
+	
+	//아이디 찾기
+	@GetMapping("/findId")
+	public String findId() {
+		return "/WEB-INF/views/member/findId.jsp";
+	}
+	
+	@PostMapping("/findId")
+	public String findId(@RequestParam String memberNick) {
+		boolean result = emailService.sendMemberId(memberNick);
+		if(result) {
+			return "redirect:findIdSuccess";
+		}
+		else {
+			return "redirect:findIdFail";
+		}
+	}
+	
+	@RequestMapping("/findIdSuccess")
+	public String findIdSuccess() {
+		return "/WEB-INF/views/member/findIdSuccess.jsp";
+	}
+	
+	@RequestMapping("/findIdFail")
+	public String findIdFail() {
+		return "/WEB-INF/views/member/findIdFail.jsp";
+	}
+	
+	
+	
+	//비밀번호 찾기
+	@GetMapping("/findPw")
+	public String findPw() {
+		return "/WEB-INF/views/member/findPw.jsp";
+	}
+	
+	@PostMapping("/findPw")
+	public String findPw(@ModelAttribute MemberDto memberDto) {
+		MemberDto findDto = memberDao.selectOne(memberDto.getMemberId());
+		
+		//아이디가 있으면서 이메일까지 일치한다면
+		boolean isValid = findDto != null && findDto.getMemberEmail().equals(memberDto.getMemberEmail());
+		
+		if(isValid) {
+			emailService.sendTempPassword(findDto);
+			return "redirect:findPwSuccess";
+		}
+		else {
+			return "redirect:findPwFail";
+		}
+	}
+	
+	@RequestMapping("/findPwSuccess")
+	public String findPwSuccess() {
+		return "/WEB-INF/views/member/findPwSuccess.jsp";
+	}
+	
+	@RequestMapping("/findPwFail")
+	public String findPwFail() {
+		return "/WEB-INF/views/member/findPwFail.jsp";
+	}
 }

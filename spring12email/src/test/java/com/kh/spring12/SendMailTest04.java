@@ -14,6 +14,6 @@ public class SendMailTest04 {
 	
 	@Test
 	public void test( ) {
-		emailService.sendTempPassword("rysin12346@gmail.com");
+		emailService.sendTempPassword("lovejr1114@naver.com");
 	}
 }

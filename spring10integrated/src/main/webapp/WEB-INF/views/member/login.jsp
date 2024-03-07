@@ -22,10 +22,10 @@
 	<hr>
 	<div class="cell center">
 		<div class="cell">
-			<a href="#" class="link">아이디 찾기</a>
+			<a href="findId" class="link">아이디 찾기</a>
 		</div>
 		<div class="cell">
-			<a href="#" class="link">비밀번호 찾기</a>
+			<a href="findPw" class="link">비밀번호 찾기</a>
 		</div>
 	</div>
 	<c:if test="${param.error != null}">

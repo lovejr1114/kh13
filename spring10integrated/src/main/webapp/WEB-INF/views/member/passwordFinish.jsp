@@ -3,7 +3,7 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <div class="container w-800">
-	<div class="cell">
+	<div class="cell center">
 		<h1>비밀번호 변경 완료!</h1>
 	</div>
 </div>
