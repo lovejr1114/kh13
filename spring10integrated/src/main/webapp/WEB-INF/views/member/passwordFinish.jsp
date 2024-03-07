@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<h1>비밀번호 변경 완료!</h1>
+<div class="container w-800">
+	<div class="cell">
+		<h1>비밀번호 변경 완료!</h1>
+	</div>
+</div>
+
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
