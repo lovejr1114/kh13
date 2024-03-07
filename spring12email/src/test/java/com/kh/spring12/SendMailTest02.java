@@ -16,9 +16,9 @@ public class SendMailTest02 {
 	@Test
 	public void test() {
 		SimpleMailMessage message = new SimpleMailMessage();
-		message.setTo("kh13kje@gmail.com");
-		message.setSubject("되는건가요"); //제목
-		message.setText("되는걸까"); //내용
+		message.setTo("only3322@naver.com");
+		message.setSubject("이번건 되나요"); //제목
+		message.setText("되기를"); //내용
 		
 		sender.send(message);
 	}
