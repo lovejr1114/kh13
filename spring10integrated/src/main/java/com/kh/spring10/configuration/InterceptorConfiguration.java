@@ -58,6 +58,7 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 //				"/member/join","/member/joinSuccess",
 				"/member/join*",
 				"/member/login", "/member/exitFinish",
+				"/member/find*",
 				"/board/list", "/board/detail"); //해당주소만 제외
 		
 		
