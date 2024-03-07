@@ -17,6 +17,7 @@ import com.kh.spring10.dao.BuyDao;
 import com.kh.spring10.dao.MemberDao;
 import com.kh.spring10.dto.MemberDto;
 import com.kh.spring10.service.AttachService;
+import com.kh.spring10.service.EmailService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -29,6 +30,9 @@ public class MemberController {
 	
 	@Autowired
 	private AttachDao attachDao;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@Autowired
 	private AttachService attachService;
@@ -44,14 +48,18 @@ public class MemberController {
 	@PostMapping("/join")
 	public String join(@ModelAttribute MemberDto memberDto,
 							@RequestParam MultipartFile attach) throws IllegalStateException, IOException {
-		
+		//회원가입
 		memberDao.insert(memberDto);
-		
+		//첨부파일 등록
 		if(!attach.isEmpty()) {
 			int attachNo = attachService.save(attach); //파일저장+DB저장
 			
 			memberDao.connect(memberDto.getMemberId(), attachNo); //연결
 		}
+		
+		//가입 환영 메일 발송
+		emailService.sendWelcomeMail(memberDto.getMemberEmail());
+		
 		return "redirect:joinSuccess";
 	}
 	

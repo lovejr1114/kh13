@@ -3,8 +3,13 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<h1>회원 가입 완료!</h1>
-<p>
-가입해주셔서 대단히 감사합니다!
+<div class="container w-800">
+	<div class="cell center">
+		<h1>회원 가입 완료!</h1>
+		<p>
+		가입해주셔서 대단히 감사합니다!
+		</p>	
+	</div>
+</div>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
