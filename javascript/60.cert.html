@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript 예제</title>
+
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 내가 구현한 스타일 -->
+    <link rel="stylesheet" type="text/css" href="../css/commons.css">
+    <link rel="stylesheet" type="text/css" href="../css/test.css">
+
+    <!-- font awesome 아이콘 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        
+    </style>
+
+    <!-- jquery cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <!-- 내가 만든 스크립트 추가(jQuery를 사용했으니 jQuery CDN 아래 작성) -->
+    <script src="commons.js"></script>
+    <!-- javascript를 의도적으로 head 자리에 배치해서 가장 먼저 실행되도록 구현-->
+    <script type="text/javascript">
+        $(function(){
+            $(".btn-send-cert").click(function(){
+                var btn = this;
+                $(btn).find("span").text("전송중");
+                $(btn).find("i").removeClass("fa-paper-plane").addClass("fa-solid fa-spinner fa-spin");
+                $(btn).prop("disabled",true);
+
+                //이메일 불러오기
+                var email = $("[name=memberEmail]").val();
+                if(email.length == 0) return;
+
+                $.ajax({
+                    url:"http://localhost:8080/rest/member/sendCert",
+                    method:"post",
+                    data:{memberEmail : email },
+                    success:function(response){
+                       
+                    },
+                    error:function(){
+                        alert("시스템 오류입니다. 잠시 후 이용 바랍니다.")
+                    },
+                    complete:function(){
+                        $(btn).find("span").text("보내기");
+                        $(btn).find("i").removeClass("fa-solid fa-spinner fa-spin").addClass("fa-paper-plane");
+                        $(btn).prop("disabled",false);
+                    },
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <div class="container w-500">
+        <div class="cell center">
+            <h1>이메일 인증</h1>
+        </div>
+        <div class="cell flex-cell">
+            <input type="email" name="memberEmail" class="tool w-100" placeholder="이메일 입력">
+            <button class="btn positive w-200 btn-send-cert">
+                <i class="fa-regular fa-paper-plane"></i>
+                <span>보내기</span>
+            </button>
+        </div>  
+    </div>
+
+</body>
+</html>
