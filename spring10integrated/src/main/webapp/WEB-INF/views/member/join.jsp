@@ -131,13 +131,52 @@
 	                .addClass("fail");
 	        }
 	    });
-	    $("[name=memberEmail]").blur(function(){
-	        var regex = /^[a-z0-9]{8,20}@[a-z0-9\.]{1,20}$/;
-	        var value = $(this).val();
-	        state.memberEmailValid = regex.test(value);
-	        $(this).removeClass("success fail")
-	                    .addClass(state.memberEmailValid ? "success" : "fail");
-	    });
+// 	    $("[name=memberEmail]").blur(function(){
+// 	        var regex = /^[a-z0-9]{8,20}@[a-z0-9\.]{1,20}$/;
+// 	        var value = $(this).val();
+// 	        state.memberEmailValid = regex.test(value);
+// 	        $(this).removeClass("success fail")
+// 	                    .addClass(state.memberEmailValid ? "success" : "fail");
+// 	    });
+		//인증메일 보내기 이벤트
+        var memberEmail;
+        $(".btn-send-cert").click(function(){
+            var btn = this;
+            $(btn).find("span").text("전송중");
+            $(btn).find("i").removeClass("fa-regular fa-paper-plane")  
+                                    .addClass("fa-solid fa-spinner fa-spin");
+            $(btn).prop("disabled", true);
+
+            //이메일 불러오기
+            var email = $("[name=memberEmail]").val();
+            if(email.length == 0) return;
+
+            $.ajax({
+                url:"/rest/member/sendCert",
+                method:"post",
+                data:{memberEmail : email},
+                success: function(response){
+                    //템플릿을 불러와서 인증번호 입력창을 추가
+                    var templateText = $("#cert-template").text();
+                    var templateHtml = $.parseHTML(templateText);
+
+                    $(".cert-wrapper").empty().append(templateHtml);
+                    //$(".cert-wrapper").html(templateHtml);
+
+                    //이메일 정보를 저장
+                    memberEmail = email;
+                },
+                error:function(){
+                    alert("시스템 오류. 잠시 후 이용바람");
+                },
+                complete:function(){
+                    $(btn).find("span").text("보내기");
+                    $(btn).find("i").removeClass("fa-solid fa-spinner fa-spin")  
+                                            .addClass("fa-regular fa-paper-plane");
+                    $(btn).prop("disabled", false);
+                },
+            });
+        });
 	    $("[name=memberContact]").blur(function(){
 	        var regex = /^010[1-9][0-9]{7}$/;
 	        var value = $(this).val();
@@ -180,6 +219,16 @@
 	    });
 	});
 </script>
+<script type="text/template" id="cert-template">
+        <div>
+            <input type="text" class="tool cert-input" 
+                                        placeholder="인증번호">
+            <button class="btn btn-check-cert">확인</button>
+            <div class="success-feedback">이메일 인증 완료</div>
+            <div class="fail-feedback">인증번호 불일치</div>
+        </div>
+</script>
+
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
     $(function(){
@@ -309,11 +358,37 @@
 	<div class="cell page">
 		<div class="cell">
             <label>이메일<i class="fa-solid fa-asterisk red"></i></label>
-            <input type="email" name="memberEmail" 
-                                placeholder="test@kh.com" class="tool w-100">
-            <div class="fail-feedback">잘못된 이메일 형식입니다</div>
+            
+            <div class="flex-cell" style="flex-wrap:wrap;">
+	            <input type="email" name="memberEmail" 
+	                                placeholder="test@kh.com" class="tool width-fill">
+	            <button class="btn negative btn-send-cert">
+	            	<i class="fa-solid fa-paper-plane"></i>
+	            	<span>보내기</span>
+	            </button>
+	            <div class="fail-feedback w-100">잘못된 이메일 형식입니다</div>
+            </div>
         </div>
-
+        
+        <div class="cell cert-wrapper"></div>
+        
+        <div class="flex-cell">
+			<div class="w-100 left">
+				<button type="button" class="btn btn-prev">
+					<i class="fa-solid fa-chevron-left"></i>
+					이전
+				</button>
+			</div>
+			<div class="w-100 right">
+				<button type="button" class="btn btn-next">
+					다음
+					<i class="fa-solid fa-chevron-right"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+	
+	<div class="cell page">
         <div class="cell">
             <label>연락처</label>
             <input type="tel" name="memberContact" 
