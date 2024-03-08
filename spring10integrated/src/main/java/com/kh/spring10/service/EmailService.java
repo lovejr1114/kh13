@@ -1,5 +1,6 @@
 package com.kh.spring10.service;
 
+import java.text.DecimalFormat;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,9 +88,18 @@ public class EmailService {
 		sender.send(message);
 	}
 	
-	//인증번호 발송
-	
-	
-	//비밀번호 찾기 구현
+	//인증번호 발송 - 주어진 이메일에 무작위 6자리 숫자를 전송
+	public void sendCert(String memberEmail) {
+		Random r = new Random();
+		int number = r.nextInt(1000000); // 000000부터 999999까지
+		DecimalFormat fmt = new DecimalFormat("00000");
+		
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setTo(memberEmail);
+		message.setSubject("[KH정보교육원] 발급한 인증번호");
+		message.setText("인증번호는 ["+ fmt.format(number)+"]입니다.");
+		
+		sender.send(message);
+	}
 	
 }
