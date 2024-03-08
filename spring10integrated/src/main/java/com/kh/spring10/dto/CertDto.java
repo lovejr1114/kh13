@@ -6,9 +6,7 @@ public class CertDto {
 	private String certEmail;
 	private String certNumber;
 	private Date certTime;
-	public CertDto() {
-		super();
-	}
+	
 	public String getCertEmail() {
 		return certEmail;
 	}
@@ -27,5 +25,7 @@ public class CertDto {
 	public void setCertTime(Date certTime) {
 		this.certTime = certTime;
 	}
-	
+	public CertDto() {
+		super();
+	}
 }
