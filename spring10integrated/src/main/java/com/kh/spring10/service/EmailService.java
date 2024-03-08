@@ -99,6 +99,15 @@ public class EmailService {
 		int number = r.nextInt(1000000);//000000 ~ 999999
 		DecimalFormat fmt = new DecimalFormat("000000");
 		
+		//메일 발송 (발송 후 저장)
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setTo(memberEmail);
+		message.setSubject("[KH정보교육원] 인증번호 안내");
+		message.setText("인증번호는 [" + fmt.format(number) + "] 입니다");
+		
+		sender.send(message);
+		
+		
 		//인증번호 저장 - 기존 내역 삭제 후 저장
 		certDao.delete(memberEmail);
 		CertDto certDto = new CertDto();
@@ -106,12 +115,5 @@ public class EmailService {
 		certDto.setCertNumber(fmt.format(number));
 		certDao.insert(certDto);
 		
-		//메일 발송
-		SimpleMailMessage message = new SimpleMailMessage();
-		message.setTo(memberEmail);
-		message.setSubject("[KH정보교육원] 인증번호 안내");
-		message.setText("인증번호는 [" + fmt.format(number) + "] 입니다");
-		
-		sender.send(message);
 	}
 }
