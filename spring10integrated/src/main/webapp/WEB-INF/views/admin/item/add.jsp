@@ -30,7 +30,7 @@
          	<input type="number" name="itemPrice" required>
          </div>
          <div calss="cell">
-         	<input type="nember" name="itemCharge" required>
+         	<input type="number" name="itemCharge" required>
          </div>    
          <div class="cell">
          <label>이미지</label>

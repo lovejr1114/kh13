@@ -43,7 +43,7 @@ public class ItemDao {
 		String sql = "select * from item order by item_price asc";
 		return jdbcTemplate.query(sql, itemMapper);
 	}
-	//상세?
+	//사진 아이템번호
 	public int findAttcahNo(int itemNo) {
 		String sql = "select attach_no from item_attach where item_no=?";
 		Object[] data = {itemNo};
@@ -56,7 +56,7 @@ public class ItemDao {
 		return jdbcTemplate.update(sql, data) > 0;
 	}
 
-	//수정
+	//상세
 	public ItemDto selectOne(int itemNo) {
 		String sql = "select * from item where item_no=?";
 		Object[] data = {itemNo};
