@@ -22,12 +22,11 @@
 			<input type="number" name="pointCharge" required>
 		</div>
 		
-<%-- 
 		<div class="cell">
 			<label>이미지 등록</label>
 			<input type="file" name="attach" class="tool w-100">
 		</div>
---%>
+
 		<div class="cell">
 			<button>등록</button>
 		</div>
