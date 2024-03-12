@@ -79,10 +79,11 @@ public class PointController {
 	public String registComplete() {
 		return "/WEB-INF/views/point/registComplete.jsp";
 	}
+	//여기까지 관리자
 
 	
 	
-	
+	//아직 안됨...ㅠㅠ
 	// 충전 페이지
 	@GetMapping("/charge")
 	public String charge(Model model) {
