@@ -16,6 +16,10 @@ public class BasketMapper implements RowMapper<BasketDto> {
 		BasketDto basketDto = new BasketDto();
 		basketDto.setBasketNo(rs.getInt("basket_no"));
 		basketDto.setBasketCount(rs.getInt("basket_count"));
+		basketDto.setBasketId(rs.getString("basket_id"));
+		basketDto.setBasketOrder(rs.getInt("basket_order"));
+		basketDto.setBasketStore(rs.getInt("basket_store"));
+		basketDto.setBasketMenu(rs.getInt("basket_menu"));
 		return basketDto;
 	}
 

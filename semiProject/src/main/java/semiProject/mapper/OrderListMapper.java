@@ -15,6 +15,8 @@ public class OrderListMapper implements RowMapper<OrderListDto> {
 	public OrderListDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 		OrderListDto orderListDto = new OrderListDto();
 		orderListDto.setOrderListNo(rs.getInt("orderList_no"));
+		orderListDto.setOrderListStore(rs.getInt("orderList_store"));
+		orderListDto.setOrderListId(rs.getString("orderList_id"));
 		orderListDto.setOrderListPay(rs.getString("orderList_pay"));
 		orderListDto.setOrderListTotalprice(rs.getInt("orderList_totalpay"));
 		orderListDto.setOrderListRequest(rs.getString("orderList_request"));
