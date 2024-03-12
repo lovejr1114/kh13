@@ -64,7 +64,7 @@ public class ItemDao {
 		return list.isEmpty() ? null : list.get(0);
 	}
 	
-	//
+	//수정
 	public boolean update(ItemDto itemDto) {
 		String sql = "update item "
 				+ "set item_name=?, item_price=?, item_charge=? "

@@ -33,6 +33,13 @@ public class PointDao {
 		jdbcTemplate.update(sql, data);
 	}
 	
+	//연결
+	public void connect(int pointNo, int attachNo) {
+		String sql = "insert into point_attach(point_no, attach_no) values(?, ?)";
+		Object[] data = {pointNo, attachNo};
+		jdbcTemplate.update(sql, data);
+	}
+	
 	//충전상품 목록
 	public List<PointDto> selectList(){
 		String sql = "select * from point order by point_price asc";
@@ -46,7 +53,7 @@ public class PointDao {
 		return list.isEmpty() ? null : list.get(0);
 	}
 	
-	//사진 아이템번호
+	//사진 아이템번호로 찾기
 	public int findAttcahNo(int pointNo) {
 		String sql = "select attach_no from point_attach where point_no=?";
 		Object[] data = {pointNo};
@@ -54,7 +61,11 @@ public class PointDao {
 	}
 	
 	
-	
+	public boolean chargePoints(String memberId, int point) {
+        String sql = "UPDATE member SET member_point = member_point + ? WHERE member_id = ?";
+        int rowsAffected = jdbcTemplate.update(sql, point, memberId);
+        return rowsAffected > 0;
+    }
 	
 	
 	

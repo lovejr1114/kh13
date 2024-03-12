@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,12 +35,26 @@ public class PointController {
 		model.addAttribute("list",pointDao.selectList());
 		return "/WEB-INF/views/point/charge.jsp";
 	}
+//	@PostMapping("/charge")
+//	public String charge(HttpSession session, int point) {
+//	    String loginId = (String)session.getAttribute("loginId");// 아이디 추출
+//
+//	    PointDto pointDto = new PointDto();
+//	    pointDto.setPointCharge(point); // 충전할 포인트 설정
+//	    
+//	    memberDao.plusMemberPoint(loginId, point); // 포인트 증가
+//	    
+//	    return "redirect:pointComplete";
+//	}
 	@PostMapping("/charge")
-	public String charge(@ModelAttribute PointDto pointDto, HttpSession session) {
-		String loginId = (String)session.getAttribute("loginId");// 아이디 추출
-		
-		return "redirect:pointComplete";
-	}
+    public String chargePoints(HttpSession session, @RequestParam String memberId, @RequestParam int point) {
+        boolean success = pointDao.chargePoints(memberId, point);
+        if (success) {
+            return "redirect:pointComplete";
+        } else {
+            return "redirect:errorPage";
+        }
+    }
 	
 	//포인트 충전 완료페이지
 	@RequestMapping("/chargeComplete")
