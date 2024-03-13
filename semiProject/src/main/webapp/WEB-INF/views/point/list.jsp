@@ -43,6 +43,19 @@
 }
 </style>
 
+<script type="text/javascript">
+        $(function(){
+            $("a.remove-confirm").click(function(){
+                var message = $(this).data("message");
+                if(message == undefined) {
+                     message = "삭제하시겠습니까?";
+                }
+                var choice = window.confirm(message);
+                return choice;
+            });
+        });
+</script>
+
 <div class="container w-800">
 
 	<div class="cell center">
@@ -76,7 +89,7 @@
 						<i class="fa-solid fa-pen green"></i> 수정
 						</a>
 						&nbsp&nbsp
-						<a href="delete?pointNo=${pointDto.pointNo}" class="link">
+						<a href="delete?pointNo=${pointDto.pointNo}" class="link remove-confirm">
 						<i class="fa-regular fa-trash-can red"></i> 삭제
 						</a>
 					</td>
