@@ -60,13 +60,29 @@ public class PointDao {
 		return jdbcTemplate.queryForObject(sql, int.class, data);
 	}
 	
-	
+	//보류
 	public boolean chargePoints(String memberId, int point) {
         String sql = "UPDATE member SET member_point = member_point + ? WHERE member_id = ?";
         int rowsAffected = jdbcTemplate.update(sql, point, memberId);
         return rowsAffected > 0;
     }
 	
+	//삭제
+	public boolean delete(int pointNo) {
+		String sql = "delete point where point_no=?";
+		Object[] data = {pointNo};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
 	
-	
+	//수정
+	public boolean update(PointDto pointDto) {
+		String sql = "update point set "
+					+ "point_name=?, point_price=?, point_charge=? "
+				+ "where point_no=?";
+		Object[] data = {
+				pointDto.getPointName(), pointDto.getPointPrice(),
+				pointDto.getPointCharge(), pointDto.getPointNo()
+		};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
 }
