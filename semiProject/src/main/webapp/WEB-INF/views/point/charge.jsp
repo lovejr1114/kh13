@@ -7,7 +7,7 @@
 
     <style>
         .charge-item {
-            width: 50%;
+            width: 70%;
         }
 
         .btn {
@@ -41,8 +41,12 @@
 <body>
 
     <div class="container w-800">
-        <div class="cell center">
-            <h3>포켓볼 충전</h3>
+        <div class="cell center my-50">
+            <h3>
+            	<i class="fa-solid fa-coins fa-beat" style="color:rgb(254,210,61)"></i>
+            	&nbsp
+            	포켓볼 충전
+            </h3>
         </div>
 
         <div class="cell flex-cell my-50">
