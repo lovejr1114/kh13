@@ -54,7 +54,7 @@
 				$.ajax({
 					url : "http://localhost:8080/point/regist",
 					method : "post",
-					data : formData,
+					data : {formData : value},
 					success : function(response) {
 						console.log(response);
 					},
@@ -94,9 +94,8 @@
 
 <body>
 
-	<form action="regist" method="post" autocomplete="off"
-		multipart/form-data"
-		class="check-form">
+	<form action="regist" method="post" autocomplete="off" enctype="multipart/form-data"	
+		 class="check-form">
 		<div class="container w-800">
 			<div class="cell center">
 				<h3>포켓볼 충전 등록</h3>

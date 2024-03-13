@@ -19,7 +19,7 @@ public class AttachService {
 	//서버에 파일저장 + db에 attach 데이터 저장
 	public int save(MultipartFile attach) throws IllegalStateException, IOException {
 		int attachNo = attachDao.getSequence();
-		File dir = new File(System.getProperty("user.home"), "kh13A");
+		File dir = new File(System.getProperty("user.home"), "kh13Aa");
 		dir.mkdirs();
 		File target = new File(dir, String.valueOf(attachNo));
 		attach.transferTo(target);
