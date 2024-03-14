@@ -86,11 +86,13 @@
 					</td>
 					<td>
 						<a href="edit?pointNo=${pointDto.pointNo}" class="link">
-						<i class="fa-solid fa-pen green"></i> 수정
+						<i class="fa-solid fa-pen green"></i>
+						수정
 						</a>
 						&nbsp&nbsp
 						<a href="delete?pointNo=${pointDto.pointNo}" class="link remove-confirm">
-						<i class="fa-regular fa-trash-can red"></i> 삭제
+						<i class="fa-regular fa-trash-can red"></i>
+						삭제
 						</a>
 					</td>
 				</tr>
