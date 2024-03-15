@@ -5,13 +5,6 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 	<h1>메인페이지 임시</h1>
 	
 	<div>

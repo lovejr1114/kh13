@@ -100,22 +100,22 @@
 				<h2 style="font-family:빙그레 메로나체, sans-serif">포켓볼 충전상품 등록</h2>
 			</div>
 			<div class="cell">
-				<label>이미지</label> <input type="file" name="attach"
-					class="tool w-100">
+				<label>이미지</label>
+				<input type="file" name="attach" class="tool w-100">
 			</div>
 			<div class="cell">
-				<label>상품명</label> <input type="text" class="tool w-100"
-					placeholder="상품명" name="pointName">
+				<label>상품명</label>
+				<input type="text" class="tool w-100" placeholder="상품명" name="pointName">
 				<div class="fail-feedback">상품명을 작성하세요</div>
 			</div>
 			<div class="cell">
-				<label>판매가</label> <input type="text" class="tool w-100"
-					placeholder="판매가격(원)" name="pointPrice">
+				<label>판매가</label>
+				<input type="text" class="tool w-100" placeholder="판매가격(원)" name="pointPrice">
 				<div class="fail-feedback">판매가를 설정하세요</div>
 			</div>
 			<div class="cell">
-				<label>포켓볼</label> <input type="text" class="tool w-100"
-					placeholder="포켓볼(개)" name="pointCharge">
+				<label>포켓볼</label>
+				<input type="text" class="tool w-100" placeholder="포켓볼(개)" name="pointCharge">
 				<div class="fail-feedback">포켓볼을 설정하세요</div>
 			</div>
 			<div class="cell my-30">
