@@ -69,7 +69,6 @@
 	<div class="cell">
 		<label>이미지</label><br>
 		<img src="image?pointNo=${pointDto.pointNo}" class="w-100" style="width:20%"> <br>
-		<input type="file" class="tool w-100" name="attach">
 	</div>
 	<div class="cell">
 		<label>상품명</label>
