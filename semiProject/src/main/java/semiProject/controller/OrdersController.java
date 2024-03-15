@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpSession;
 import semiProject.dao.MemberDao;
-import semiProject.dao.OrderListDao;
+import semiProject.dao.OrdersDao;
 import semiProject.dao.StoreDao;
-import semiProject.dto.OrderListDto;
+import semiProject.dto.OrdersDto;
 import semiProject.dto.StoreDto;
 
 @Controller
 @RequestMapping("/orderList")
-public class OrderListController {
+public class OrdersController {
 
 	@Autowired
-	private OrderListDao orderListDao;
+	private OrdersDao ordersDao;
 //	@Autowired
 //	private MenuDao menuDao;
 	@Autowired
@@ -31,7 +31,7 @@ public class OrderListController {
 	//주문내역 등록
 	@GetMapping("/add")
 	public String add(Model model) {
-		model.addAttribute("list", orderListDao.selectList());
+		model.addAttribute("list", ordersDao.selectList());
 		return "/WEB-INF/views/orderlist/add.jsp";
 	}
 //	@PostMapping("/add")
