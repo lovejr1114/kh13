@@ -1,58 +1,59 @@
 package semiProject.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import jakarta.servlet.http.HttpSession;
 import semiProject.dao.CartDao;
+import semiProject.dao.MemberDao;
 import semiProject.dao.MenuDao;
-import semiProject.dao.StoreDao;
 import semiProject.dto.CartDto;
-import semiProject.dto.MenuDto;
 
 @Controller
 @RequestMapping("/cart")
 public class CartController {
+
 	@Autowired
-	private StoreDao storeDao;
-	@Autowired
-	private CartDao cartDao;
+	private MemberDao memberDao;
 	@Autowired
 	private MenuDao menuDao;
-	
+	@Autowired
+	private CartDao cartDao;
 
+	// 장바구니 등록
+	@PostMapping("/insert")
+	public String insert(@ModelAttribute CartDto cartDto) {
+		cartDao.insert(cartDto);
+
+		return "/WEB-INF/views/cart/insertComplete.jsp";
+	}
+
+	//장바구니 목록
 	@RequestMapping("/list")
-	public String list(@RequestParam int menuNo, Model model,
-							@ModelAttribute CartDto cartDto, HttpSession session) {
-		String loginId = (String)session.getAttribute("loginId"); //아이디 추출
-		//메뉴디비에 있는 정보를 불러옴 (selectOne(cartNo))
-		MenuDto menuDto = (MenuDto) menuDao.selectList(); // 
-		
-		//cart 디비에 저장
-		cartDto.setMemberId(loginId); //아이디 설정
-		cartDto.setMenuName(menuDto.getMenuName()); //메뉴명 복사
-		cartDto.setCartPrice(menuDto.getMenuPrice() * cartDto.getCartCount()); //메뉴 가격 * 장바구니 수량
-		
-		//cart 디비에 있는 정보를 jsp로 넘겨줌. 
-		cartDao.add(cartDto);
-		
-		
+	public String list(Model model) {
+		List<CartDto> lllist;
+		lllist = cartDao.selectList();
+		model.addAttribute("qwer", lllist);
 		return "/WEB-INF/views/cart/list.jsp";
 	}
 	
-//	@RequestMapping("/add")
-//	public String add(@ModelAttribute CartDto cartDto, HttpSession session) {
-//		String loginId = (String)session.getAttribute("loginId");
-//		if(loginId == null) {
-//			return "redirect:/member/signin";
-//		}
-//		
-//		int memberNo = Integer.parseInt(loginId);
-//		cartDto.setMemberNo(memberNo);
-//		cartDto.setStoreName();
-//	}
+	//장바구니 삭제
+	@RequestMapping("/delete")
+	public String delete(@RequestParam int cartNo) {
+		cartDao.delete(cartNo);
+		return "redirect:list";
+	}
+	
+	//장바구니 전체 삭제
+	@RequestMapping("/deleteAll")
+	public String deleteAll() {
+		cartDao.deleteAll();
+		return "redirect:list";
+	}
 }
