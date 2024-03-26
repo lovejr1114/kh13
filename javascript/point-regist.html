@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript 예제</title>
+
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 내가 구현한 스타일 -->
+    <link rel="stylesheet" type="text/css" href="../css/commons.css">
+    <link rel="stylesheet" type="text/css" href="../css/test.css">
+
+    <!-- font awesome 아이콘 CDN -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .container {
+            display: grid;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            padding: 60px;
+            border: 1px solid #ffffff;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px 10px #ccc;
+        }
+
+        .btn {
+            /*a태그를 버튼으로 쓸 경우*/
+            color: #2d3436;
+            text-decoration: none;
+            /* 밑줄 제거 */
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            background-color: rgb(254, 210, 61);
+        }
+    </style>
+
+    <!-- jquery cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <!-- 내가 만든 스크립트 추가(jQuery를 사용했으니 jQuery CDN 아래 작성) -->
+    <script src="commons.js"></script>
+    <!-- javascript를 의도적으로 head 자리에 배치해서 가장 먼저 실행되도록 구현-->
+    <script type="text/javascript">
+        $(function () {
+            //상태 객체
+            var state = {
+                pointNameValid: false,
+                pointPriceValid: false,
+                pointChargeValid: false,
+                ok: function () {
+                    return this.pointNameValid
+                        && this.pointPriceValid
+                        && this.pointChargeValid;
+                }
+            };
+
+        $("[name=pointName]").blur(function () {
+            var regex = /^[A-Za-z가-힣0-9]+$/;
+            state.pointNameValid = regex.test($(this).val());
+            $(this).removeClass("success fail")
+                .addClass(state.pointNameValid ? "success" : "fail");
+        });
+        $("[name=pointPrice]").blur(function () {
+            var regex = /^[0-9]+$/;
+            state.pointPriceValid = regex.test($(this).val());
+            $(this).removeClass("success fail")
+                .addClass(state.pointPriceValid ? "success" : "fail");
+        });
+        $("[name=pointCharge]").blur(function () {
+            var regex = /^[0-9]+$/;
+            state.pointChargeValid = regex.test($(this).val());
+            $(this).removeClass("success fail")
+                .addClass(state.pointChargeValid ? "success" : "fail");
+        });
+        });
+    </script>
+</head>
+
+<body>
+
+    <form action="regist" method="post" autocomplete="off" class="check-form">
+        <div class="container w-800">
+            <div class="cell center my-50">
+                <h3>포켓볼 충전 등록</h3>
+            </div>
+            <div class="cell">
+                <label>상품명</label>
+                <input type="text" class="tool w-100" placeholder="상품명" name="pointName">
+                <div class="fail-feedback">이름을 반드시 작성하세요</div>
+            </div>
+            <div class="cell">
+                <label>판매가</label>
+                <input type="text" class="tool w-100" placeholder="판매 할 가격" name="pointPrice">
+                <div class="fail-feedback">가격을 작성하세요</div>
+            </div>
+            <div class="cell">
+                <label>포인트</label>
+                <input type="text" class="tool w-100" placeholder="충전 할 포켓볼 개수" name="pointCharge">
+                <div class="fail-feedback">포인트를 작성하세요</div>
+            </div>
+            <div class="cell my-30">
+                <button class="btn w-100">등록</button>
+            </div>
+
+        </div>
+    </form>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript 예제</title>
+
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 내가 구현한 스타일 -->
+    <link rel="stylesheet" type="text/css" href="../css/commons.css">
+    <link rel="stylesheet" type="text/css" href="../css/test.css">
+
+    <!-- font awesome 아이콘 CDN -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .area {
+            display: flex;
+        }
+
+        .area>div {
+            flex-grow: 1;
+            /* 잔여 여백에 대한 차지 비율을 설정 */
+        }
+
+        .cell {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cell img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+
+    <!-- jquery cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <!-- 내가 만든 스크립트 추가(jQuery를 사용했으니 jQuery CDN 아래 작성) -->
+    <script src="commons.js"></script>
+    <!-- javascript를 의도적으로 head 자리에 배치해서 가장 먼저 실행되도록 구현-->
+    <script type="text/javascript">
+
+    </script>
+</head>
+
+<body>
+
+    <div class="container w-1000">
+        <div class="cell center">
+            <h1>제목</h1>
+        </div>
+        <div class="cell my-50">
+            <div class="cell center my-50">
+                <input type="text" class="tool w-40" placeholder="지역명 (ex)양평동">
+                <button class="btn" style="background-color:rgb(254,210,61)">검색</button>
+            </div>
+            <div class="cell area">
+                <div class="cell center">
+                    <img src="/css/image/chicken.png">
+                </div>
+                <div class="cell center">
+                    <img src="/css/image/pasta.png">
+                </div>
+                <div class="cell center">
+                    <img src="/css/image/jjajang_con.png">
+                </div>
+                <div class="cell center">
+                    <img src="/css/image/shushi.png">
+                </div>
+            </div>
+            <div class="cell area">
+                <div class="cell center">
+                    <img src="/css/image/fork.png">
+                </div>
+                <div class="cell center">
+                    <img src="/css/image/noodle.png">
+                </div>
+                <div class="cell center">
+                    <img src="/css/image/dduk.png">
+                </div>
+                <div class="cell center">
+                    <img src="/css/image/cake.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

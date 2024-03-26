@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript 예제</title>
+
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 내가 구현한 스타일 -->
+    <link rel="stylesheet" type="text/css" href="../css/commons.css">
+    <link rel="stylesheet" type="text/css" href="../css/test.css">
+
+    <!-- font awesome 아이콘 CDN -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .w-40 {
+            width: 40%;
+        }
+
+        .rotateball:hover {
+            transform: rotate(360deg);
+            transition : transform 1s;
+        }
+
+        .delivery {
+            position: relative;
+            left: 400px;
+            animation-duration: 5s;
+            animation-name: delivery;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes delivery {
+            from {
+                left: 1500px;
+            }
+
+            to {
+                left: -1000px;
+            }
+        }
+
+        .text {
+            font-family: 빙그레 메로나체, sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-align: center;
+            /* text-shadow: -1px -1px 0 #2d3436,
+                                1px -1px 0 #2d3436,
+                                -1px 1px 0 #2d3436,
+                                1px 1px 0 #2d3436; */
+            color: rgb(253, 185, 30);
+            opacity: 0;
+            animation: fadeInText 3s 6s ease-out forwards;
+        }
+
+        @keyframes fadeInText {
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .text-out {
+            font-family: 빙그레 메로나체, sans-serif;
+            font-size: 20px;
+            animation: fadeOutText 3s 5s ease-out forwards;
+        }
+
+        @keyframes fadeOutText {
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+
+    <!-- jquery cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <!-- 내가 만든 스크립트 추가(jQuery를 사용했으니 jQuery CDN 아래 작성) -->
+    <script src="commons.js"></script>
+    <!-- javascript를 의도적으로 head 자리에 배치해서 가장 먼저 실행되도록 구현-->
+    <script type="text/javascript">
+
+    </script>
+</head>
+
+<body>
+
+    <div class="container w-600">
+
+        <div class="cell center flex-cell">
+            <div class="cell right width-fill">
+                <h3 class="text-out">배달기사 찾는중...</h3>
+            </div>
+            <div class="cell left w-40">
+                <img src="/css/image/pocketball.png" class="rotateball text-out" width="20%;">
+            </div>
+
+        </div>
+        <div class="cell">
+            <img src="/css/image/pica.png" class="delivery" width="50%;">
+            <h3 class="text text-with-border">기사가 배차되었습니다.</h3>
+        </div>
+    </div>
+
+</body>
+
+</html>
