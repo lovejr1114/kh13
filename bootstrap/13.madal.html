@@ -91,7 +91,10 @@
                     </div>
                  </div>
 
-                <div class="modal fade" tabindex="-1" id="custom-modal">
+                 <!-- 모달 영역 -->
+                <div class="modal fade" tabindex="-1" id="custom-modal"
+                                                                data-bs-backdrop="static">
+                                                        <!-- backdrop을 클릭해도 닫히지 않음 (정적) -->
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -106,8 +109,8 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">자동닫기</button>
-                          <button type="button" class="btn btn-secondary close-modal-btn">수동닫기</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
+                          <button type="button" class="btn btn-secondary close-modal-btn">수동닫기(취소같은느낌)</button>
+                          <button type="button" class="btn btn-primary">Save changes(저장 등, AJAX느낌)</button>
                         </div>
                       </div>
                     </div>
