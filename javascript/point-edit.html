@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript 예제</title>
+
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 내가 구현한 스타일 -->
+    <link rel="stylesheet" type="text/css" href="../css/commons.css">
+    <link rel="stylesheet" type="text/css" href="../css/test.css">
+
+    <!-- font awesome 아이콘 CDN -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .container {
+            display: grid;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            padding: 60px;
+            border: 1px solid #ffffff;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px 10px #ccc;
+        }
+
+        .title-icon {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            ;
+            color: rgb(254, 210, 61);
+        }
+
+        .btn {
+            /*a태그를 버튼으로 쓸 경우*/
+            color: #2d3436;
+            text-decoration: none;
+            /* 밑줄 제거 */
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            background-color: rgb(254, 210, 61);
+        }
+    </style>
+
+    <!-- jquery cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <!-- 내가 만든 스크립트 추가(jQuery를 사용했으니 jQuery CDN 아래 작성) -->
+    <script src="commons.js"></script>
+    <!-- javascript를 의도적으로 head 자리에 배치해서 가장 먼저 실행되도록 구현-->
+    <script type="text/javascript">
+
+    </script>
+</head>
+
+<body>
+
+    <div class="container w-800">
+        <div class="cell center">
+            <h1 style="font-family:빙그레 메로나체, sans-serif">포켓볼 충전 상품 수정</h1>
+        </div>
+        <form action="edit" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="pointNo" value="${pointDto.pointNo}">
+
+            <div class="cell">
+                <label>이미지</label><br>
+                <img src="image?pointNo=${pointDto.pointNo}" class="w-100" style="width:20%"> <br>
+                <input type="file" class="tool w-100" name="attach">
+            </div>
+            <div class="cell">
+                <label>상품명</label>
+                <input type="text" class="tool w-100" name="pointName" value="${pointDto.pointName}">
+            </div>
+            <div class="cell">
+                <label>판매가</label>
+                <input type="number" class="tool w-100" name="pointPrice" value="${pointDto.pointPrice}">
+            </div>
+            <div class="cell">
+                <label>포켓볼</label>
+                <input type="number" class="tool w-100" name="pointCharge" value="${pointDto.pointCharge}">
+            </div>
+            <button class="btn">변경</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

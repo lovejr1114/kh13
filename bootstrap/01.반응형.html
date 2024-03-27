@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응형 디자인</title>
+    <style>
+        body {
+            height: 1000px;
+            background-color: #25f874;
+        }
+
+        /* @media print -> 워터마크 추가
+        @media screen -> 화면 감지 */
+        @media screen and (max-width:600px){ /* and 뒤에 띄어쓰기 해야함!*/
+            body{
+                background-color: #448;
+            }
+        }
+        @media screen and (max-width:400px) {
+            body {
+                background-color: #587e34;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+
+</body>
+</html>
