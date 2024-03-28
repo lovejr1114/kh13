@@ -6,6 +6,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import lombok.Data;
+import lombok.ToString;
+
+@Data @ToString(exclude = {"boardContent"})
 public class BoardDto {
 	private int boardNo;//글번호
 	private String boardTitle;//작성자
@@ -20,48 +24,6 @@ public class BoardDto {
 	private int boardDepth; //차수
 	
 	
-	public int getBoardNo() {
-		return boardNo;
-	}
-	public void setBoardNo(int boardNo) {
-		this.boardNo = boardNo;
-	}
-	public String getBoardTitle() {
-		return boardTitle;
-	}
-	public void setBoardTitle(String boardTitle) {
-		this.boardTitle = boardTitle;
-	}
-	public String getBoardContent() {
-		return boardContent;
-	}
-	public void setBoardContent(String boardContent) {
-		this.boardContent = boardContent;
-	}
-	public String getBoardWriter() {
-		return boardWriter;
-	}
-	public void setBoardWriter(String boardWriter) {
-		this.boardWriter = boardWriter;
-	}
-	public Date getBoardWtime() {
-		return boardWtime;
-	}
-	public void setBoardWtime(Date boardWtime) {
-		this.boardWtime = boardWtime;
-	}
-	public Date getBoardEtime() {
-		return boardEtime;
-	}
-	public void setBoardEtime(Date boardEtime) {
-		this.boardEtime = boardEtime;
-	}
-	public int getBoardReadcount() {
-		return boardReadcount;
-	}
-	public void setBoardReadcount(int boardReadcount) {
-		this.boardReadcount = boardReadcount;
-	}
 	public String getBoardWriterStr() {
 		if(boardWriter == null)
 			return "(탈퇴한 사용자)";
@@ -69,24 +31,6 @@ public class BoardDto {
 			return boardWriter;
 	}
 	
-	public int getBoardGroup() {
-		return boardGroup;
-	}
-	public void setBoardGroup(int boardGroup) {
-		this.boardGroup = boardGroup;
-	}
-	public Integer getBoardTarget() {
-		return boardTarget;
-	}
-	public void setBoardTarget(Integer boardTarget) {
-		this.boardTarget = boardTarget;
-	}
-	public int getBoardDepth() {
-		return boardDepth;
-	}
-	public void setBoardDepth(int boardDepth) {
-		this.boardDepth = boardDepth;
-	}
 	//오늘 작성한 글은 시간을, 이전에 작성한 글은 날짜를 반환
 	//- LocalDate 형태로 시간을 변환하여 오늘 날짜와 비교
 	//- 날짜가 같다면 LocalDateTime으로 변환해서 시간만 반환

@@ -1,29 +1,11 @@
 package com.kh.spring10.dto;
 
+import lombok.Data;
+
+@Data
+//@Setter @Getter @NoArgsConstructor @ToString 이것을 한 번에 묶은 것이 @Data
 public class PocketmonDto {
 	private int pocketmonNo;
 	private String pocketmonName;
 	private String pocketmonType;
-	public int getPocketmonNo() {
-		return pocketmonNo;
-	}
-	public void setPocketmonNo(int pocketmonNo) {
-		this.pocketmonNo = pocketmonNo;
-	}
-	public String getPocketmonName() {
-		return pocketmonName;
-	}
-	public void setPocketmonName(String pocketmonName) {
-		this.pocketmonName = pocketmonName;
-	}
-	public String getPocketmonType() {
-		return pocketmonType;
-	}
-	public void setPocketmonType(String pocketmonType) {
-		this.pocketmonType = pocketmonType;
-	}
-	public PocketmonDto() {
-		super();
-	}
-	
 }
