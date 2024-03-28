@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI구현 평가자체크리스트 문제</title>
+    <!-- 구글 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- 내가 구현한 스타일 -->
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <link rel="stylesheet" type="text/css" href="test.css">
+
+    <!-- font awesome 아이콘 CDN -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .btn-number {
+            border: none;
+            height: 50px;
+            background-color: #dfe4ea;
+            font-size: 20px;
+            border-radius: 2px;
+        }
+
+        .btn:hover {
+            filter: brightness(1.1);
+        }
+
+        .numberInput {
+            font-size: 20px;
+            padding: 0.5em 1em;
+            outline: none;
+            border: 1px solid #636e72;
+            border-radius: 0.1em;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function touchNumber(value) {
+            var target = document.querySelector(".display");
+            target.value += value;
+        }
+
+        function minusKeypad() {
+            var target = document.querySelector(".display");
+            var value = target.value;
+            target.value = value.slice(0, -1);
+        }
+
+        function clearKeypad() {
+            var target = document.querySelector(".display");
+            target.value = "";
+        }
+
+        function togglePassword() {
+            var password = document.querySelector(".password");
+            var textCheckbox = document.querySelector(".textCheckbox");
+
+            if (textCheckbox.checked) {
+                password.type = "text";
+            }
+            else {
+                password.type = "password";
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div class="container w-300">
+        <div class="cell center mt-50">
+            <h1>비밀번호 입력</h1>
+        </div>
+
+        <div class="cell">
+            <input type="password" class="tool w-100 display password">
+            <input type="checkbox" class="textCheckbox" onchange="togglePassword()">
+            <span>비밀번호 표시</span>
+        </div>
+        <div class="cell">
+            <div class="flex-cell auto-width">
+                <button onclick="touchNumber('1');" class="btn btn-number">1</button>
+                <button onclick="touchNumber('2');" class="btn btn-number">2</button>
+                <button onclick="touchNumber('3');" class="btn btn-number">3</button>
+            </div>
+            <div class="flex-cell auto-width">
+                <button onclick="touchNumber('4');" class="btn btn-number">4</button>
+                <button onclick="touchNumber('5');" class="btn btn-number">5</button>
+                <button onclick="touchNumber('6');" class="btn btn-number">6</button>
+            </div>
+            <div class="flex-cell auto-width">
+                <button onclick="touchNumber('7');" class="btn btn-number">7</button>
+                <button onclick="touchNumber('8');" class="btn btn-number">8</button>
+                <button onclick="touchNumber('9');" class="btn btn-number">9</button>
+            </div>
+            <div class="flex-cell">
+                <button class="btn btn-number w-25" onclick="minusKeypad();">
+                    <i class="fa-solid fa-delete-left"></i>
+                </button>
+                <button onclick="touchNumber('0');" class="btn btn-number w-50">0</button>
+                <button class="btn btn-number w-25" onclick="clearKeypad();">
+                    <i class="fa-solid fa-eraser"></i>
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
