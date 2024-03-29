@@ -18,11 +18,13 @@ public class EmpDeleteTest01 {
 	@Test
 	public void test() {
 		int empNo = 8;
-		if(empDao.delete(empNo)) {
-			log.debug("삭제 성공");
-		}
-		else {
-			log.debug("존재하지 않는 사원번호");
-		}
+		boolean result = empDao.delete(empNo);
+		log.debug("result={}",result);
+//		if(empDao.delete(empNo)) {
+//			log.debug("삭제 성공");
+//		}
+//		else {
+//			log.debug("존재하지 않는 사원번호");
+//		}
 	}
 }
