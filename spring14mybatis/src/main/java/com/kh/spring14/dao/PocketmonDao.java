@@ -37,4 +37,17 @@ public class PocketmonDao {
 	public boolean delete(int pocketmonNo) {
 		return sqlSession.delete("pocketmon.remove",pocketmonNo) > 0;
 	}
+	
+	//상세 조회를 구현하는 방법은 2가지
+	//1. selectList를 사용해서 목록으로 처리 - 여러개 나와도 에러가 안남 (X)
+	//2. selectOne을 사용해서 상세조회 처리 - 여러개 나오면 에러가 발생 (O)
+	public PocketmonDto selectOne(int pocketmonNo) {
+		//1번
+//		List<PocketmonDto> list = 
+//				sqlSession.selectList("pocketmon.find",pocketmonNo);
+//		return list.isEmpty() ? null : list.get(0);
+//		
+		//2번
+		return sqlSession.selectOne("pocketmon.find",pocketmonNo);
+	}
 }
