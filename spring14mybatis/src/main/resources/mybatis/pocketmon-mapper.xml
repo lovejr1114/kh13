@@ -26,4 +26,8 @@
 		where pocketmon_no=#{pocketmonNo}
 	</update>
 	
+	<!-- 삭제 -->
+	<delete id="remove">
+		delete pocketmon where pocketmon_no=#{pocketmonNo}
+	</delete>
 </mapper>
