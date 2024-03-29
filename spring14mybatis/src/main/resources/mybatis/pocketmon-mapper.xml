@@ -6,8 +6,24 @@
     
 <mapper namespace="pocketmon">
 	
+	<!-- resultType은 조회 결과의 형태를 의미하며 select에만 작성 -->
 	<select id="list" resultType="PocketmonDto">
 		select * from pocketmon
 	</select>
+	
+	<!-- 등록 -->
+	<insert id="add">
+		insert into pocketmon 
+			(pocketmon_no, pocketmon_name, pocketmon_type) 
+		values(#{pocketmonNo}, #{pocketmonName}, #{pocketmonType})
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="edit">
+		update pocketmon
+			set pocketmon_name=#{pocketmonName}, 
+			pocketmon_type=#{pocketmonType}
+		where pocketmon_no=#{pocketmonNo}
+	</update>
 	
 </mapper>

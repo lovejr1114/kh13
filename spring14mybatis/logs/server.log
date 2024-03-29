@@ -1,6 +1,0 @@
-2024-03-29T10:33:51.143+09:00  INFO 10888 --- [main] com.kh.spring14.PocketmonSelectTest01    : Starting PocketmonSelectTest01 using Java 17.0.9 with PID 10888 (started by user1 in D:\study\spring-workspace\spring14mybatis)
-2024-03-29T10:33:51.143+09:00 DEBUG 10888 --- [main] com.kh.spring14.PocketmonSelectTest01    : Running with Spring Boot v3.2.4, Spring v6.1.5
-2024-03-29T10:33:51.144+09:00  INFO 10888 --- [main] com.kh.spring14.PocketmonSelectTest01    : No active profile set, falling back to 1 default profile: "default"
-2024-03-29T10:33:51.722+09:00  WARN 10888 --- [main] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.kh.spring14]' package. Please check your configuration.
-2024-03-29T10:33:52.929+09:00  INFO 10888 --- [main] com.kh.spring14.PocketmonSelectTest01    : Started PocketmonSelectTest01 in 2.081 seconds (process running for 2.959)
-2024-03-29T10:33:53.802+09:00 DEBUG 10888 --- [main] com.kh.spring14.PocketmonSelectTest01    : 결과 수 : 6

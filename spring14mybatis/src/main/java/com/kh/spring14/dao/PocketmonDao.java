@@ -13,7 +13,7 @@ public class PocketmonDao {
 
 //	@Autowired
 //	private JdbcTemplate jdbcTemplate;
-	//이제 이거 가져올 필요 없다. 이것은 Spring
+	//이제 이거 가져올 필요 없다. 이것은 Spring JDBC
 	
 	@Autowired
 	private SqlSession sqlSession; //myBatis
@@ -21,5 +21,15 @@ public class PocketmonDao {
 	public List<PocketmonDto> selectList(){
 //		return pocketmon 영역의 list라는 구문을 실행해서 나온 결과;
 		return sqlSession.selectList("pocketmon.list");
+	}
+	
+	//등록
+	public void insert(PocketmonDto pocketmonDto) {
+		sqlSession.insert("pocketmon.add", pocketmonDto);
+	}
+	
+	//수정
+	public boolean update(PocketmonDto pocketmonDto) {
+		return sqlSession.update("pocketmon.edit", pocketmonDto) > 0;
 	}
 }
