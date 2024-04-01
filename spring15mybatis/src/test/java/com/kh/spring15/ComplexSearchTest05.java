@@ -34,6 +34,10 @@ public class ComplexSearchTest05 {
 //		data.put("memberLevelList", List.of("일반회원"));
 //		data.put("memberLevelList", List.of("일반회원","우수회원"));
 //		data.put("memberLevelList", List.of("일반회원","우수회원","관리자"));
+//		data.put("orderList",List.of("member_nick asc","member_point desc"));
+		
+		data.put("beginRow", 1);
+		data.put("endRow", 10);
 		
 		List<MemberDto> list = sqlSession.selectList("member.complex", data);
 		for(MemberDto memberDto : list) {
