@@ -40,5 +40,12 @@
 		select * from pocketmon where pocketmon_no=#{pocketmonNo}
 	</select>
 	
+	<!-- 검색,키워드 -->
+	<select id="search" parameterType="map" resultType="pocketmonDto">
+		select * from pocketmon
+			<if test="type != null and keyword != null">
+				where instr(${type} , #{keyword}) > 0
+			</if>
+	</select>
 	
 </mapper>

@@ -50,4 +50,11 @@ public class PocketmonDao {
 		//2번
 		return sqlSession.selectOne("pocketmon.find",pocketmonNo);
 	}
+	
+	//검색,키워드
+//	public List<PocketmonDto> selectSearch(String type, String keyword){
+//		return sqlSession.selectSearch("pocketmon.search",);
+//		https://velog.io/@jeeweon/TIL-Day72-MyBatis-%EC%A1%B0%EA%B1%B4%EB%B6%80-select-%EB%B3%B5%ED%95%A9-%EA%B2%80%EC%83%89
+//		위 주소 들어가서 참고하기
+//}
 }
