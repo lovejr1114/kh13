@@ -28,9 +28,12 @@ public class ComplexSearchTest05 {
 //		data.put("memberContact", "01012345678");
 //		data.put("minPoint", 50000);
 //		data.put("maxPoint", 100000);
-		data.put("memberJoin", "2024-01-26");
+//		data.put("memberJoin", "2024-01-26");
 //		data.put("minLoginDate", "2024-03-01");
 //		data.put("maxLoginDate", "2024-03-15");
+//		data.put("memberLevelList", List.of("일반회원"));
+//		data.put("memberLevelList", List.of("일반회원","우수회원"));
+//		data.put("memberLevelList", List.of("일반회원","우수회원","관리자"));
 		
 		List<MemberDto> list = sqlSession.selectList("member.complex", data);
 		for(MemberDto memberDto : list) {
