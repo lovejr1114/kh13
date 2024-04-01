@@ -45,12 +45,72 @@
 	<select id="complex" resultType="MemberDto">
 		select * from member
 		<where>
+		
+			<!-- 아이디 (시작검사) -->
 			<if test="memberId != null">
 				and member_id like #{memberId} || '%'
 			</if>
+			<!-- 닉네임 (포함검사) -->
 			<if test="memberNick != null">
 				and instr(member_nick, #{memberNick}) > 0
 			</if>
+			<!-- 연락처(일치검사) -->
+			<if test="memberContact != null">
+				and member_contact = #{memberContact}
+			</if>
+			<!-- 포인트(구간검사) -->
+			<choose>
+				<when test="minPoint != null and maxPoint != null">
+					and member_point between #{minPoint} and #{maxPoint}
+				</when>
+				<when test="minPoint != null">
+					<!-- XML에서 불가능한 글자를 사용할 경우 CDATA영역을 만들어 해결 -->
+					<![CDATA[					
+					and member_point >= #{minPoint}
+					]]>
+				</when>
+				<when test="maxPoint != null">
+					<![CDATA[
+					and member_point <= #{maxPoint}
+					]]>					
+				</when>
+			</choose>
+			
+			<!-- (Q) YYYY-MM-DD 형식의 날짜로 가입일 검색(memberJoin) -->
+			<if test="memberJoin != null">
+				and to_char(member_join, 'YYYY-MM-DD') = #{memberJoin}
+			</if>
+			
+			<!-- 
+				(Q) YYYY-MM-DD 형식의 날짜 2개로 로그인 일자 검색
+				 (minLoginDate, maxLoginDate) 
+				 * minLoginDate는 0시0분0초로 설정해야하고
+				 * maxLoginDate는 23시 59분 59초로 설정해야한다
+			-->
+			<choose>
+			<when test="minLoginDate != null and maxLoginDate != null">
+				and member_login is not null
+				and member_login between 
+				to_date(#{minLoginDate} || ' ' || '00:00:00', 'YYYY-MM-DD HH24:MI:SS') 
+				and 
+				to_date(#{maxLoginDate} || ' ' || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+			</when>
+			<when test="minLoginDate != null">
+				<![CDATA[	
+				and member_login is not null				
+				and member_login >=
+				to_date(#{minLoginDate} || ' ' || '00:00:00', 'YYYY-MM-DD HH24:MI:SS') 
+				]]>
+			</when>
+			<when test="maxLoginDate != null">
+				<![CDATA[	
+				and member_login is not null				
+				and member_login <=
+				to_date(#{maxLoginDate} || ' ' || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+				]]>
+			</when>
+			</choose>
+			
 		</where>
 	</select>
 
