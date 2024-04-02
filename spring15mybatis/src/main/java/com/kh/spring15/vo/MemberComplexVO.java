@@ -14,7 +14,17 @@ public class MemberComplexVO {
 	private String minLoginDate, maxLoginDate;
 	private List<String> memberLevelList;
 	private List<String> orderList;
-	private Integer beginRow, endRow;
-	
 	//없을 수도 있어서 int가 아니라 Integer
+	
+	private int page=1, size=10;
+//	private Integer beginRow, endRow;
+	
+	//가상의 getter메소드
+	public int getBeginRow() {
+		return page * size - (size-1);
+	}
+	
+	public int getEndRow() {
+		return page * size;
+	}
 }
