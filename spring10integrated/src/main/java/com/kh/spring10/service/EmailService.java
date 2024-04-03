@@ -15,6 +15,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.kh.spring10.dao.CertDao;
 import com.kh.spring10.dao.MemberDao;
@@ -45,7 +46,7 @@ public class EmailService {
 	
 	//HTML템플릿에있는 내용발송
 	public void sendWelcomeMail(MemberDto memberDto) throws IOException, MessagingException {
-		ClassPathResource resource = new ClassPathResource("template/welcom-template.html");
+		ClassPathResource resource = new ClassPathResource("template/welcome-template.html");
 		File target = resource.getFile();
 		
 		StringBuffer buffer = new StringBuffer();
@@ -59,8 +60,20 @@ public class EmailService {
 		Element who = document.getElementById("who");
 		who.text(memberDto.getMemberNick());
 		
-		Element link = document.getElementById("login-link");
-		link.attr("href","로그인페이지주소");
+		Element link = document.getElementById("login-link"); 
+//		link.attr("href","http://localhost:8080/member/login"); //서버PC에서만
+//		link.attr("href","http://192.168.30.41:8080/member/login"); //강의장에서만
+		
+		//주소를 상황에 맞게 생성하는 도구 - ServlertUriComponentsBuilder
+		//언제쓰냐면, 이메일처럼 제 3자에게 메일을 보내는데 거기에 나의 주소를 적고싶을 때 적기
+//		String url = ServletUriComponentsBuilder.fromCurrentContextPath()
+//												.path("/member/login")
+//												.build().toUriString();
+//		link.attr("href",url);
+		
+		link.attr("href", ServletUriComponentsBuilder.fromCurrentContextPath()
+				.path("/member/login")
+				.build().toUriString());
 		
 		//마임메세지 생성
 		MimeMessage message = sender.createMimeMessage();
