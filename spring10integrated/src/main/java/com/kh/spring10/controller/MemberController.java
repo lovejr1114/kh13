@@ -138,6 +138,7 @@ public class MemberController {
 		//1. 세션에 저장된 아이디를 꺼낸다
 		String loginId = (String) session.getAttribute("loginId");
 		//다운 캐스팅해준다.
+		System.out.println("마이페이지 실행! "+loginId);
 		
 		//2. 아이디에 맞는 정보를 조회한다.
 		MemberDto memberDto = memberDao.selectOne(loginId);
