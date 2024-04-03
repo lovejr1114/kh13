@@ -72,8 +72,13 @@ public class EmailService {
 //		link.attr("href",url);
 		
 		link.attr("href", ServletUriComponentsBuilder.fromCurrentContextPath()
-				.path("/member/login")
-				.build().toUriString());
+																		.path("/member/login")
+																		.build().toUriString());
+		
+		Element image = document.getElementById("background-img");
+		image.attr("src", ServletUriComponentsBuilder.fromCurrentContextPath()
+																		.path("/image/dmsdms2.jpg")
+																		.build().toUriString());
 		
 		//마임메세지 생성
 		MimeMessage message = sender.createMimeMessage();
