@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.spring17.service.KakaoPayService;
-import com.kh.spring17.vo.KakaoPayApproveResponseVO;
 import com.kh.spring17.vo.KakaoPayReadyRequestVO;
 import com.kh.spring17.vo.KakaoPayReadyResponseVO;
 
