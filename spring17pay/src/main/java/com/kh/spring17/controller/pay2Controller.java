@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.spring17.dao.ProductDao;
 import com.kh.spring17.dto.ProductDto;
 import com.kh.spring17.service.KakaoPayService;
+import com.kh.spring17.vo.KakaoPayApproveRequestVO;
+import com.kh.spring17.vo.KakaoPayApproveResponseVO;
 import com.kh.spring17.vo.KakaoPayReadyRequestVO;
 import com.kh.spring17.vo.KakaoPayReadyResponseVO;
 
@@ -61,4 +63,35 @@ public class pay2Controller {
 		
 		return "redirect:"+responseVO.getNextRedirectPcUrl();
 	}
+	
+	@GetMapping("/purchase/success")
+	public String success(HttpSession session, 
+						@RequestParam String pg_token) throws URISyntaxException {
+		
+		KakaoPayApproveRequestVO requestVO = 
+				KakaoPayApproveRequestVO.builder()
+					.partnerOrderId((String)session.getAttribute("partner_order_id"))
+					.partnerUserId((String)session.getAttribute("partner_user_id"))
+					.tid((String)session.getAttribute("tid"))
+					.pgToken(pg_token)
+				.build();
+		
+		//세션의 Flash Attribute를 제거 
+		session.removeAttribute("partner_order_id");
+		session.removeAttribute("partner_user_id");
+		session.removeAttribute("tid");
+		
+		KakaoPayApproveResponseVO responseVO =
+								kakaoPayService.approve(requestVO);
+		
+		return "redirect:successComplete";
+	}
+	
+	@GetMapping("/purchase/successComplete")
+	public String successComplete() {
+		return "pay2/successComplete";
+	}
+	
+//	@GetMapping("/purchase/cancel")
+//	@GetMapping("/purchase/fail")
 }
