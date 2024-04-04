@@ -56,8 +56,8 @@ public class KakaoPayService {
 	
 	//승인 요청 메소드
 	public KakaoPayApproveResponseVO approve(KakaoPayApproveRequestVO requestVO) throws URISyntaxException {
-		//주소 생성 (준비 단계 주소)
-		URI uri = new URI("https://open-api.kakaopay.com/online/v1/payment/ready");
+		//주소 생성 (요청 주소)
+		URI uri = new URI("https://open-api.kakaopay.com/online/v1/payment/approve");
 		
 		//바디 생성
 		Map<String, String> body = new HashMap<>();
