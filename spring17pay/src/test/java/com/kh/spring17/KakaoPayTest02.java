@@ -54,6 +54,7 @@ public class KakaoPayTest02 {
 		
 		Map response = template.postForObject(uri, entity, Map.class);
 		//log.debug("response = {}", response);
+		log.debug("거래번호 = {}", response.get("tid"));
 		log.debug("주소 = {}", response.get("next_redirect_pc_url"));
 	}
 	
