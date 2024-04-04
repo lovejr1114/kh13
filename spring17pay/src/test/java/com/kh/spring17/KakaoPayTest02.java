@@ -28,7 +28,7 @@ public class KakaoPayTest02 {
 		//요청 전송 도구 생성
 		RestTemplate template = new RestTemplate();
 		
-		//주소 생성
+		//주소 생성 (준비 단계 주소)
 		URI uri = new URI("https://open-api.kakaopay.com/online/v1/payment/ready");
 		
 		//헤더 생성
