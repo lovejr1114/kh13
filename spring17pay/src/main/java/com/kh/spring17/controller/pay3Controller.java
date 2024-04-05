@@ -1,6 +1,7 @@
 package com.kh.spring17.controller;
 
 import java.net.URISyntaxException;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ import com.kh.spring17.dto.ProductDto;
 import com.kh.spring17.service.KakaoPayService;
 import com.kh.spring17.vo.KakaoPayApproveRequestVO;
 import com.kh.spring17.vo.KakaoPayApproveResponseVO;
+import com.kh.spring17.vo.KakaoPayOrderRequestVO;
+import com.kh.spring17.vo.KakaoPayOrderResponseVO;
 import com.kh.spring17.vo.KakaoPayReadyRequestVO;
 import com.kh.spring17.vo.KakaoPayReadyResponseVO;
 import com.kh.spring17.vo.PurchaseListVO;
@@ -183,5 +186,32 @@ public class pay3Controller {
 		session.removeAttribute("tid");
 		session.removeAttribute("vo");
 		return "pay3/fail";
+	}
+	
+	//결제 목록 - 카카오페이 아니고 payment의 목록을 보겠다는 뜻
+	@RequestMapping("/list")
+	public String list(Model model) {
+		model.addAttribute("list", paymentDao.paymentList());
+		return "pay3/list";
+	}
+	
+	@RequestMapping("/detail")
+	public String detail(@RequestParam int paymentNo, Model model) throws URISyntaxException {
+		//무슨 상품을 얼마에 몇 개 샀는지
+		//DB의 상세내역 첨부
+		List<PaymentDetailDto> detailList = paymentDao.paymentDetailList(paymentNo);
+		model.addAttribute("detailList", detailList);
+		
+		//카카오페이의 상세조회 내역 첨부 
+		PaymentDto paymentDto = paymentDao.selectOne(paymentNo);
+		model.addAttribute("paymentDto", paymentDto);
+		KakaoPayOrderRequestVO requestVO = 
+							KakaoPayOrderRequestVO.builder()
+								.tid(paymentDto.getPaymentTid())
+							.build();
+				
+		KakaoPayOrderResponseVO responseVO = kakaoPayService.order(requestVO);
+		model.addAttribute("responseVO", responseVO);
+		return "pay3/detail";
 	}
 }
