@@ -124,36 +124,40 @@ public class pay3Controller {
 		PurchaseListVO vo = (PurchaseListVO) session.getAttribute("vo"); //다운캐스팅
 		session.removeAttribute("vo");
 		
-		//DB에 결제 완료된 내역을 저장
-		//- 결제 대표 정보(payment) = 번호를 생성하고 등록을 한다.
-		int paymentNo = paymentDao.paymentSequence(); //번호 생성
-		PaymentDto paymentDto = PaymentDto.builder()
-					.paymentNo(paymentNo) //시퀀스
-					.paymentName(responseVO.getItemName()) //대표 결제명
-					.paymentTotal(responseVO.getAmount().getTotal()) //결제 총 금액
-					.paymentRemain(responseVO.getAmount().getTotal()) //잔여금액 (결제 총 금액과 동일)
-					.memberId(responseVO.getPartnerUserId()) //구매자 ID
-					.paymentTid(responseVO.getTid()) //거래번호
-				.build();
-		paymentDao.insertPayment(paymentDto);
+		//카카오페이서비스에 모듈화 해놓은 걸 불러오기!(컨트롤러가 길어지면 안되서 모듈화 해서 저장해놨잖아)
+        kakaoPayService.insertPayment(vo, responseVO);
 		
-		
-		//- 결제 상세 내역(payment_detail) - 목록 개수만큼 반복적으로 등록
-		for(PurchaseVO purchaseVO : vo.getPurchase()) {
-			ProductDto productDto = productDao.selectOne(purchaseVO.getNo()); //상품 정보 조회
-			
-			int paymentDetailNo = paymentDao.paymentDetailSequence(); //시퀀스번호출력
-			PaymentDetailDto paymentDetailDto = PaymentDetailDto.builder()
-						.paymentDetailNo(paymentDetailNo) //시퀀스
-						.paymentDetailProduct(productDto.getNo()) //상품번호 (purchaseVO에서 꺼내도 됨)
-						.paymentDetailQty(purchaseVO.getQty()) //수량
-						.paymentDetailName(productDto.getName()) //상품명
-						.paymentDetailPrice(productDto.getPrice()) //상품가격
-						.paymentDetailStatus("승인") //결제 상태 (이건 무조건 승인이라 안적어도 상관없지만 적음.)
-						.paymentNo(paymentNo) //결제 대표번호
-					.build();
-			paymentDao.insertPaymentDetail(paymentDetailDto); //등록
-		}
+//		
+//		//DB에 결제 완료된 내역을 저장
+//		//- 결제 대표 정보(payment) = 번호를 생성하고 등록을 한다.
+//		int paymentNo = paymentDao.paymentSequence(); //번호 생성
+//		PaymentDto paymentDto = PaymentDto.builder()
+//					.paymentNo(paymentNo) //시퀀스
+//					.paymentName(responseVO.getItemName()) //대표 결제명
+//					.paymentTotal(responseVO.getAmount().getTotal()) //결제 총 금액
+//					.paymentRemain(responseVO.getAmount().getTotal()) //잔여금액 (결제 총 금액과 동일)
+//					.memberId(responseVO.getPartnerUserId()) //구매자 ID
+//					.paymentTid(responseVO.getTid()) //거래번호
+//				.build();
+//		paymentDao.insertPayment(paymentDto);
+//		
+//		
+//		//- 결제 상세 내역(payment_detail) - 목록 개수만큼 반복적으로 등록
+//		for(PurchaseVO purchaseVO : vo.getPurchase()) {
+//			ProductDto productDto = productDao.selectOne(purchaseVO.getNo()); //상품 정보 조회
+//			
+//			int paymentDetailNo = paymentDao.paymentDetailSequence(); //시퀀스번호출력
+//			PaymentDetailDto paymentDetailDto = PaymentDetailDto.builder()
+//						.paymentDetailNo(paymentDetailNo) //시퀀스
+//						.paymentDetailProduct(productDto.getNo()) //상품번호 (purchaseVO에서 꺼내도 됨)
+//						.paymentDetailQty(purchaseVO.getQty()) //수량
+//						.paymentDetailName(productDto.getName()) //상품명
+//						.paymentDetailPrice(productDto.getPrice()) //상품가격
+//						.paymentDetailStatus("승인") //결제 상태 (이건 무조건 승인이라 안적어도 상관없지만 적음.)
+//						.paymentNo(paymentNo) //결제 대표번호
+//					.build();
+//			paymentDao.insertPaymentDetail(paymentDetailDto); //등록
+//		}
 		
 		return "redirect:successComplete";
 	}
