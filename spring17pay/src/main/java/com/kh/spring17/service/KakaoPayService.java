@@ -21,6 +21,8 @@ import com.kh.spring17.dto.PaymentDto;
 import com.kh.spring17.dto.ProductDto;
 import com.kh.spring17.vo.KakaoPayApproveRequestVO;
 import com.kh.spring17.vo.KakaoPayApproveResponseVO;
+import com.kh.spring17.vo.KakaoPayOrderRequestVO;
+import com.kh.spring17.vo.KakaoPayOrderResponseVO;
 import com.kh.spring17.vo.KakaoPayReadyRequestVO;
 import com.kh.spring17.vo.KakaoPayReadyResponseVO;
 import com.kh.spring17.vo.PurchaseListVO;
@@ -128,5 +130,17 @@ public class KakaoPayService {
 		}
 	}
 	
+	
+	public KakaoPayOrderResponseVO order(KakaoPayOrderRequestVO requestVO) throws URISyntaxException {
+		URI uri = new URI("https://open-api.kakaopay.com/online/v1/payment/order");
+		
+		Map<String, String> body = new HashMap<>();
+		body.put("cid", kakaoPayProperties.getCid());
+		body.put("tid", requestVO.getTid());
+		
+		HttpEntity entity = new HttpEntity(body, header);
+		
+		return template.postForObject(uri, entity, KakaoPayOrderResponseVO.class);
+	}
 	
 }
