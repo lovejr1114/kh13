@@ -164,9 +164,24 @@ public class pay3Controller {
 	
 	@GetMapping("/purchase/successComplete")
 	public String successComplete() {
-		return "pay2/successComplete";
+		return "pay3/successComplete";
 	}
 	
-//	@GetMapping("/purchase/cancel")
-//	@GetMapping("/purchase/fail")
+	//결제 취소와 실패에서는 결제 준비 시 세션에 담았던 Flash Attribute를 반드시 제거해야한다.
+	@GetMapping("/purchase/cancel")
+	public String cancel(HttpSession session) {
+		session.removeAttribute("partner_order_id");
+		session.removeAttribute("partner_user_id");
+		session.removeAttribute("tid");
+		session.removeAttribute("vo");
+		return "pay3/cancel";
+	}
+	@GetMapping("/purchase/fail")
+	public String fail(HttpSession session) {
+		session.removeAttribute("partner_order_id");
+		session.removeAttribute("partner_user_id");
+		session.removeAttribute("tid");
+		session.removeAttribute("vo");
+		return "pay3/fail";
+	}
 }
