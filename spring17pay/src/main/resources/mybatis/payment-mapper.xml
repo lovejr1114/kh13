@@ -13,10 +13,12 @@
 	
 	<insert id="paymentAdd">
 		insert into payment(
-			payment_no, payment_name, payment_total, payment_remain
+			payment_no, payment_name, payment_total, payment_remain, 
+			member_id, payment_tid
 		)
 		values(
-			#{paymentNo}, #{paymentName}, #{paymentTotal}, #{paymentRemain}
+			#{paymentNo}, #{paymentName}, #{paymentTotal}, #{paymentRemain},
+			#{memberId}, #{paymentTid}
 		)
 	</insert>
 	
