@@ -43,7 +43,7 @@
 	<li>요청번호 : ${paymentActionDetailVO.aid}</li>
 	<li>요청유형 : ${paymentActionDetailVO.paymentActionType}</li>
 	<li>
-		금액 (총/취소/잔여) : 
+		취소 금액 : 
 		${paymentActionDetailVO.amount}원		
 	</li>
 </c:forEach>
