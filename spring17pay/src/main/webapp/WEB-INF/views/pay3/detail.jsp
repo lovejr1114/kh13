@@ -29,7 +29,11 @@
 	<%-- <li>소계 : ${paymentDetailDto.getTotalPrice()}</li> --%>
 	<li>소계 : ${paymentDetailDto.totalPrice}원</li>
 </ul>
+
+<%-- 항목취소는 "승인"상태인 항목에만 출력 되게하기 --%>
+<c:if test="${paymentDetailDto.paymentDetailStatus == '승인'}">
 <h2><a href="cancelItem?paymentDetailNo=${paymentDetailDto.paymentDetailNo}">↑↑↑항목 취소↑↑↑</a></h2>
+</c:if>
 </c:forEach>
 
 <hr>

@@ -229,6 +229,11 @@ public class pay3Controller {
 		PaymentDetailDto paymentDetailDto = paymentDao.paymentDetailFind(paymentDetailNo);
 		int amount = paymentDetailDto.getTotalPrice(); //소계를 불러온다. (이게 취소시킬 금액)
 		
+		//(+추가) 상품이 취소 상태라면 예외를 발생시켜 실행을 막는다
+		if(paymentDetailDto.getPaymentDetailStatus().equals("취소")) {
+			throw new RuntimeException("이미 취소된 상품");
+		}
+		
 		//[2] 거래번호를 알 수 있게 결제 대표 정보를 모두 불러온다. (거래번호와 잔여금액 알 수 있다)
 		PaymentDto paymentDto = paymentDao.selectOne(paymentDetailDto.getPaymentNo());
 		int paymentNo = paymentDto.getPaymentNo(); //번호 꺼내놓기.
