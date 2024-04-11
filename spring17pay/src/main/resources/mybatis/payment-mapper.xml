@@ -68,11 +68,18 @@
 		set payment_remain = payment_remain - #{amount}
 		where payment_no = #{paymentNo}
 	</update>
-	<!--  payment_detail 상태를 취소로 변경 -->
+	<!--  payment_detail 상태를 취소로 변경 (얘는 하나만 취소 가능, 부분취소) -->
 	<update id="paymentDetailCancel">
 		update payment_detail
 		set payment_detail_status = '취소'
 		where payment_detail_no = #{paymentDetailNo}
+	</update>
+	<!-- 전체취소 -->
+	<update id="paymentDetailCancelAll">
+		update payment_detail
+		set payment_detail_status = '취소'
+		where payment_no = #{paymentNo} and payment_detail_status='승인'
+		<!-- and payment_detail_status는 성능 향상을 위해 추가한 최적화 구문 -->
 	</update>
 
 </mapper>

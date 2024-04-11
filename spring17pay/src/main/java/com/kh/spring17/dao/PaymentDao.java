@@ -55,6 +55,7 @@ public class PaymentDao {
 	public PaymentDetailDto paymentDetailFind(int paymentDetailNo) {
 		return sqlSession.selectOne("payment.paymentDetailFind",paymentDetailNo);
 	}
+	
 	//잔여 금액을 차감
 	public boolean paymentRemainDecrease(int paymentNo, int amount) {
 		Map<String, Object> data = new HashMap<>();
@@ -62,8 +63,14 @@ public class PaymentDao {
 		data.put("amount", amount);
 		return sqlSession.update("payment.paymentRemainDecrease",data) > 0;
 	}
-	//승인을 취소로 변경
+	
+	//승인을 취소로 변경 (개별 취소)
 	public boolean paymentDetailCancel(int paymentDetailNo) {
 		return sqlSession.update("payment.paymentDetailCancel",paymentDetailNo) > 0;
+	}
+	
+	//전체 취소 버튼
+	public boolean paymentDetailCancelAll(int paymentNo) {
+		return sqlSession.update("payment.paymentDetailCancelAll",paymentNo) > 0;
 	}
 }

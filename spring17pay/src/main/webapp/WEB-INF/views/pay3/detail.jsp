@@ -4,7 +4,10 @@
 
 <h1>결제 상세 정보</h1>
 
+<%-- 전체 취소는 잔여금액이 존재할 때 출력 --%>
+<c:if test="${paymentDto.paymentRemain > 0}">
 <h2><a href="cancelAll?paymentNo=${paymentDto.paymentNo}">전체 취소</a></h2>
+</c:if>
 
 <ul>
     <li>결제번호 : ${paymentDto.paymentNo}</li>

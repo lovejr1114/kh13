@@ -262,5 +262,34 @@ public class pay3Controller {
 	}
 	
 	//전체취소
-	//@GetMapping("/cancelAll")
+	//- 결제 대표정보를 조회하여 남은 금액을 모두 취소하는 것
+	//- 결제 대표정보에 소속된 상세정보의 상태를 모두 취소로 변경해야함
+	@GetMapping("/cancelAll")
+	public String cancelAll(@RequestParam int paymentNo) throws URISyntaxException {
+		//[1] 결제 대표 정보를 모두 불러온다. (여기에 잔여금액이 있다)
+		PaymentDto paymentDto = paymentDao.selectOne(paymentNo);
+		
+		//(+추가) 잔여금액이 0원이라면 차단
+		if(paymentDto.getPaymentRemain() == 0) {
+			throw new RuntimeException("이미 취소 완료된 결제건");
+		}
+		
+		//[2] 결제 취소
+		KakaoPayCancelRequestVO requestVO =
+						KakaoPayCancelRequestVO.builder()
+							.tid(paymentDto.getPaymentTid())
+							.cancelAmount(paymentDto.getPaymentRemain())
+						.build();
+		
+		KakaoPayCancelResponseVO responseVO = kakaoPayService.cancel(requestVO); //예외는 집어 던지기
+		
+		//[3] DB상태 변경 (금액을 다 차감시켜달라)
+		//(1) payment 테이블의 해당 항목 잔여금액 모두 차감
+		//(2) payment_detail 테이블의 해당 payment_no에 대한 항목을 모두 취소
+		paymentDao.paymentRemainDecrease(paymentNo, paymentDto.getPaymentRemain());
+		//전체취소
+		paymentDao.paymentDetailCancelAll(paymentNo);
+		
+		return "redirect:detail?paymentNo="+paymentNo;
+	}
 }
