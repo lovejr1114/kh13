@@ -44,7 +44,7 @@
 	<select id="paymentList" resultType="PaymentDto">
 		select * from payment order by payment_no desc
 	</select>
-	
+	<!-- 찾기 -->
 	<select id="paymentFind" resultType="PaymentDto">
 		select * from payment where payment_no = #{paymentNo}
 	</select>
@@ -56,6 +56,23 @@
 		where payment_no = #{paymentNo}
 		order by payment_detail_no asc
 	</select>
+	<!-- 찾기 -->
+	<select id="paymentDetailFind" resultType="PaymentDetailDto">
+		select * from payment_detail
+		where payment_detail_no = #{paymentDetailNo}
+	</select>
 
+	<!-- payment 잔여금액을 차감 -->
+	<update id="paymentRemainDecrease">
+		update payment
+		set payment_remain = payment_remain - #{amount}
+		where payment_no = #{paymentNo}
+	</update>
+	<!--  payment_detail 상태를 취소로 변경 -->
+	<update id="paymentDetailCancel">
+		update payment_detail
+		set payment_detail_status = '취소'
+		where payment_detail_no = #{paymentDetailNo}
+	</update>
 
 </mapper>

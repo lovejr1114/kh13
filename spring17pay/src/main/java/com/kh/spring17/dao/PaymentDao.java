@@ -1,6 +1,8 @@
 package com.kh.spring17.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +51,19 @@ public class PaymentDao {
 		return sqlSession.selectOne("payment.paymentFind",paymentNo);
 	}
 	
-	
+	//디테일 찾기
+	public PaymentDetailDto paymentDetailFind(int paymentDetailNo) {
+		return sqlSession.selectOne("payment.paymentDetailFind",paymentDetailNo);
+	}
+	//잔여 금액을 차감
+	public boolean paymentRemainDecrease(int paymentNo, int amount) {
+		Map<String, Object> data = new HashMap<>();
+		data.put("paymentNo", paymentNo);
+		data.put("amount", amount);
+		return sqlSession.update("payment.paymentRemainDecrease",data) > 0;
+	}
+	//승인을 취소로 변경
+	public boolean paymentDetailCancel(int paymentDetailNo) {
+		return sqlSession.update("payment.paymentDetailCancel",paymentDetailNo) > 0;
+	}
 }

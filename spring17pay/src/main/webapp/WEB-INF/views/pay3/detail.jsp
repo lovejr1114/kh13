@@ -4,6 +4,8 @@
 
 <h1>결제 상세 정보</h1>
 
+<h2><a href="cancelAll?paymentNo=${paymentDto.paymentNo}">전체 취소</a></h2>
+
 <ul>
     <li>결제번호 : ${paymentDto.paymentNo}</li>
     <li>결제일 : ${paymentDto.paymentTime}</li>
@@ -27,6 +29,7 @@
 	<%-- <li>소계 : ${paymentDetailDto.getTotalPrice()}</li> --%>
 	<li>소계 : ${paymentDetailDto.totalPrice}원</li>
 </ul>
+<h2><a href="cancelItem?paymentDetailNo=${paymentDetailDto.paymentDetailNo}">↑↑↑항목 취소↑↑↑</a></h2>
 </c:forEach>
 
 <hr>

@@ -21,6 +21,8 @@ import com.kh.spring17.dto.ProductDto;
 import com.kh.spring17.service.KakaoPayService;
 import com.kh.spring17.vo.KakaoPayApproveRequestVO;
 import com.kh.spring17.vo.KakaoPayApproveResponseVO;
+import com.kh.spring17.vo.KakaoPayCancelRequestVO;
+import com.kh.spring17.vo.KakaoPayCancelResponseVO;
 import com.kh.spring17.vo.KakaoPayOrderRequestVO;
 import com.kh.spring17.vo.KakaoPayOrderResponseVO;
 import com.kh.spring17.vo.KakaoPayReadyRequestVO;
@@ -214,4 +216,46 @@ public class pay3Controller {
 		model.addAttribute("responseVO", responseVO);
 		return "pay3/detail";
 	}
+	
+	
+	//부분취소(항목취소)
+	//- 데이터베이스 변경 + KakaoAPI 취소요청
+	//- 데이터베이스는 payment_detail과 payment 조회 및 변경이 필요
+	//- payment에서는 잔여금액을 차감하고 TID를 조회해야함
+	//- payment_detail에서는 상품 상태를 취소로 변경하고 금액을 조회해야함
+	@GetMapping("/cancelItem")
+	public String cancelItem(@RequestParam int paymentDetailNo) throws URISyntaxException {
+		//[1] 결제 상세 정보를 모두 불러온다 (취소시킬 금액을 알 수 있다)
+		PaymentDetailDto paymentDetailDto = paymentDao.paymentDetailFind(paymentDetailNo);
+		int amount = paymentDetailDto.getTotalPrice(); //소계를 불러온다. (이게 취소시킬 금액)
+		
+		//[2] 거래번호를 알 수 있게 결제 대표 정보를 모두 불러온다. (거래번호와 잔여금액 알 수 있다)
+		PaymentDto paymentDto = paymentDao.selectOne(paymentDetailDto.getPaymentNo());
+		int paymentNo = paymentDto.getPaymentNo(); //번호 꺼내놓기.
+		int paymentRemain = paymentDto.getPaymentRemain();
+		
+//		if(paymentRemain < amount) { //잔여금액이 더 작은 경우 (지금은 안해도 에러가 남 제약조건에 막혀있기 때문에)
+//			return "redirect:에러페이지";
+//		}
+//		
+		
+		//[3] 불러온 정보들을 이용하여 카카오페이 취소 요청을 한다 (Test07에서 했던거)
+		KakaoPayCancelRequestVO requestVO = 
+												KakaoPayCancelRequestVO.builder()
+													.tid(paymentDto.getPaymentTid())
+													.cancelAmount(amount)
+												.build();
+		
+		KakaoPayCancelResponseVO responseVO = 
+											kakaoPayService.cancel(requestVO);
+		
+		//[4] 취소가 성공한 경우 데이터베이스 값을 변화시킨다
+		paymentDao.paymentRemainDecrease(paymentNo, amount);
+		paymentDao.paymentDetailCancel(paymentDetailNo);
+		
+		return "redirect:detail?paymentNo="+paymentNo;
+	}
+	
+	//전체취소
+	//@GetMapping("/cancelAll")
 }
