@@ -9,9 +9,9 @@
 <hr>
 
 <!-- 누르면 전송되는 버튼을 배치 -->
-<button class="btn-word">Hello!</button>
-<button class="btn-word">Hi~</button>
-<button class="btn-word">Goodbye.</button>
+<button class="btn-word">권서영</button>
+<button class="btn-word">권유정</button>
+<button class="btn-word">이예림</button>
 
 
 <!--  JS처리 -->
