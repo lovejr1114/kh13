@@ -7,6 +7,7 @@ import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
 import com.kh.spring18.websocket.BasicWebSocketServer;
+import com.kh.spring18.websocket.SimpleWebSocketServer;
 
 /*웹소켓과 관련된 설정을 작성하는 파일
  * 이미 등록해둔 웹소켓 서버들을 가져와서 추가적인 설정을 한 뒤 활성화
@@ -17,14 +18,17 @@ import com.kh.spring18.websocket.BasicWebSocketServer;
 public class WebSocketServerConfiguration implements WebSocketConfigurer {
 	
 	@Autowired
-	private BasicWebSocketServer basicWebsocketServer;
+	private BasicWebSocketServer basicWebSocketServer;
+	@Autowired
+	private SimpleWebSocketServer simpleWebSocketServer;
 
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 		//매개변수로 주어진 registry에 웹소켓 서버를 등록
 		//- 반드시 웹페이지처럼 주소가 부여되어야 함
 		//- (중요) 절대로 다른 주소와 겹치면 안된다.
-		registry.addHandler(basicWebsocketServer, "/ws/basic");
+		registry.addHandler(basicWebSocketServer, "/ws/basic")
+				.addHandler(simpleWebSocketServer, "/ws/simple");
 	}
 	
 }

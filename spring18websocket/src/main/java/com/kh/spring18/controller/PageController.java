@@ -12,4 +12,8 @@ public class PageController {
 		return "basic";
 	}
 
+	@RequestMapping("/simple")
+	public String simple() {
+		return "simple";
+	}
 }
