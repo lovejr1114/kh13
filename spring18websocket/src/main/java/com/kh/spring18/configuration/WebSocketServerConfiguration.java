@@ -6,7 +6,7 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
-import com.kh.spring18.websocket.BasicWebsocketServer;
+import com.kh.spring18.websocket.BasicWebSocketServer;
 
 /*웹소켓과 관련된 설정을 작성하는 파일
  * 이미 등록해둔 웹소켓 서버들을 가져와서 추가적인 설정을 한 뒤 활성화
@@ -14,10 +14,10 @@ import com.kh.spring18.websocket.BasicWebsocketServer;
 
 @EnableWebSocket //웹소켓을 사용할 것임을 표시 (활성화)
 @Configuration //설정파일임을 표시
-public class WebsocketServerConfiguration implements WebSocketConfigurer {
+public class WebSocketServerConfiguration implements WebSocketConfigurer {
 	
 	@Autowired
-	private BasicWebsocketServer basicWebsocketServer;
+	private BasicWebSocketServer basicWebsocketServer;
 
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {

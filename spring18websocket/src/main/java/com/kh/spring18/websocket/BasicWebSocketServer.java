@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class BasicWebsocketServer extends TextWebSocketHandler { //인터셉터 생성 방식과 동일
+public class BasicWebSocketServer extends TextWebSocketHandler { //인터셉터 생성 방식과 동일
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		log.debug("사용자가 접속했어요.");
