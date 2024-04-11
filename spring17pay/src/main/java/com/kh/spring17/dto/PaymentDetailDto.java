@@ -14,4 +14,9 @@ public class PaymentDetailDto {
 	private int paymentDetailPrice;
 	private String paymentDetailStatus;
 	private int paymentNo;
+	
+	//소계
+	public int getTotalPrice() {
+		return this.paymentDetailPrice * this.paymentDetailQty;
+	}
 }
