@@ -9,7 +9,8 @@
 
 	<!-- 목록 -->
 	<select id="list" resultType="ChatbotDto">
-		select * from chatbot order by chatbot_no asc
+		select chatbot_no, chatbot_question
+        from chatbot order by chatbot_no asc
 	</select>
 	
 	<!-- 상세 -->
