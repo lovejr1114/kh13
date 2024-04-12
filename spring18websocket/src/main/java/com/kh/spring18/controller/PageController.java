@@ -26,4 +26,9 @@ public class PageController {
 	public String group() {
 		return "group";
 	}
+	
+	@RequestMapping("/json")
+	public String json() {
+		return "json";
+	}
 }
