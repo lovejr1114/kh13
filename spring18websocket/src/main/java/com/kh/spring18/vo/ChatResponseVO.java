@@ -13,4 +13,7 @@ import lombok.NoArgsConstructor;
 public class ChatResponseVO {
 	private String content; //메세지 내용
 	private String time; //전송 시각
+	
+	//(+추가) 회원 전용 채팅일 경우 작성자와 등급 정보를 추가
+	private String memberId, memberLevel;
 }
