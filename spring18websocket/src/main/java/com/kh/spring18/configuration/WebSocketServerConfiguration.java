@@ -9,6 +9,7 @@ import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry
 import com.kh.spring18.websocket.BasicWebSocketServer;
 import com.kh.spring18.websocket.ChatbotWebSocketServer;
 import com.kh.spring18.websocket.GroupWebSocketServer;
+import com.kh.spring18.websocket.JsonWebSocketServer;
 import com.kh.spring18.websocket.SimpleWebSocketServer;
 
 /*웹소켓과 관련된 설정을 작성하는 파일
@@ -27,6 +28,8 @@ public class WebSocketServerConfiguration implements WebSocketConfigurer {
 	private ChatbotWebSocketServer chatbotWebSocketServer;
 	@Autowired
 	private GroupWebSocketServer groupWebSocketServer;
+	@Autowired
+	private JsonWebSocketServer jsonWebSocketServer;
 
 	@Override
 	public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
@@ -44,6 +47,7 @@ public class WebSocketServerConfiguration implements WebSocketConfigurer {
 		//[3] 접속자에 대한 컴팩트한 관리가 가능하다 (heartbeat 핑)
 		registry.addHandler(chatbotWebSocketServer, "/ws/chatbot")
 					.addHandler(groupWebSocketServer, "/ws/group")
+					.addHandler(jsonWebSocketServer, "/ws/json")
 					.withSockJS();
 	}
 	
