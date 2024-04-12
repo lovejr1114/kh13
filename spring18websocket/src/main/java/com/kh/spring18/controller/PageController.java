@@ -21,4 +21,9 @@ public class PageController {
 	public String chatbot() {
 		return "chatbot";
 	}
+	
+	@RequestMapping("/group")
+	public String group() {
+		return "group";
+	}
 }

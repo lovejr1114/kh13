@@ -16,10 +16,14 @@
 
 <!-- jquery CDN -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	$(".btn-connect").click(function(){
-		window.socket = new WebSocket("ws://localhost:8080/ws/chatbot");
+		//window.socket = new WebSocket("ws://localhost:8080/ws/chatbot");
+		//window.socket = new SockJS("http://localhost:8080/ws/chatbot");
+		//window.socket = new SockJS("/ws/chatbot");
+		window.socket = new SockJS("${pageContext.request.contextPath}/ws/chatbot");
 		
 		//웹소켓을 생성하고 나서 예상되는 각종 상황에 대해 미리 콜백함수를 정의
 		//(콜백함수 : 예약함수)
