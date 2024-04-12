@@ -24,8 +24,8 @@ public class GroupWebSocketServer extends TextWebSocketHandler {
 
 	//사용자의 정보를 저장할 저장소 생성
 	//private Set<WebSocketSession> users = new HashSet<>(); //동기화 안됨 (자물쇠 없음)
-	//private Set<WebSocketSession> users = Collections.synchronizedSet(new HashSet<>());
-	 private Set<WebSocketSession> users = new CopyOnWriteArraySet<>(); //
+	//private Set<WebSocketSession> users = Collections.synchronizedSet(new HashSet<>()); //자물쇠 추가
+	 private Set<WebSocketSession> users = new CopyOnWriteArraySet<>(); //동기화 됨(자물쇠 있음)
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
