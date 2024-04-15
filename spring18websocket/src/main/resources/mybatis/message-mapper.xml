@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="message">
+
+	<!-- 시퀀스 -->
+	<select id="sequence" resultType="int">
+		select message_seq.nextval from dual
+	</select>
+	
+	<!-- 등록 -->
+	<insert id="add">
+		insert into message(
+		message_no, message_sender, message_sender_level,
+		message_contect, message_time)
+		values(
+			#{messgaNo}, #{messageSender}, #{messageSenderLevel}, 
+			#{messageContect}, sysdate
+		)
+	</insert>
+	
+	<!-- 목록 -->
+	<select id="list" resultType="messageDto">
+		select * from message order by message_no desc
+	</select>
+
+	<!-- 상세(가급적만드는게좋다!) -->
+	<select id="find" resultType="messageDto">
+		select * from message where message_no = #{messageNo}
+	</select>
+
+</mapper>
