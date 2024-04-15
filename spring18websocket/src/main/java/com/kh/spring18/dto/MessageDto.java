@@ -18,6 +18,6 @@ public class MessageDto {
 	private int messageNo;
 	private String messageSender;
 	private String messageSenderLevel;
-	private String messageContect;
+	private String messageContent;
 	private Date messageTime;
 }

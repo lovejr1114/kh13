@@ -15,16 +15,16 @@
 	<insert id="add">
 		insert into message(
 		message_no, message_sender, message_sender_level,
-		message_contect, message_time)
+		message_content, message_time)
 		values(
-			#{messgaNo}, #{messageSender}, #{messageSenderLevel}, 
-			#{messageContect}, sysdate
+			#{messageNo}, #{messageSender}, #{messageSenderLevel}, 
+			#{messageContent}, sysdate
 		)
 	</insert>
 	
 	<!-- 목록 -->
 	<select id="list" resultType="messageDto">
-		select * from message order by message_no desc
+		select * from message order by message_no asc
 	</select>
 
 	<!-- 상세(가급적만드는게좋다!) -->

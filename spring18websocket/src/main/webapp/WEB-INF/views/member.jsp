@@ -39,13 +39,14 @@ $(function(){
 			//var time = moment(obj.time).format("HH:mm"); //형식 지정
 			var time = moment(obj.time).format("a h:mm"); //형식 지정
 			console.log(time);
-			var area = $("<div>").append(obj.memberId)
-											.append("("+obj.memberLevel+")")
+			var area = $("<div>").append(obj.message_sender)
+											.append("("+obj.message_sender_level+")")
 											.append("<br>")
-											.append(obj.content)
+											.append(obj.message_content)
 											.append("<br>")
 											.append(time);
-			$(".chat-wrapper").append(area);
+			//$(".chat-wrapper").append(area); //추가를 아래쪽에 하는
+			$(".chat-wrapper").prepend(area); //추가를 위 쪽에 하는
 		};	
 	
 	//전송버튼을 누르면 입력한 메세지가 있는 경우에 서버에 전송
