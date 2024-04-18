@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    
+<mapper namespace="student">
+
+	<!-- C -->
+	<select id="sequence" resultType="int">
+		select student_seq.nextval from dual
+	</select>
+	
+	<insert id="save">
+		insert into student(
+			student_id, name, korean_score, math_score, english_score
+		)
+		values(
+			#{studentId},#{name},#{koreanScore}, #{mathScore}, #{englishScore}
+		)
+	</insert>
+	
+	<!-- R -->
+	<select id="list" resultType="StudentDto">
+		select * from student order by student_id asc
+	</select>
+	
+	<select id="find" resultType="StudentDto">
+		select * from student where student_id = #{studentId}
+	</select>
+
+	<!-- U -->
+	<update id="edit">
+		update student
+		<set>
+			<if test="name != null">
+				name = #{name}
+			</if>
+			<if test="koreanScore != null">
+				korean_score = #{koreanScore}
+			</if>
+			<if test="mathScore != null">
+				math_score = #{mathScroe}
+			</if>
+			<if test="englishScore != null">
+				english_score = #{englishScore}
+			</if>
+		</set>
+		where student_id = #{studentId}
+	</update>
+	
+	<!-- D -->
+	<delete id="delete">
+		delete student where student_id = #{studentId}
+	</delete>
+	
+</mapper>
