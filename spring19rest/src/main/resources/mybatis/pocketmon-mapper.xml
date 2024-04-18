@@ -23,7 +23,7 @@
 	</select>
 	
 	<select id="find" resultType="PocketmonDto">
-		select * from pocektmon where pocketmon_no = #{pocketmonNo}
+		select * from pocketmon where pocketmon_no = #{pocketmonNo}
 	</select>
 	
 	<!-- 

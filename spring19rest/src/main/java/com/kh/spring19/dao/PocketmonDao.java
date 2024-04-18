@@ -33,4 +33,9 @@ public class PocketmonDao {
 	public boolean delete(int pocketmonNo) {
 		return sqlSession.delete("pocketmon.delete",pocketmonNo) > 0;
 	}
+	
+	//상세
+	public PocketmonDto selectOne(int pocketmonNo) {
+		return sqlSession.selectOne("pocketmon.find",pocketmonNo);
+	}
 }
