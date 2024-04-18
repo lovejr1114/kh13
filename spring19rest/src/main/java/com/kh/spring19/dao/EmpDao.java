@@ -25,9 +25,19 @@ public class EmpDao {
 		sqlSession.insert("emp.insert",empDto);
 	}
 	
+	//시퀀스
+	public int sequence() {
+		return sqlSession.selectOne("emp.sequence");
+	}
+	
 	//전체 수정
-	public boolean update(EmpDto empDto) {
-		return sqlSession.update("emp.edit",empDto) > 0;
+	public boolean editAll(EmpDto empDto) {
+		return sqlSession.update("emp.editAll",empDto) > 0;
+	}
+	
+	//일부 수정
+	public boolean editUnit(EmpDto empDto) {
+		return sqlSession.update("emp.editUnit",empDto) > 0;
 	}
 
 	//삭제
