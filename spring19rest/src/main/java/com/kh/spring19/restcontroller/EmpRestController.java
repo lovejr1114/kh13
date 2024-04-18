@@ -104,7 +104,6 @@ public class EmpRestController {
 //	}
 	// 조회되지 않는 경우 (null인 경우)는 404번으로 처리하고싶다면
 	// 수동으로 반환 값 처리할 수 있도록 해야한다.
-//	조회되지 않는 경우(null인 경우)는 404번으로 처리하고 싶다면
 	@Operation(description = "사원 상세 조회", responses = {
 			@ApiResponse(responseCode = "200", 
 								description = "조회 성공", content = {
