@@ -35,13 +35,13 @@
 		update student
 		<set>
 			<if test="name != null">
-				name = #{name}
+				name = #{name},
 			</if>
 			<if test="koreanScore != null">
-				korean_score = #{koreanScore}
+				korean_score = #{koreanScore},
 			</if>
 			<if test="mathScore != null">
-				math_score = #{mathScroe}
+				math_score = #{mathScore},
 			</if>
 			<if test="englishScore != null">
 				english_score = #{englishScore}

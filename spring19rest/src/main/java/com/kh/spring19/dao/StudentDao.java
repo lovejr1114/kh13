@@ -34,4 +34,14 @@ public class StudentDao {
 		return sqlSession.selectOne("student.find",studentId);
 	}
 	
+	//수정
+	public boolean edit(StudentDto studentDto) {
+		return sqlSession.update("student.edit",studentDto) > 0;
+	}
+	
+	//삭제
+	public boolean delete(int studentId) {
+		return sqlSession.delete("student.delete", studentId) > 0;
+	}
+	
 }
