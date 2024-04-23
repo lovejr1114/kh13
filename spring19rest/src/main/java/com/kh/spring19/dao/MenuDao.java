@@ -20,8 +20,8 @@ public class MenuDao {
 	}
 	
 	//등록
-	public void add(MenuDto menuDto) {
-		sqlSession.insert("menu.add",menuDto);
+	public void insert(MenuDto menuDto) {
+		sqlSession.insert("menu.insert",menuDto);
 	}
 	
 	//목록

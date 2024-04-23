@@ -36,7 +36,7 @@ public class MenuRestController {
 		//시퀀스 번호 생성
 		int sequence = menuDao.sequence();
 		menuDto.setMenuNo(sequence); //시퀀스로 번호 세팅
-		menuDao.add(menuDto); //등록		
+		menuDao.insert(menuDto); //등록		
 		return menuDao.selectOne(sequence);
 	}
 	

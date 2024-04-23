@@ -14,7 +14,7 @@
 	</select>
 	
 	<!-- Create -->
-	<insert id="add">
+	<insert id="insert">
 		insert into menu(
 			menu_no, menu_name_kor, menu_name_eng, menu_type, menu_price
 		)
@@ -49,7 +49,7 @@
 			<if test="menuNameKor != null">menu_name_kor = #{menuNameKor},</if>
 			<if test="menuNameEng != null">menu_name_eng = #{menuNameEng},</if>
 			<if test="menuType != null">menu_type = #{menuType},</if>
-			<if test="menuPrice != null">menu_price = #{menuPrice}</if>
+			<if test="menuPrice > 0">menu_price = #{menuPrice}</if>
 		</set>
 		where menu_no = #{menuNo}
 	</update>
