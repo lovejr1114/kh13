@@ -33,7 +33,8 @@ public class JwtTest01 {
 		//[2] 토큰의 만료시간을 설정 (무제한이면 안된다. 기간 정해주기.)
 		Calendar c = Calendar.getInstance();
 		Date now = c.getTime(); //현재 시간 추출
-		c.add(Calendar.HOUR, 6); //6시간후로 이동
+//		c.add(Calendar.HOUR, 6); //6시간후로 이동
+		c.add(Calendar.SECOND, 10);//10초 뒤로 이동
 		Date expire = c.getTime(); //만료시각 추출
 		
 		//[3] 토큰 생성
