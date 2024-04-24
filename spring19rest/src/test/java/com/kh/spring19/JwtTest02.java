@@ -18,7 +18,7 @@ public class JwtTest02 {
 	
 	@Test
 	public void test() {
-		String token = jwtService.create(MemberDto.builder()
+		String token = jwtService.createAccessToken(MemberDto.builder()
 					.memberId("testuser1")
 					.memberLevel("일반회원")
 				.build());
