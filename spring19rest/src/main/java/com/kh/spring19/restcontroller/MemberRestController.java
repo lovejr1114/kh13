@@ -80,6 +80,7 @@ public class MemberRestController {
 					.build());
 		}
 		catch(Exception e) {//잘못된 토큰
+			//e.printStackTrace();
 			return ResponseEntity.status(401).build();
 		}
 	}
