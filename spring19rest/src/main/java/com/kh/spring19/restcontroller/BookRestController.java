@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kh.spring19.dao.BookDao;
 import com.kh.spring19.dto.BookDto;
+import com.kh.spring19.vo.BookDataVO;
 
 @CrossOrigin
 @RestController
@@ -28,7 +29,15 @@ public class BookRestController {
 	
 	//페이징
 	@GetMapping("/page/{page}/size/{size}")
-	public List<BookDto> list(@PathVariable int page, @PathVariable int size){
-		return bookDao.selectListByPagin(page, size);
+	public BookDataVO list(@PathVariable int page, @PathVariable int size){
+		List<BookDto> list = bookDao.selectListByPagin(page, size);
+		int count = bookDao.count();
+		int endRow = page * size;
+		boolean last = endRow >= count;
+		return BookDataVO.builder()
+					.list(list) //화면에 표시할 목록
+					.count(count) //총 데이터 개수
+					.last(last) //마지막 여부
+				.build();
 	}
 }

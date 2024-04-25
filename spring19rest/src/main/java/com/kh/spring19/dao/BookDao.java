@@ -33,5 +33,9 @@ public class BookDao {
 		return sqlSession.selectList("book.listByPaging",data); //반환
 	}
 	
+	public int count() {
+		return sqlSession.selectOne("book.count");
+	}
+	
 
 }
