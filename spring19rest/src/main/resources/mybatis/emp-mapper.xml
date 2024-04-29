@@ -52,7 +52,7 @@
 		<if test="empDate != null">
 			emp_date = #{empDate},
 		</if>
-		<if test="empSal != null">
+		<if test="empSal > 0">
 			emp_sal = #{empSal}
 		</if>
 		</set>
